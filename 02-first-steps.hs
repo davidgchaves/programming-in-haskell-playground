@@ -33,3 +33,13 @@ prod []     = 1
 prod (x:xs) = x * prod(xs)
 -- prod [2,3,4] --> 24
 
+--
+-- Extra exercise 2: Implement reverseQuickSort
+--
+reverseQuickSort :: Ord a => [a] -> [a]
+reverseQuickSort []     = []
+reverseQuickSort (x:xs) = reverseQuickSort larger ++ [x] ++ reverseQuickSort smaller
+    where larger  = [a | a <- xs, a > x]
+          smaller = [b | b <- xs, b <= x]
+-- reverseQuickSort [3,2,5,6,4,7,11,5,8] --> [11,8,7,6,5,5,4,3,2]
+
