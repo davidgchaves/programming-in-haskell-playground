@@ -25,3 +25,11 @@ init'' xs = reverse (tail (reverse xs))
 -- init ns --> [1,2,3,4]
 -- init cs --> "aeio"
 
+--
+-- Extra exercise 1: Reimplement 'product' for a list of numbers
+--
+prod :: Num a => [a] -> a
+prod []     = 1
+prod (x:xs) = x * prod(xs)
+-- prod [2,3,4] --> 24
+
