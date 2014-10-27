@@ -17,3 +17,11 @@ last''' xs = xs !! (length xs - 1)
 -- last ns --> 5
 -- last cs --> 'u'
 
+--
+-- Exercise 5: Reimplement 'init'
+--
+init'  xs = take (length xs - 1) xs
+init'' xs = reverse (tail (reverse xs))
+-- init ns --> [1,2,3,4]
+-- init cs --> "aeio"
+
