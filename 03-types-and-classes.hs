@@ -38,3 +38,19 @@ palindrome xs = reverse xs == xs
 twice :: (a -> a) -> a -> a
 twice f x = f (f x)
 
+
+--
+-- Extra exercise 1: What are the types of the following expressions?
+--
+e1 = ["False", "True"]
+e1 :: [[Char]] -- or [String]
+
+e2 = ([False, True], False)
+e2 :: ([Bool], Bool)
+
+e3 = ("1,2", "3,4")
+e3 :: ([Char], [Char]) -- or (String, String)
+
+e4 = [(1,True), (0,False)]
+e4 :: [(Int, Bool)]
+
