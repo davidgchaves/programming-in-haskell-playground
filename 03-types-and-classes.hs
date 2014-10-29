@@ -54,3 +54,10 @@ e3 :: ([Char], [Char]) -- or (String, String)
 e4 = [(1,True), (0,False)]
 e4 :: [(Int, Bool)]
 
+
+--
+-- Extra exercise 2: What is the type of the following function?
+--
+f :: [a] -> [a]
+f xs = take 3 (reverse xs)
+
