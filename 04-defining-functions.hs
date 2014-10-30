@@ -15,3 +15,34 @@ halve''' :: [a] -> ([a], [a])
 halve''' xs = (take (n `div` 2) xs, drop (n `div` 2) xs)
     where n = length xs
 
+
+--
+-- Exercise 2: Safetail, like tail but mapping empty list to itself
+--
+
+-- Using a conditional expression
+safetail :: [a] -> [a]
+safetail xs = if null xs then [] else tail xs
+
+-- Using guarded equations
+safetail' xs
+    | null xs   = []
+    | otherwise = tail xs
+
+-- Using pattern matching
+safetail'' :: [a] -> [a]
+safetail'' []     = []
+safetail'' (_:xs) = xs
+
+safetail''' :: [a] -> [a]
+safetail''' [] = []
+safetail''' xs = tail xs
+
+-- Using a lambda
+safetail'''' :: [a] -> [a]
+safetail''''
+    = \ xs ->
+        case xs of
+            []     -> []
+            (_:xs) -> xs
+
