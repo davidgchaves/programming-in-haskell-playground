@@ -105,3 +105,13 @@ mult x y z = x*y*z
 curryMult :: Num a => a -> a -> a -> a
 curryMult = \ x -> (\ y -> (\ z -> x*y*z))
 
+
+--
+-- Extra exercise 1: Implement 'remove n xs'
+--                   removes the element at position n from the list xs
+--
+remove :: Int -> [a] -> [a]
+remove n xs = take n xs ++ drop (n+1) xs
+-- remove 0 [1,2,3,4] --> [2,3,4]
+-- remove 2 [1,2,3,4] --> [1,2,4]
+
