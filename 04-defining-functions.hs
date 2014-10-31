@@ -95,3 +95,13 @@ a &&&&& b = if a then b else False
 (&&&&&&) :: Bool -> Bool -> Bool
 a &&&&&& b = if b then a else False
 
+
+--
+-- Exercise 6: Curry 'mult x y z' in terms of lambda expressions
+--
+mult :: Num a => a -> a -> a -> a
+mult x y z = x*y*z
+
+curryMult :: Num a => a -> a -> a -> a
+curryMult = \ x -> (\ y -> (\ z -> x*y*z))
+
