@@ -78,3 +78,20 @@ False |||||||| True  = True
 True  |||||||| False = True
 True  |||||||| True  = True
 
+
+--
+-- Exercise 4: Logical conjunction operator (&& i.e. AND) implementations
+--
+(&&&) :: Bool -> Bool -> Bool
+True &&& True = True
+_    &&& _    = False
+
+(&&&&) :: Bool -> Bool -> Bool
+a &&&& b = if a then if b then True else False else False
+
+(&&&&&) :: Bool -> Bool -> Bool
+a &&&&& b = if a then b else False
+
+(&&&&&&) :: Bool -> Bool -> Bool
+a &&&&&& b = if b then a else False
+
