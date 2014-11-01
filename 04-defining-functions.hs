@@ -115,3 +115,40 @@ remove n xs = take n xs ++ drop (n+1) xs
 -- remove 0 [1,2,3,4] --> [2,3,4]
 -- remove 2 [1,2,3,4] --> [1,2,4]
 
+
+--
+-- Extra exercise 2: Guess the type
+--
+e0 = [False, True, False, True]
+e0 :: [Bool]
+
+e1 = [[1,2], [3,4]]
+e1 :: Num t => [[t]] -- also [[Integer]] or [[Int]]
+
+e2 = [[[1,2,3]], [[4,5,6]]]
+e2 :: Num t => [[[t]]] -- also [[[Integer]]] or [[[Int]]]
+
+e3 x = x*2
+e3 :: Num a => a -> a
+
+e4 (x,y) = x
+e4 :: (a,b) -> a
+
+e5 (x,y,z) = z
+e5 :: (a,b,c) -> c
+
+e6 x y = x*y
+e6 :: Num a => a -> a -> a
+
+e7 (x,y) = (y,x)
+e7 :: (a,b) -> (b,a)
+
+e8 x y = (y,x)
+e8 :: a -> b -> (b,a)
+
+e9 [x,y] = (x, True)
+e9 :: [t] -> (t, Bool)
+
+e10 (x,y) = [x,x]
+e10 :: (t,t) -> [t]
+
