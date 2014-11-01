@@ -152,3 +152,22 @@ e9 :: [t] -> (t, Bool)
 e10 (x,y) = [x,x]
 e10 :: (t,t) -> [t]
 
+
+--
+-- Extra exercise 3: A suitable definition for the following types
+--
+e11 :: (Char, Bool)
+e11 = ('\a', True)
+
+e12 :: [(Char, Int)]
+e12 = [('a', 1)]
+
+e13 :: Int -> Int -> Int
+e13 x y = x + y * y
+
+e14 :: ([Char], [Float])
+e14 = ("Haskell", [3.1, 3.14, 3.141, 3.1415])
+
+e15 :: [a] -> [b] -> (a,b)
+e15 xs ys = (head xs, head ys)
+
