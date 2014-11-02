@@ -81,3 +81,8 @@ freqs xs = [ percent (count x xs) n | x <- ['a'..'z'] ]
 chiSquare :: [Float] -> [Float] -> Float
 chiSquare os es = sum [ ((o - e) ^ 2) / e | (o,e) <- zip os es ]
 
+-- rotates the elements of a list xs, n places to the left
+rotate :: Int -> [a] -> [a]
+rotate n xs = drop n xs ++ take n xs
+-- rotate 3 [1,2,3,4,5,6] --> [4,5,6,1,2,3]
+
