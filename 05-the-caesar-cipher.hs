@@ -32,12 +32,12 @@ shiftLowerChar n c
 -- shiftLowerChar 1 'z' --> 'a'
 
 -- encodes a string using a given shift factor
-encode :: Int -> [Char] -> [Char]
+encode :: Int -> String -> String
 encode n xs = [ shiftLowerChar n x | x <- xs ]
 -- encode 13 "roting thirteen" --> "ebgvat guvegrra"
 
 -- decodes a string using a given shift factor
-decode :: Int -> [Char] -> [Char]
+decode :: Int -> String -> String
 decode n xs = [ shiftLowerChar (-n) x | x <- xs ]
 -- decode 13 "ebgvat guvegrra" --> "roting thirteen"
 
@@ -57,11 +57,11 @@ percent n m = (int2Float n / int2Float m) * 100
               where int2Float n = fromInteger (toInteger n)
 
 -- returns the number of lower-case letters in string xs
-lowers :: [Char] -> Int
+lowers :: String -> Int
 lowers xs = length [ x | x <- xs, isLower x ]
 
 -- counts the number of ocurrences of char x in string xs
-count :: Char -> [Char] -> Int
+count :: Char -> String -> Int
 count x xs = length [ x' | x' <- xs, x == x' ]
 
 -- produces a frequency table like freqTable for string xs
@@ -92,7 +92,7 @@ positions x xs = [ i | (x',i) <- zip xs [0..n], x == x' ]
                  where n = length xs - 1
 
 -- attemps to crack Caesar Cipher using the English frequency table
-crack :: [Char] -> [Char]
+crack :: String -> String
 crack xs = decode factor xs
     where
         factor         = head (positions (minimum chiSquareTable) chiSquareTable)
