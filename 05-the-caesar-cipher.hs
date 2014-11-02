@@ -36,3 +36,8 @@ encode :: Int -> [Char] -> [Char]
 encode n xs = [ shiftLowerChar n x | x <- xs ]
 -- encode 13 "roting thirteen" --> "ebgvat guvegrra"
 
+-- decodes a string using a given shift factor
+decode :: Int -> [Char] -> [Char]
+decode n xs = [ shiftLowerChar (-n) x | x <- xs ]
+-- decode 13 "ebgvat guvegrra" --> "roting thirteen"
+
