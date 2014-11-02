@@ -1,7 +1,8 @@
 import Data.Char
 -- We are going to use
---      ord :: Char -> Int    Ex: ord 'a' --> 97
---      chr :: Int  -> Char   Ex: chr 97  --> 'a'
+--      ord     :: Char -> Int    Ex: ord 'a'     --> 97
+--      chr     :: Int  -> Char   Ex: chr 97      --> 'a'
+--      isLower :: Char -> Bool   Ex: isLower 'c' --> True
 -- from Data.Char
 
 --
@@ -21,4 +22,12 @@ int2LowerChar :: Int -> Char
 int2LowerChar n = chr (n + ord 'a')
 -- int2LowerChar 0  --> 'a'
 -- int2LowerChar 25 --> 'z'
+
+-- applies a shift factor n to a lower-case letter c
+shiftLowerChar :: Int -> Char -> Char
+shiftLowerChar n c
+    | isLower c = int2LowerChar ((lowerChar2Int c + n) `mod` 26)
+    | otherwise = c
+-- shiftLowerChar 2 'a' --> 'c'
+-- shiftLowerChar 1 'z' --> 'a'
 
