@@ -31,3 +31,8 @@ shiftLowerChar n c
 -- shiftLowerChar 2 'a' --> 'c'
 -- shiftLowerChar 1 'z' --> 'a'
 
+-- encodes a string using a given shift factor
+encode :: Int -> [Char] -> [Char]
+encode n xs = [ shiftLowerChar n x | x <- xs ]
+-- encode 13 "roting thirteen" --> "ebgvat guvegrra"
+
