@@ -86,3 +86,26 @@ rotate :: Int -> [a] -> [a]
 rotate n xs = drop n xs ++ take n xs
 -- rotate 3 [1,2,3,4,5,6] --> [4,5,6,1,2,3]
 
+-- returns the list of all positions at which a value x occurs in a list xs
+positions :: Eq a => a -> [a] -> [Int]
+positions x xs = [ i | (x',i) <- zip xs [0..n], x == x' ]
+                 where n = length xs - 1
+
+-- attemps to crack Caesar Cipher using the English frequency table
+crack :: [Char] -> [Char]
+crack xs = decode factor xs
+    where
+        factor         = head (positions (minimum chiSquareTable) chiSquareTable)
+        chiSquareTable = [ chiSquare (rotate n freqTable') freqTable | n <- [0..25] ]
+        freqTable'     = freqs xs
+-- crack "kdvnhoo lv ixq"                 --> "haskell is fun"
+-- crack "vscd mywzboroxcsyxc kbo ecopev" --> "list comprehensions are useful"
+
+-- The crack function can decode most strings produced using the Caesar cipher.
+-- However, that it may not be successful if the string xs
+--  (1) is short
+--      crack (encode 3 "haskell") -->  "piasmtt"
+--
+--  (2) has an unusual distribution of letters
+--      crack (encode 3 "boxing wizards jump quickly") -->  "wjsdib rduvmyn ephk lpdxfgt"
+
