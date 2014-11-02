@@ -51,3 +51,22 @@ freqTable :: [Float]
 freqTable = [ 8.2, 1.5, 2.8, 4.3, 12.7, 2.2, 2.0, 6.1, 7.0, 0.2, 0.8, 4.0, 2.4,
               6.7, 7.5, 1.9, 0.1, 6.0, 6.3, 9.1, 2.8, 1.0, 2.4, 0.2, 2.0, 0.1 ]
 
+-- calculates the percentage of one integer with respect to another
+percent :: Int -> Int -> Float
+percent n m = (int2Float n / int2Float m) * 100
+              where int2Float n = fromInteger (toInteger n)
+
+-- returns the number of lower-case letters in string xs
+lowers :: [Char] -> Int
+lowers xs = length [ x | x <- xs, isLower x ]
+
+-- counts the number of ocurrences of char x in string xs
+count :: Char -> [Char] -> Int
+count x xs = length [ x' | x' <- xs, x == x' ]
+
+-- produces a frequency table like freqTable for string xs
+freqs :: String -> [Float]
+freqs xs = [ percent (count x xs) n | x <- ['a'..'z'] ]
+           where n = lowers xs
+-- freqs "abbcccdddeee" --> [8.333334,16.666668,25.0,25.0,25.0,0.0,0.0,...,0.0]
+
