@@ -70,3 +70,14 @@ freqs xs = [ percent (count x xs) n | x <- ['a'..'z'] ]
            where n = lowers xs
 -- freqs "abbcccdddeee" --> [8.333334,16.666668,25.0,25.0,25.0,0.0,0.0,...,0.0]
 
+
+--
+-- Cracking the cipher
+--
+
+-- chi-square statistic: useful for comparing
+--  a list of observed frequencies os with
+--  a list of expected frequencies es
+chiSquare :: [Float] -> [Float] -> Float
+chiSquare os es = sum [ ((o - e) ^ 2) / e | (o,e) <- zip os es ]
+
