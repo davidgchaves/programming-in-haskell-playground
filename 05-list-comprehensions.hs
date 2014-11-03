@@ -55,3 +55,19 @@ perfects n = [ x | x <- [1..n], isPerfect x ]
 e1 = [ (x,y) | x <- [1,2,3], y <- [4,5,6] ]
 e2 = concat [ [ (x,y) | y <- [4,5,6] ] | x <- [1,2,3] ]
 
+
+--
+-- Exercise 6: Reimplement 'positions' using 'find'
+--             'positions' produces the list of all positions at which a value x occurs
+--                         in a list xs
+--             positions False [True,False,True,False] --> [1,3]
+--
+find :: (Eq a) => a -> [(a,b)] -> [b]
+find k t = [ v | (k',v) <- t, k == k' ]
+-- find 2 [(1,"one"), (2, "two"), (3, "three"), (2, "again")] --> ["two","again"]
+
+positions :: (Eq a) => a -> [a] -> [Int]
+positions x xs = find x (zip xs [0..n])
+    where n = length xs - 1
+-- positions False [True, True, False, True, False] --> [2,4]
+
