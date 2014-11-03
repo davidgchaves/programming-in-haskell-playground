@@ -71,3 +71,11 @@ positions x xs = find x (zip xs [0..n])
     where n = length xs - 1
 -- positions False [True, True, False, True, False] --> [2,4]
 
+
+--
+-- Exercise 7: Implement 'scalarProduct'
+--
+scalarProduct :: Num a => [a] -> [a] -> a
+scalarProduct xs ys = sum [ x*y | (x,y) <- zip xs ys ]
+-- scalarProduct [1,2,3] [4,5,6] --> 32
+
