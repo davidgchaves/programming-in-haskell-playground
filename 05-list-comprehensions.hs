@@ -48,3 +48,10 @@ perfects n = [ x | x <- [1..n], isPerfect x ]
     where isPerfect num = sum (init (factors num)) == num
 -- perfects 500 --> [6,28,496]
 
+
+--
+-- Exercise 5: Reimplement e1 using two list comprehensions with single generators
+--
+e1 = [ (x,y) | x <- [1,2,3], y <- [4,5,6] ]
+e2 = concat [ [ (x,y) | y <- [4,5,6] ] | x <- [1,2,3] ]
+
