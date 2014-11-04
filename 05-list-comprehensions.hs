@@ -149,3 +149,13 @@ e6 = concat [ [x | y <- [1..x] ] | x <- [1,2,3] ]
 -- e5 --> [1,2,2,3,3,3]
 -- e6 --> [1,2,2,3,3,3]
 
+
+--
+-- Extra exercise 3: Implement 'riffle'
+--                   Takes two lists of the same length and
+--                   interleaves their elements in turn
+--                   riffle [1,2,3] [4,5,6] --> [1,4,2,5,3,6]
+--
+riffle :: [a] -> [a] -> [a]
+riffle xs ys = concat [ [x,y] | (x,y) <- zip xs ys ]
+
