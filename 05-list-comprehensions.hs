@@ -140,3 +140,12 @@ e4 = concat [ [ (x,y) | y <- [1,2] ] | x <- [1,2] ]
 -- e3 --> [(1,1),(1,2),(2,1),(2,2)]
 -- e4 --> [(1,1),(1,2),(2,1),(2,2)]
 
+
+--
+-- Extra exercise 2: Reimplement e5 using two list comprehensions with single generators
+--
+e5 = [ x | x <- [1,2,3], y <- [1..x] ]
+e6 = concat [ [x | y <- [1..x] ] | x <- [1,2,3] ]
+-- e5 --> [1,2,2,3,3,3]
+-- e6 --> [1,2,2,3,3,3]
+
