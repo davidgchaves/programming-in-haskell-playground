@@ -131,3 +131,12 @@ encode n xs = [ shiftChar n x | x <- xs ]
 -- encode 13 "Think like a Fundamentalist Code like a Hacker"
 --       --> "Guvax yvxr n Shaqnzragnyvfg Pbqr yvxr n Unpxre"
 
+
+--
+-- Extra exercise 1: Reimplement e3 using two list comprehensions with single generators
+--
+e3 = [ (x,y) | x <- [1,2], y <- [1,2] ]
+e4 = concat [ [ (x,y) | y <- [1,2] ] | x <- [1,2] ]
+-- e3 --> [(1,1),(1,2),(2,1),(2,2)]
+-- e4 --> [(1,1),(1,2),(2,1),(2,2)]
+
