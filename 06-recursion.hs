@@ -16,3 +16,8 @@ product' []     = 1
 product' (n:ns) = n * product' ns
 -- product' [2,4,6] --> 48
 
+length' :: [a] -> Int
+length' []     = 0
+length' (x:xs) = 1 + length' xs
+-- length' [1,2,3,4,5] --> 5
+
