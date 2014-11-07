@@ -33,3 +33,12 @@ and'''' :: [Bool] -> Bool
 and'''' []     = True
 and'''' (b:bs) = and'''' bs && b
 
+
+--
+-- Exercise 3: Reimplement concat
+--
+concat' :: [[a]] -> [a]
+concat' [] = []
+concat' (xs:xss) = xs ++ concat' xss
+-- concat' [[], [1,2], [3,4,5]] --> [1,2,3,4,5]
+
