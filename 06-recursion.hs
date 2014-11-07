@@ -32,3 +32,9 @@ append :: [a] -> [a] -> [a]
 (x:xs) `append` ys = x : (xs `append` ys)
 -- [1,2] `append` [3,4,5] --> [1,2,3,4,5]
 
+insert :: Ord a => a -> [a] -> [a]
+insert x []                 = [x]
+insert x (y:ys) | x <= y    = x : y : ys
+                | otherwise = y : insert x ys
+-- insert 3 [1,2,4,5] --> [1,2,3,4,5]
+
