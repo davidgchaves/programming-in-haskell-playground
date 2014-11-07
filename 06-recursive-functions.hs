@@ -51,3 +51,12 @@ replicate' 0 _ = []
 replicate' n x = x : replicate' (n-1) x
 -- replicate' 3 "ab" --> ["ab","ab","ab"]
 
+
+--
+-- Exercise 5: Reimplement !! (0-based)
+--
+nth :: [a] -> Int -> a
+(x:_) `nth` 0  = x
+(_:xs) `nth` n = xs `nth` (n-1)
+-- [1,2,3,4,5] `nth` 3 --> 4
+
