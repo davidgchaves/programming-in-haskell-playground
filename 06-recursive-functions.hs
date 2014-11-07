@@ -42,3 +42,12 @@ concat' [] = []
 concat' (xs:xss) = xs ++ concat' xss
 -- concat' [[], [1,2], [3,4,5]] --> [1,2,3,4,5]
 
+
+--
+-- Exercise 4: Reimplement replicate
+--
+replicate' :: Int -> a -> [a]
+replicate' 0 _ = []
+replicate' n x = x : replicate' (n-1) x
+-- replicate' 3 "ab" --> ["ab","ab","ab"]
+
