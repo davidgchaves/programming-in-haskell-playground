@@ -82,3 +82,17 @@ merge (x:xs) (y:ys) | x <= y    = x : merge xs (y : ys)
                     | otherwise = y : merge (x : xs) ys
 -- merge [2, 5, 6] [1, 3, 4] --> [1,2,3,4,5,6]
 
+
+--
+-- Exercise 8: Implement msort (merge sort) using merge and halve
+--
+halve :: [a] -> ([a], [a])
+halve xs = splitAt (length xs `div` 2) xs
+
+msort :: Ord a => [a] -> [a]
+msort []  = []
+msort [x] = [x]
+msort xs  = merge (msort ys) (msort zs)
+    where (ys, zs) = halve xs
+-- msort [4,3,6,4,1,7,3,4] --> [1,3,3,4,4,4,6,7]
+
