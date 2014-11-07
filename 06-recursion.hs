@@ -21,3 +21,8 @@ length' []     = 0
 length' (x:xs) = 1 + length' xs
 -- length' [1,2,3,4,5] --> 5
 
+reverse' :: [a] -> [a]
+reverse' []     = []
+reverse' (x:xs) = reverse' xs ++ [x]
+-- reverse' [1,2,3,4,5] --> [5,4,3,2,1]
+
