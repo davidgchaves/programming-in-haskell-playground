@@ -60,3 +60,14 @@ nth :: [a] -> Int -> a
 (_:xs) `nth` n = xs `nth` (n-1)
 -- [1,2,3,4,5] `nth` 3 --> 4
 
+
+--
+-- Exercise 6: Reimplement elem
+--
+elem' :: Eq a => a -> [a] -> Bool
+elem' _ []                 = False
+elem' x (y:ys) | x == y    = True
+               | otherwise = elem' x ys
+-- elem' 'v' "recursive" --> True
+-- elem' 'a' "recursive" --> False
+
