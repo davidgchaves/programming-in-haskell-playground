@@ -58,3 +58,11 @@ drop' n (_:xs) = drop' (n-1) xs
 -- drop' 3 [1,2,3,4,5] --> [4,5]
 -- drop' 9 [1,2,3,4,5] --> []
 
+
+-- 6.4 Multiple Recursion
+fibonacci :: Int -> Int
+fibonacci 0 = 0
+fibonacci 1 = 1
+fibonacci n = fibonacci (n-2) + fibonacci (n-1)
+-- fibonacci 7 --> 13
+
