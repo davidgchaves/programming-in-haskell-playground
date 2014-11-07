@@ -71,3 +71,14 @@ elem' x (y:ys) | x == y    = True
 -- elem' 'v' "recursive" --> True
 -- elem' 'a' "recursive" --> False
 
+
+--
+-- Exercise 7: Implement merge (given 2 sorted lists)
+--
+merge :: Ord a => [a] -> [a] -> [a]
+merge xs []                     = xs
+merge [] ys                     = ys
+merge (x:xs) (y:ys) | x <= y    = x : merge xs (y : ys)
+                    | otherwise = y : merge (x : xs) ys
+-- merge [2, 5, 6] [1, 3, 4] --> [1,2,3,4,5,6]
+
