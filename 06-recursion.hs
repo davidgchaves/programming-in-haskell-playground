@@ -38,3 +38,8 @@ insert x (y:ys) | x <= y    = x : y : ys
                 | otherwise = y : insert x ys
 -- insert 3 [1,2,4,5] --> [1,2,3,4,5]
 
+isort :: Ord a => [a] -> [a]
+isort []     = []
+isort (x:xs) = insert x (isort xs)
+-- isort [2,6,3,2,7,1,4,9] --> [1,2,2,3,4,6,7,9]
+
