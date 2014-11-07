@@ -43,3 +43,11 @@ isort []     = []
 isort (x:xs) = insert x (isort xs)
 -- isort [2,6,3,2,7,1,4,9] --> [1,2,2,3,4,6,7,9]
 
+
+-- 6.3 Multiple Arguments
+zip' :: [a] -> [b] -> [(a,b)]
+zip' [] _          = []
+zip' _ []          = []
+zip' (x:xs) (y:ys) = (x,y) : zip' xs ys
+-- zip' [1,2,3,4,5] ["one","two","three"] --> [(1,"one"), (2,"two"), (3,"three")]
+
