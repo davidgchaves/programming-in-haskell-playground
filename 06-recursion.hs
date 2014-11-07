@@ -26,3 +26,9 @@ reverse' []     = []
 reverse' (x:xs) = reverse' xs ++ [x]
 -- reverse' [1,2,3,4,5] --> [5,4,3,2,1]
 
+-- ++ operator
+append :: [a] -> [a] -> [a]
+[] `append` ys     = ys
+(x:xs) `append` ys = x : (xs `append` ys)
+-- [1,2] `append` [3,4,5] --> [1,2,3,4,5]
+
