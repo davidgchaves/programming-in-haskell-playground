@@ -73,3 +73,17 @@ qsort (x:xs) = qsort smaller ++ [x] ++ qsort larger
                      larger  = [b | b <- xs, b > x]
 -- qsort [4,2,3,1,7,3,2,9,0] --> [0,1,2,2,3,3,4,7,9]
 
+
+-- 6.5 Mutual Recursion
+even' :: Int -> Bool
+even' 0 = True
+even' n = odd' (n-1)
+
+odd' :: Int -> Bool
+odd' 0 = False
+odd' n = even (n-1)
+-- even' 6 --> True
+-- odd'  6 --> False
+-- even' 5 --> False
+-- odd'  5 --> True
+
