@@ -87,3 +87,27 @@ odd' n = even (n-1)
 -- even' 5 --> False
 -- odd'  5 --> True
 
+
+-- 6.6 Advice on Recursion
+
+-- Step 1: Define the type
+-- init' :: [a] -> [a]
+
+-- Step 2: Enumrate the cases
+-- init' (x:xs)
+
+-- Step 3: Define the simple cases
+-- init' (x:xs) | null xs   = []
+--              | otherwise =
+
+-- Step 4: Define the other cases
+-- init' (x:xs) | null xs   = []
+--              | otherwise = x : init' xs
+
+-- Step 5: Generalize and simplify
+init' :: [a] -> [a]
+init' [_]    = []
+init' (x:xs) = x : init' xs
+-- init' [4]         --> []
+-- init' [1,2,3,4,5] --> [1,2,3,4]
+
