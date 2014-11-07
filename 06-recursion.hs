@@ -66,3 +66,10 @@ fibonacci 1 = 1
 fibonacci n = fibonacci (n-2) + fibonacci (n-1)
 -- fibonacci 7 --> 13
 
+qsort :: Ord a => [a] -> [a]
+qsort [] = []
+qsort (x:xs) = qsort smaller ++ [x] ++ qsort larger
+               where smaller = [a | a <- xs, a <= x]
+                     larger  = [b | b <- xs, b > x]
+-- qsort [4,2,3,1,7,3,2,9,0] --> [0,1,2,2,3,3,4,7,9]
+
