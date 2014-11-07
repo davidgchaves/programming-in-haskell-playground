@@ -51,3 +51,10 @@ zip' _ []          = []
 zip' (x:xs) (y:ys) = (x,y) : zip' xs ys
 -- zip' [1,2,3,4,5] ["one","two","three"] --> [(1,"one"), (2,"two"), (3,"three")]
 
+drop' :: Int -> [a] -> [a]
+drop' 0 xs     = xs
+drop' n []     = []
+drop' n (_:xs) = drop' (n-1) xs
+-- drop' 3 [1,2,3,4,5] --> [4,5]
+-- drop' 9 [1,2,3,4,5] --> []
+
