@@ -29,11 +29,28 @@ eval xs = foldl (\x y -> y + (10 * x)) 0 xs
 -- length (toDigits 12345678) --> 8
 
 -- ===================================
--- Ex. 1
+-- Ex. 1 - Reverse the digits of a number
+--  - takes a n :: Integer where n >= 0
+--  - returns a list of the digits of n in reverse order
+--  - toDigits n should error when n < 0
 -- ===================================
 
 toDigitsRev :: Integer -> [Integer]
-toDigitsRev = undefined
+toDigitsRev 0 = []
+toDigitsRev n = n `mod` 10 : toDigitsRev (n `div` 10)
+-- 1234 `div` 10 --> 123
+-- 1234 `mod` 10 --> 4
+
+-- toDigitsRev should satisfy the following properties,
+-- for all n :: Integer where n >= 0:
+--  - evalRev (toDigitsRev n) == n
+--  - all (\d -> d >= 0 && d < 10) (toDigitsRev n)
+--  - length (show n) == length (toDigitsRev n)
+evalRev xs = foldr (\x y -> x + (10 * y)) 0 xs
+-- evalRev (toDigitsRev 12345678) --> 12345678
+-- all (\d -> d >= 0 && d < 10) (toDigitsRev 12345678) --> True
+-- length (show 12345678)         --> 8
+-- length (toDigitsRev 12345678)  --> 8
 
 -- ===================================
 -- Ex. 2
