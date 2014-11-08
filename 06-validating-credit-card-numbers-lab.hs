@@ -5,11 +5,28 @@ module Lab2 where
 ------------------------------------------------------------------------------------------------------------------------------
 
 -- ===================================
--- Ex. 0
+-- Ex. 0 - Find the digits of a number
+--  - takes a n :: Integer where n >= 0
+--  - returns a list of the digits of n
+--  - toDigits n should error when n < 0
 -- ===================================
 
 toDigits :: Integer -> [Integer]
-toDigits = undefined
+toDigits 0 = []
+toDigits n = toDigits (n `div` 10) ++ [n `mod` 10]
+-- 1234 `div` 10 --> 123
+-- 1234 `mod` 10 --> 4
+
+-- toDigits should satisfy the following properties,
+-- for all n :: Integer where n >= 0:
+--  - eval (toDigits n) == n
+--  - all (\d -> d >= 0 && d < 10) (toDigits n)
+--  - length (show n) == length (toDigits n)
+eval xs = foldl (\x y -> y + (10 * x)) 0 xs
+-- eval (toDigits 12345678)   --> 12345678
+-- all (\d -> d >= 0 && d < 10) (toDigits 12345678) --> True
+-- length (show 12345678)     --> 8
+-- length (toDigits 12345678) --> 8
 
 -- ===================================
 -- Ex. 1
