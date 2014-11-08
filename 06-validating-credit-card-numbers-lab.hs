@@ -53,11 +53,17 @@ evalRev xs = foldr (\x y -> x + (10 * y)) 0 xs
 -- length (toDigitsRev 12345678)  --> 8
 
 -- ===================================
--- Ex. 2
+-- Ex. 2 - Doubles every second number in the input list
 -- ===================================
 
 doubleSecond :: [Integer] -> [Integer]
-doubleSecond = undefined
+doubleSecond []         = []
+doubleSecond [n]        = [n]
+doubleSecond (n1:n2:ns) = n1 : (2*n2) : doubleSecond ns
+-- doubleSecond []             --> []
+-- doubleSecond [5]            --> [5]
+-- doubleSecond [2,5]          --> [2,10]
+-- take 4 (doubleSecond [1..]) --> [1,4,3,8]
 
 -- ===================================
 -- Ex. 3
