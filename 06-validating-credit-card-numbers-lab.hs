@@ -79,12 +79,18 @@ sumDigits (n:ns) | n `div` 10 == 0 = n + sumDigits ns
 -- sumDigits [6, 66, 666]     --> 36
 
 -- ===================================
--- Ex. 4
+-- Ex. 4 - Validation algorithm for credit cards
+--  1 - Double the value of every second digit beginning with the rightmost
+--  2 - Add the digits
+--  3 - Calculate the modulus of the sum divided by 10
+--  4 - If the result equals 0, then the number is valid
 -- ===================================
 
 isValid :: Integer -> Bool
-isValid = undefined
-
+isValid n = sum `mod` 10 == 0
+    where sum = sumDigits (doubleSecond (toDigitsRev n))
+-- isValid 5256283618614517 --> True
+-- isValid 4556945538735694 --> False
 
 -- ===================================
 -- Ex. 5
