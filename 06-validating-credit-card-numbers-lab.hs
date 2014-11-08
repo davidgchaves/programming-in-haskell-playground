@@ -66,12 +66,17 @@ doubleSecond (n1:n2:ns) = n1 : (2*n2) : doubleSecond ns
 -- take 4 (doubleSecond [1..]) --> [1,4,3,8]
 
 -- ===================================
--- Ex. 3
+-- Ex. 3 - Calculate the sum of all individual digits,
+--         even if a number in the list has more than 2 digits
 -- ===================================
 
 sumDigits :: [Integer] -> Integer
-sumDigits = undefined
-
+sumDigits [] = 0
+sumDigits (n:ns) | n `div` 10 == 0 = n + sumDigits ns
+                 | otherwise       = sumDigits (toDigitsRev n) + sumDigits ns
+-- sumDigits [8, 14, 6, 10]   --> 20
+-- sumDigits [3, 9, 4, 15, 8] --> 30
+-- sumDigits [6, 66, 666]     --> 36
 
 -- ===================================
 -- Ex. 4
