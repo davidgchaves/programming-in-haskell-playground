@@ -24,3 +24,11 @@ filter'' p (x:xs)
     | otherwise = filter'' p xs
 -- filter'' even [1..10] --> [2,4,6,8,10]
 
+-- The functions map and filter are often used together in programs:
+--  * with filter being used to select certain elements from a list,
+--  * each of which is then transformed using map
+-- map and filter example
+sumSqrEven    :: [Int] -> Int
+sumSqrEven ns = sum (map (^2) (filter even ns))
+-- sumSqrEven [1..10] --> 220
+
