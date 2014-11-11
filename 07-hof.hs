@@ -42,3 +42,13 @@ all' p (x:xs)
 -- all' even [2,4,6,8]   --> True
 -- all' even [2,4,5,6,8] --> False
 
+-- any defined using recursion
+any'            :: (a -> Bool) -> [a] -> Bool
+any' _ []       = False
+any' p (x:xs)
+    | p x       = True
+    | otherwise = any' p xs
+-- any' (\x -> True) [] --> False
+-- any' odd [2,4,6,8]   --> False
+-- any' odd [2,4,5,6,8] --> True
+
