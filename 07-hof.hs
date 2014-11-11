@@ -62,3 +62,13 @@ takeWhile' p (x:xs)
 -- takeWhile' even [2,4,6,8]   --> [2,4,6,8]
 -- takeWhile' even [2,4,5,6,8] --> [2,4]
 
+-- dropWhile defined using recursion
+dropWhile'      :: (a -> Bool) -> [a] -> [a]
+dropWhile' _ [] = []
+dropWhile' p (x:xs)
+    | p x       = dropWhile' p xs
+    | otherwise = x : xs
+-- dropWhile' even []          --> []
+-- dropWhile' even [2,4,6,8]   --> []
+-- dropWhile' even [2,4,5,6,8] --> [5,6,8]
+
