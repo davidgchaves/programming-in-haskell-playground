@@ -16,3 +16,11 @@ filter'      :: (a -> Bool) -> [a] -> [a]
 filter' p xs = [x | x <- xs, p x]
 -- filter' even [1..10] --> [2,4,6,8,10]
 
+-- filter defined using recursion
+filter''        :: (a -> Bool) -> [a] -> [a]
+filter'' _ []   = []
+filter'' p (x:xs)
+    | p x       = x : filter'' p xs
+    | otherwise = filter'' p xs
+-- filter'' even [1..10] --> [2,4,6,8,10]
+
