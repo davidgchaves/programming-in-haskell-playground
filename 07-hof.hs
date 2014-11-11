@@ -32,3 +32,13 @@ sumSqrEven    :: [Int] -> Int
 sumSqrEven ns = sum (map (^2) (filter even ns))
 -- sumSqrEven [1..10] --> 220
 
+-- all defined using recursion
+all'            :: (a -> Bool) -> [a] -> Bool
+all' _ []       = True
+all' p (x:xs)
+    | p x       = all' p xs
+    | otherwise = False
+-- all' (\x -> False) [] --> True
+-- all' even [2,4,6,8]   --> True
+-- all' even [2,4,5,6,8] --> False
+
