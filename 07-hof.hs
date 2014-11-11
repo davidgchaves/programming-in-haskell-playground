@@ -11,3 +11,8 @@ map'' _ []     = []
 map'' f (x:xs) = f x : map'' f xs
 -- map'' (+1) [1,3,5,7,9] --> [2,4,6,8,10]
 
+-- filter defined using list comprehensions
+filter'      :: (a -> Bool) -> [a] -> [a]
+filter' p xs = [x | x <- xs, p x]
+-- filter' even [1..10] --> [2,4,6,8,10]
+
