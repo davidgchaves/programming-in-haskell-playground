@@ -52,3 +52,13 @@ any' p (x:xs)
 -- any' odd [2,4,6,8]   --> False
 -- any' odd [2,4,5,6,8] --> True
 
+-- takeWhile defined using recursion
+takeWhile'      :: (a -> Bool) -> [a] -> [a]
+takeWhile' _ [] = []
+takeWhile' p (x:xs)
+    | p x       = x : takeWhile' p xs
+    | otherwise = []
+-- takeWhile' even []          --> []
+-- takeWhile' even [2,4,6,8]   --> [2,4,6,8]
+-- takeWhile' even [2,4,5,6,8] --> [2,4]
+
