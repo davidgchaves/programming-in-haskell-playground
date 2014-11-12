@@ -100,3 +100,11 @@ product' :: Num a => [a] -> a
 product' = foldr' (*) 1
 -- product' [1,2,3,4] --> 24
 
+-- or defined using foldr
+--  * (:) -> (||)
+--  * []  -> False
+or' :: [Bool] -> Bool
+or' = foldr (||) False
+-- or' [False, True, False]  --> True
+-- or' [False, False, False] --> False
+
