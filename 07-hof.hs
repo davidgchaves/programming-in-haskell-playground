@@ -93,3 +93,10 @@ sum' :: Num a => [a] -> a
 sum' = foldr' (+) 0
 -- sum' [1,2,3,4] --> 10
 
+-- product defined using foldr
+--  * (:) -> (*)
+--  * []  -> 1
+product' :: Num a => [a] -> a
+product' = foldr' (*) 1
+-- product' [1,2,3,4] --> 24
+
