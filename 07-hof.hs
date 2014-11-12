@@ -116,3 +116,19 @@ and' = foldr (&&) True
 -- and' [True, True, True]  --> True
 -- and' [True, False, True] --> False
 
+-- length defined using recursion
+length'        :: [a] -> Int
+length' []     = 0
+length' (_:xs) = 1 + length xs
+-- length' [1..10] --> 10
+
+-- naming a lambda
+add1ToThe2ndArg     :: Num a => t -> a -> a
+add1ToThe2ndArg _ n = 1 + n
+-- length defined using foldr
+--  * (:) -> add1ToThe2ndArg
+--  * []  -> 0
+length'' :: [a] -> Int
+length'' = foldr add1ToThe2ndArg 0
+-- length'' [1..10] --> 10
+
