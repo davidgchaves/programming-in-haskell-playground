@@ -72,3 +72,17 @@ dropWhile' p (x:xs)
 -- dropWhile' even [2,4,6,8]   --> []
 -- dropWhile' even [2,4,5,6,8] --> [5,6,8]
 
+
+-- 7.3 The foldr function
+
+-- foldr defined using recursion
+foldr'            :: (a -> b -> b) -> b -> [a] -> b
+foldr' f v []     = v
+foldr' f v (x:xs) = f x (foldr' f v xs)
+-- foldr' (+) 0 [1,2,3,4] --> 10
+
+-- It is best to think of the behaviour of 'foldr f v' in a non-recursive manner.
+-- As simply replacing:
+--  * each cons operator (:) in a list by the function f
+--  * the empty list [] by the value v
+
