@@ -86,3 +86,10 @@ foldr' f v (x:xs) = f x (foldr' f v xs)
 --  * each cons operator (:) in a list by the function f
 --  * the empty list [] by the value v
 
+-- sum defined using foldr
+--  * (:) -> (+)
+--  * []  -> 0
+sum' :: Num a => [a] -> a
+sum' = foldr' (+) 0
+-- sum' [1,2,3,4] --> 10
+
