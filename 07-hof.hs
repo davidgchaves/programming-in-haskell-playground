@@ -108,3 +108,12 @@ or' = foldr (||) False
 -- or' [False, True, False]  --> True
 -- or' [False, False, False] --> False
 
+
+-- and defined using foldr
+--  * (:) -> (&&)
+--  * []  -> True
+and' :: [Bool] -> Bool
+and' = foldr (&&) True
+-- and' [True, True, True]  --> True
+-- and' [True, False, True] --> False
+
