@@ -141,4 +141,10 @@ reverse' (x:xs) = reverse' xs ++ [x]
 -- snoc  - NOTE: Read it backwards ;-)
 snoc      :: a -> [a] -> [a]
 snoc x xs = xs ++ [x]
+-- reverse defined using foldr
+--  * (:) -> snoc
+--  * []  -> []
+reverse'' :: [a] -> [a]
+reverse'' = foldr snoc []
+-- reverse'' [1,2,3,4] --> [4,3,2,1]
 
