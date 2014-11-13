@@ -132,3 +132,9 @@ length'' :: [a] -> Int
 length'' = foldr add1ToThe2ndArg 0
 -- length'' [1..10] --> 10
 
+-- reverse defined using recursion
+reverse'        :: [a] -> [a]
+reverse' []     = []
+reverse' (x:xs) = reverse' xs ++ [x]
+-- reverse' [1,2,3,4] --> [4,3,2,1]
+
