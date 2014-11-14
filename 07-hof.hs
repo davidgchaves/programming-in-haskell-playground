@@ -160,3 +160,8 @@ twice   :: (a -> a) -> a -> a
 twice f = f `composedWith` f
 -- twice (\x -> x*3) 2 --> 18
 
+-- twice defined using the library composition operator (.)
+twice'   :: (a -> a) -> a -> a
+twice' f = f . f
+-- twice' (\x -> x*3) 2 --> 18
+
