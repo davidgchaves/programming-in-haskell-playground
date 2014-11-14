@@ -165,3 +165,9 @@ twice'   :: (a -> a) -> a -> a
 twice' f = f . f
 -- twice' (\x -> x*3) 2 --> 18
 
+-- odd defined using the composition operator (.)
+odd' :: Integral a => a -> Bool
+odd' = not . even
+-- odd' 6 --> False
+-- odd' 7 --> True
+
