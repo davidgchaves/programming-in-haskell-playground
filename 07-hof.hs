@@ -155,3 +155,8 @@ reverse'' = foldr snoc []
 composedWith       :: (b -> c) -> (a -> b) -> (a -> c)
 f `composedWith` g = \x -> f (g x)
 
+-- twice defined using our custom function composition
+twice   :: (a -> a) -> a -> a
+twice f = f `composedWith` f
+-- twice (\x -> x*3) 2 --> 18
+
