@@ -148,3 +148,10 @@ reverse'' :: [a] -> [a]
 reverse'' = foldr snoc []
 -- reverse'' [1,2,3,4] --> [4,3,2,1]
 
+
+-- 7.5 The composition operator
+
+-- composition
+composedWith       :: (b -> c) -> (a -> b) -> (a -> c)
+f `composedWith` g = \x -> f (g x)
+
