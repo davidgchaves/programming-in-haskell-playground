@@ -176,3 +176,9 @@ sumSqrEven' :: [Int] -> Int
 sumSqrEven' = sum . map (^2) . filter even
 -- sumSqrEven' [1..10] --> 220
 
+-- compose (a list of functions) defined using foldr
+--  * (:) -> (.)
+--  * []  -> id
+compose :: [a -> a] -> (a -> a)
+compose = foldr (.) id
+
