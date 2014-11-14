@@ -171,3 +171,8 @@ odd' = not . even
 -- odd' 6 --> False
 -- odd' 7 --> True
 
+-- sumSqrEven defined using the composition operator (.)
+sumSqrEven' :: [Int] -> Int
+sumSqrEven' = sum . map (^2) . filter even
+-- sumSqrEven' [1..10] --> 220
+
