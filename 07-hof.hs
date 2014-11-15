@@ -197,3 +197,14 @@ sumSqrEven'' = sum . compose [map (^2), filter even]
 -- A Type for Bits
 type Bit = Int
 
+-- NOTE: To simplify the definition of certain functions,
+--       binary numbers are written in reverse order to normal
+-- EXAMPLE: 13 is 1101 in binary, but we write it in reverse (1011)
+
+-- bin2Int defined using foldr
+--  * (:) -> (\x y -> x + 2*y)
+--  * []  -> 0
+bin2Int :: [Bit] -> Int
+bin2Int = foldr (\x y -> x + 2*y) 0
+-- bin2Int [1, 0, 1, 1] --> 13  -- REMEMBER: Binary numbers are written in reverse
+
