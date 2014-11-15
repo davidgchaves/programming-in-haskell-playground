@@ -194,3 +194,6 @@ sumSqrEven'' = sum . compose [map (^2), filter even]
 --  * a function that converts a string into a list of zeros and ones
 --  * a function that converts a list of zeros and one into a string
 
+-- A Type for Bits
+type Bit = Int
+
