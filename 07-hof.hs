@@ -214,3 +214,8 @@ int2Bin 0 = []
 int2Bin n = n `mod` 2 : int2Bin (n `div` 2)
 -- int2Bin 13 --> [1,0,1,1]  -- REMEMBER: Binary numbers are written in reverse
 
+-- make8: Ensures that all our binary numbers have the same length (8 bits)
+make8      :: [Bit] -> [Bit]
+make8 bits = take 8 (bits ++ repeat 0)
+-- make8 [1, 0, 1, 1] --> [1,0,1,1,0,0,0,0]
+
