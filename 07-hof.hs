@@ -187,3 +187,10 @@ sumSqrEven'' :: [Int] -> Int
 sumSqrEven'' = sum . compose [map (^2), filter even]
 -- sumSqrEven'' [1..10] --> 220
 
+
+-- 7.6 String transmitter
+-- Consider the problem of simulating the transmission of a string using zeros and ones.
+-- More precisely, we seek to define:
+--  * a function that converts a string into a list of zeros and ones
+--  * a function that converts a list of zeros and one into a string
+
