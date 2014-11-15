@@ -208,3 +208,9 @@ bin2Int :: [Bit] -> Int
 bin2Int = foldr (\x y -> x + 2*y) 0
 -- bin2Int [1, 0, 1, 1] --> 13  -- REMEMBER: Binary numbers are written in reverse
 
+-- int2Bin defined using recursion
+int2Bin   :: Int -> [Bit]
+int2Bin 0 = []
+int2Bin n = n `mod` 2 : int2Bin (n `div` 2)
+-- int2Bin 13 --> [1,0,1,1]  -- REMEMBER: Binary numbers are written in reverse
+
