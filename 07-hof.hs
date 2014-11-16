@@ -1,3 +1,4 @@
+import Data.Char -- ord function in 7.6
 -- 7.2 Processing lists
 
 -- map defined using list comprehensions
@@ -218,4 +219,9 @@ int2Bin n = n `mod` 2 : int2Bin (n `div` 2)
 make8      :: [Bit] -> [Bit]
 make8 bits = take 8 (bits ++ repeat 0)
 -- make8 [1, 0, 1, 1] --> [1,0,1,1,0,0,0,0]
+
+-- encodeAs8bit: encodes a string of characters as a list of 8-bit lists
+encodeAs8bit :: String -> [[Bit]]
+encodeAs8bit = map (make8 . int2Bin .ord)
+-- encodeAs8bit "abc" --> [ [1,0,0,0,0,1,1,0], [0,1,0,0,0,1,1,0], [1,1,0,0,0,1,1,0] ]
 
