@@ -225,3 +225,8 @@ encodeAs8bit :: String -> [[Bit]]
 encodeAs8bit = map (make8 . int2Bin .ord)
 -- encodeAs8bit "abc" --> [ [1,0,0,0,0,1,1,0], [0,1,0,0,0,1,1,0], [1,1,0,0,0,1,1,0] ]
 
+-- encode: encodes a string of characters as a list of bits
+encode :: String -> [Bit]
+encode = concat . encodeAs8bit
+-- encode "abc" --> [1,0,0,0,0,1,1,0, 0,1,0,0,0,1,1,0, 1,1,0,0,0,1,1,0]
+
