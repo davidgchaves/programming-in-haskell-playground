@@ -1,4 +1,5 @@
-import Data.Char -- ord function in 7.6
+import Data.Char -- ord and chr functions in 7.6
+
 -- 7.2 Processing lists
 
 -- map defined using list comprehensions
@@ -236,4 +237,9 @@ chop8 []   = []
 chop8 bits = take 8 bits : chop8 (drop 8 bits)
 -- chop8 [1,0,0,0,0,1,1,0,  0,1,0,0,0,1,1,0,  1,1,0,0,0,1,1,0]
 --  --> [[1,0,0,0,0,1,1,0],[0,1,0,0,0,1,1,0],[1,1,0,0,0,1,1,0]]
+
+-- decode: decodes a list of bits as a string of characters
+decode :: [Bit] -> String
+decode = map (chr . bin2Int) . chop8
+-- decode [1,0,0,0,0,1,1,0, 0,1,0,0,0,1,1,0, 1,1,0,0,0,1,1,0] --> "abc"
 
