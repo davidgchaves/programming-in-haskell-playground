@@ -230,3 +230,10 @@ encode :: String -> [Bit]
 encode = concat . encodeAs8bit
 -- encode "abc" --> [1,0,0,0,0,1,1,0, 0,1,0,0,0,1,1,0, 1,1,0,0,0,1,1,0]
 
+-- chop8: chops a list of bits up into 8-bit binary numbers
+chop8      :: [Bit] -> [[Bit]]
+chop8 []   = []
+chop8 bits = take 8 bits : chop8 (drop 8 bits)
+-- chop8 [1,0,0,0,0,1,1,0,  0,1,0,0,0,1,1,0,  1,1,0,0,0,1,1,0]
+--  --> [[1,0,0,0,0,1,1,0],[0,1,0,0,0,1,1,0],[1,1,0,0,0,1,1,0]]
+
