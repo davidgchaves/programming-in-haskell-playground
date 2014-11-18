@@ -249,3 +249,8 @@ channel = id
 -- channel [1,0,0,0,0,1,1,0, 0,1,0,0,0,1,1,0, 1,1,0,0,0,1,1,0]
 --     --> [1,0,0,0,0,1,1,0, 0,1,0,0,0,1,1,0, 1,1,0,0,0,1,1,0]
 
+-- transmit: simulates the transmission of a string of characters as a list of bits
+transmit :: String -> String
+transmit = decode . channel . encode
+-- transmit "higher-order functions FTW!" --> "higher-order functions FTW!"
+
