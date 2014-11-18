@@ -243,3 +243,9 @@ decode :: [Bit] -> String
 decode = map (chr . bin2Int) . chop8
 -- decode [1,0,0,0,0,1,1,0, 0,1,0,0,0,1,1,0, 1,1,0,0,0,1,1,0] --> "abc"
 
+-- channel: simulates a perfect communication channel
+channel :: [Bit] -> [Bit]
+channel = id
+-- channel [1,0,0,0,0,1,1,0, 0,1,0,0,0,1,1,0, 1,1,0,0,0,1,1,0]
+--     --> [1,0,0,0,0,1,1,0, 0,1,0,0,0,1,1,0, 1,1,0,0,0,1,1,0]
+
