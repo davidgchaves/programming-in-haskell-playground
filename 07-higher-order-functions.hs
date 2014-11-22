@@ -141,3 +141,15 @@ any9 p = foldr (||) False . map p
 -- any9 even [1..10]   --> True
 -- any9 even [1,3,5,7] --> False
 
+
+--
+-- Exercise 4: Reimplement takeWhile (for finite, non-partial input lists) using recursion
+--
+takeWhile1      :: (a -> Bool) -> [a] -> [a]
+takeWhile1 _ [] = []
+takeWhile1 p (x:xs)
+    | p x       = x :takeWhile1 p xs
+    | otherwise = []
+-- takeWhile1 even [1..10]     --> []
+-- takeWhile1 even [2,4,6,7,8] --> [2,4,6]
+
