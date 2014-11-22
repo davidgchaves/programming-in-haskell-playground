@@ -153,3 +153,14 @@ takeWhile1 p (x:xs)
 -- takeWhile1 even [1..10]     --> []
 -- takeWhile1 even [2,4,6,7,8] --> [2,4,6]
 
+
+--
+-- Exercise 5: Reimplement dropWhile (for finite, non-partial input lists) using recursion
+--
+dropWhile1      :: (a -> Bool) -> [a] -> [a]
+dropWhile1 _ [] = []
+dropWhile1 p (x:xs)
+    | p x       = dropWhile1 p xs
+    | otherwise = x:xs
+-- dropWhile1 even [2,4,6,7,8] --> [7,8]
+
