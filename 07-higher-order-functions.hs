@@ -172,3 +172,11 @@ map1   :: (a -> b) -> [a] -> [b]
 map1 f = foldl (\xs x -> xs ++ [f x]) []
 -- map1 (+1) [0..5] --> [1,2,3,4,5,6]
 
+
+--
+-- Exercise 7: Reimplement filter (for finite, non-partial input lists) using foldr
+--
+filter1   :: (a -> Bool) -> [a] -> [a]
+filter1 p = foldr (\x xs -> if p x then x:xs else xs) []
+-- filter1 even [1..10] --> [2,4,6,8,10]
+
