@@ -164,3 +164,11 @@ dropWhile1 p (x:xs)
     | otherwise = x:xs
 -- dropWhile1 even [2,4,6,7,8] --> [7,8]
 
+
+--
+-- Exercise 6: Reimplement map (for finite, non-partial input lists) using foldl
+--
+map1   :: (a -> b) -> [a] -> [b]
+map1 f = foldl (\xs x -> xs ++ [f x]) []
+-- map1 (+1) [0..5] --> [1,2,3,4,5,6]
+
