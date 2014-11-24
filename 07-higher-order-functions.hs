@@ -180,3 +180,14 @@ filter1   :: (a -> Bool) -> [a] -> [a]
 filter1 p = foldr (\x xs -> if p x then x:xs else xs) []
 -- filter1 even [1..10] --> [2,4,6,8,10]
 
+
+--
+-- Exercise 8: Define a function dec2int that converts a decimal number into an integer
+--             using foldl
+--
+dec2int :: [Int] -> Int
+dec2int = foldl (\x y -> 10*x + y) 0
+-- dec2int []        --> 0
+-- dec2int [0,0,0,0] --> 0
+-- dec2int [2,3,4,5] --> 2345
+
