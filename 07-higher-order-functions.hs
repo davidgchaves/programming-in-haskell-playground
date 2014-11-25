@@ -191,3 +191,19 @@ dec2int = foldl (\x y -> 10*x + y) 0
 -- dec2int [0,0,0,0] --> 0
 -- dec2int [2,3,4,5] --> 2345
 
+
+--
+-- Exercise 9: The following definition of sumSqrEven is invalid:
+--             sumSqrEven = compose [sum, map (^2), filter even]
+--             Fix it.
+--
+
+-- given compose function
+compose :: [a -> a] -> (a -> a)
+compose = foldr (.) id
+
+-- fixed sumSqrEven
+sumSqrEven :: [Integer] -> Integer
+sumSqrEven = sum . compose [map (^2), filter even]
+-- sumSqrEven [1,2,3,4] -->  20
+
