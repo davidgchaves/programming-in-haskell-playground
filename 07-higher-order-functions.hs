@@ -216,3 +216,12 @@ sumSqrEven = sum . compose [map (^2), filter even]
 curry1   :: ((a,b) -> c) -> a -> b -> c
 curry1 f = \x y -> f (x,y)
 
+
+--
+-- Exercise 11: Reimplement uncurry which
+--                  * converts a function that takes its arguments one at a time
+--                  * into a function that takes its arguments as a pair
+--
+uncurry1   :: (a -> b -> c) -> (a,b) -> c
+uncurry1 f = \(x,y) -> f x y
+
