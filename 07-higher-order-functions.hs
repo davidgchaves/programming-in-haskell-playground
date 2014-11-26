@@ -207,3 +207,12 @@ sumSqrEven :: [Integer] -> Integer
 sumSqrEven = sum . compose [map (^2), filter even]
 -- sumSqrEven [1,2,3,4] -->  20
 
+
+--
+-- Exercise 10: Reimplement curry which
+--                  * converts a function that takes its arguments as a pair
+--                  * into a function that takes its arguments one at a time
+--
+curry1   :: ((a,b) -> c) -> a -> b -> c
+curry1 f = \x y -> f (x,y)
+
