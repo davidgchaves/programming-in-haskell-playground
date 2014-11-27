@@ -225,3 +225,20 @@ curry1 f = \x y -> f (x,y)
 uncurry1   :: (a -> b -> c) -> (a,b) -> c
 uncurry1 f = \(x,y) -> f x y
 
+
+--
+-- Exercise 12: Given the HoF unfold, reimplement int2bin
+--
+
+-- unfold encapsulates a simple pattern of recursion for producing a list
+unfold          :: (b -> Bool) -> (b -> a) -> (b -> b) -> b -> [a]
+unfold p h t x
+    | p x       = []
+    | otherwise = h x : unfold p h t (t x)
+
+type Bit = Int
+-- int2bin converts a non-negative integer into a binary number
+int2bin :: Int -> [Bit]
+int2bin = unfold (== 0) (`mod` 2) (`div` 2)
+-- int2bin 13 --> [1,0,1,1]
+
