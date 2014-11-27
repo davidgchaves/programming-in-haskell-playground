@@ -248,3 +248,14 @@ int2bin :: Int -> [Bit]
 int2bin = unfold (== 0) (`mod` 2) (`div` 2)
 -- int2bin 13 --> [1,0,1,1]
 
+
+--
+-- Exercise 13: Given the HoF unfold, reimplement chop8
+--
+
+-- chop8 takes a list of bits and chops it into lists of at most eight bits
+chop8 :: [Bit] -> [[Bit]]
+chop8 = unfold null (take 8) (drop 8)
+-- chop8 [1,0,0,0,0,1,1,0,   0,1,0,0,0,1,1,0,   1,1,0,0,0]
+--  --> [[1,0,0,0,0,1,1,0], [0,1,0,0,0,1,1,0], [1,1,0,0,0]]
+
