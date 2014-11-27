@@ -259,3 +259,11 @@ chop8 = unfold null (take 8) (drop 8)
 -- chop8 [1,0,0,0,0,1,1,0,   0,1,0,0,0,1,1,0,   1,1,0,0,0]
 --  --> [[1,0,0,0,0,1,1,0], [0,1,0,0,0,1,1,0], [1,1,0,0,0]]
 
+
+--
+-- Exercise 14: Given the HoF unfold, reimplement map
+--
+mapUnfolded   :: (a -> b) -> [a] -> [b]
+mapUnfolded f = unfold null (f . head) tail
+-- mapUnfolded (+1) [0..9] --> [1,2,3,4,5,6,7,8,9,10]
+
