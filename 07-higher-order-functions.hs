@@ -235,6 +235,12 @@ unfold          :: (b -> Bool) -> (b -> a) -> (b -> b) -> b -> [a]
 unfold p h t x
     | p x       = []
     | otherwise = h x : unfold p h t (t x)
+-- unfold unfolded :D
+--  unfold p h t x
+--      * produces the empty list if the predicate p x is True
+--      * produces a non-empty list if the predicate p x is False
+--          HEAD: apply the function h x
+--          TAIL: unfold by applying the function t x to generate another seed
 
 type Bit = Int
 -- int2bin converts a non-negative integer into a binary number
