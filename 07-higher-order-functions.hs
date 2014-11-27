@@ -267,3 +267,11 @@ mapUnfolded   :: (a -> b) -> [a] -> [b]
 mapUnfolded f = unfold null (f . head) tail
 -- mapUnfolded (+1) [0..9] --> [1,2,3,4,5,6,7,8,9,10]
 
+
+--
+-- Exercise 15: Given the HoF iterate, reimplement map
+--
+iterateUnfolded   :: (a -> a) -> a -> [a]
+iterateUnfolded f = unfold (const False) id f
+-- take 8 (iterateUnfolded (+3) 0) --> [0,3,6,9,12,15,18,21]
+
