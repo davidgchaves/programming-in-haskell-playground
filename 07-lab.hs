@@ -17,8 +17,10 @@ evens ns = [n | n <- ns, even n]
 -- ===================================
 
 -- complete the following line with the correct type signature for this function
--- squares :: ...
-squares n = undefined
+squares   :: Integer -> [Integer]
+squares n = [x^2 | x <- [1..n]]
+-- squares 0 --> []
+-- squares 4 --> [1,4,9,16]
 
 sumSquares :: Integer -> Integer
 sumSquares n = sum (squares n)
