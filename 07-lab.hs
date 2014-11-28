@@ -22,8 +22,9 @@ squares n = [x^2 | x <- [1..n]]
 -- squares 0 --> []
 -- squares 4 --> [1,4,9,16]
 
-sumSquares :: Integer -> Integer
+sumSquares   :: Integer -> Integer
 sumSquares n = sum (squares n)
+-- sumSquares 50 --> 42925
 
 -- ===================================
 -- Ex. 5 - 7
