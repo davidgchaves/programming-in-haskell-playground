@@ -38,8 +38,9 @@ squares' m n = [x^2 | x <- [n+1..n+m]]
 -- squares' 2 0 --> [1,4]
 -- squares' 4 2 --> [9,16,25,36]
 
-sumSquares' :: Integer -> Integer
+sumSquares'   :: Integer -> Integer
 sumSquares' x = sum . uncurry squares' $ (x, x)
+-- sumSquares' 50 --> 295425
 
 -- ===================================
 -- Ex. 8
