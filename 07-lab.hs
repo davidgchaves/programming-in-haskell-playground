@@ -31,8 +31,12 @@ sumSquares n = sum (squares n)
 -- ===================================
 
 -- complete the following line with the correct type signature for this function
--- squares' :: ...
-squares' m n = undefined
+squares'     :: Integer -> Integer -> [Integer]
+squares' m n = [x^2 | x <- [n+1..n+m]]
+-- squares' 0 0 --> []
+-- squares' 0 2 --> []
+-- squares' 2 0 --> [1,4]
+-- squares' 4 2 --> [9,16,25,36]
 
 sumSquares' :: Integer -> Integer
 sumSquares' x = sum . uncurry squares' $ (x, x)
