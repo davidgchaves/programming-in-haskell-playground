@@ -8,8 +8,9 @@ module Lab3 where
 -- Ex. 0 - 2
 -- ===================================
 
-evens :: [Integer] -> [Integer]
-evens = undefined
+evens    :: [Integer] -> [Integer]
+evens ns = [n | n <- ns, even n]
+-- evens [2,5,6,13,32] --> [2,6,32]
 
 -- ===================================
 -- Ex. 3 - 4
