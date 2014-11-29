@@ -46,5 +46,9 @@ sumSquares' x = sum . uncurry squares' $ (x, x)
 -- Ex. 8
 -- ===================================
 
-coords :: Integer -> Integer -> [(Integer,Integer)]
-coords = undefined
+-- produces a list of all coordinate pairs on an [0..m] x [0..n] rectangular grid
+coords     :: Integer -> Integer -> [(Integer,Integer)]
+coords m n = [(x,y) | x <- [0..m], y <- [0..n]]
+-- coords 1 1 --> [(0,0),(0,1),(1,0),(1,1)]
+-- coords 1 2 --> [(0,0),(0,1),(0,2),(1,0),(1,1),(1,2)]
+
