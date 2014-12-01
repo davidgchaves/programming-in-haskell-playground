@@ -27,3 +27,10 @@
 --    or more generally, any kind of value a (parameter of the Parser type)
 type Parser a = String -> [(a, String)]
 
+
+-- 8.3 Basic Parser - building blocks for all other parsers
+
+-- return: the parser that always succeeds
+return'   :: a -> Parser a
+return' v = \inp -> [(v,inp)]
+
