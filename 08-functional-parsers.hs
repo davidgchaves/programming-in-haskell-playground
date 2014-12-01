@@ -4,6 +4,9 @@
 --      - produces some form of tree (making the syntactic structure of the string explicit)
 --  * Most real-life programs use a parser to pre-process their input
 
+
+-- 8.2 The Parser type
+
 -- Evolution of the Parser type
 --  * The notion of a parser can be represented as a function of
 --      type Parser = String -> Tree
