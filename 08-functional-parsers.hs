@@ -44,3 +44,7 @@ item' = \inp -> case inp of
                     []     -> []
                     (x:xs) -> [(x,xs)]
 
+-- parse: applies a Parser to a String
+parse       :: Parser a -> String -> [(a,String)]
+parse p inp = p inp
+
