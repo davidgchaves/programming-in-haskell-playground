@@ -38,3 +38,9 @@ return' v = \inp -> [(v,inp)]
 failure' :: Parser a
 failure' = \inp -> []
 
+-- item: try to parse the first Char of the String
+item' :: Parser Char
+item' = \inp -> case inp of
+                    []     -> []
+                    (x:xs) -> [(x,xs)]
+
