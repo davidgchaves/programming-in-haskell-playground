@@ -33,16 +33,20 @@ type Parser a = String -> [(a, String)]
 -- return: the parser that always succeeds
 return'   :: a -> Parser a
 return' v = \inp -> [(v,inp)]
+-- parse (return' 1) "abc" --> [(1,"abc")]
 
 -- failure: the parser that always fails
 failure' :: Parser a
 failure' = \inp -> []
+-- parse failure' "abc" --> []
 
 -- item: try to parse the first Char of the String
 item' :: Parser Char
 item' = \inp -> case inp of
                     []     -> []
                     (x:xs) -> [(x,xs)]
+-- parse item' ""    --> []
+-- parse item' "abc" --> [('a',"bc")]
 
 -- parse: applies a Parser to a String
 parse       :: Parser a -> String -> [(a,String)]
