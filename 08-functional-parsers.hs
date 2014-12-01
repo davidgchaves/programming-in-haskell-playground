@@ -34,3 +34,7 @@ type Parser a = String -> [(a, String)]
 return'   :: a -> Parser a
 return' v = \inp -> [(v,inp)]
 
+-- failure: the parser that always fails
+failure' :: Parser a
+failure' = \inp -> []
+
