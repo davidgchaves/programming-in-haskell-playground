@@ -64,3 +64,12 @@ p +++ q = \inp -> case parse p inp of
 -- parse (failure'    +++ return' 'd') "abc" --> [('d',"abc")]
 -- parse (item'       +++ return' 'd') "abc" --> [('a',"bc")]
 
+-- orElse: apply the first parser and if it fails, apply the second parser
+orElse       :: Parser a -> Parser a -> Parser a
+p `orElse` q = \inp -> case parse p inp of
+                        []        -> parse q inp
+                        [(v,out)] -> [(v,out)]
+-- parse (return' 'A' `orElse` return' 'd') "abc" --> [('A',"abc")]
+-- parse (failure'    `orElse` return' 'd') "abc" --> [('d',"abc")]
+-- parse (item'       `orElse` return' 'd') "abc" --> [('a',"bc")]
+
