@@ -52,3 +52,15 @@ item' = \inp -> case inp of
 parse       :: Parser a -> String -> [(a,String)]
 parse p inp = p inp
 
+
+-- 8.5 Choice - combining two parsers (+++ AKA orElse)
+
+-- +++: apply the first parser and if it fails, apply the second parser
+(+++)   :: Parser a -> Parser a -> Parser a
+p +++ q = \inp -> case parse p inp of
+                    []        -> parse q inp
+                    [(v,out)] -> [(v,out)]
+-- parse (return' 'A' +++ return' 'd') "abc" --> [('A',"abc")]
+-- parse (failure'    +++ return' 'd') "abc" --> [('d',"abc")]
+-- parse (item'       +++ return' 'd') "abc" --> [('a',"bc")]
+
