@@ -100,6 +100,14 @@ p1c = item' `bind` (\v -> return' v)
 -- p1c "a"   --> [('a',"")]
 -- p1c "abc" --> [('a',"bc")]
 
+-- Ex1 p1c: Consumes 1 character and returns it
+--          Only succeeds if every parser in its defining sequence succeeds
+p1c' :: Parser Char
+p1c' = item' >>>= (\v -> return' v)
+-- p1c' ""    --> []
+-- p1c' "a"   --> [('a',"")]
+-- p1c' "abc" --> [('a',"bc")]
+
 -- Ex2 p2cs: Consumes 2 characters and returns them as a pair
 --           Only succeeds if every parser in its defining sequence succeeds
 p2cs :: Parser (Char, Char)
