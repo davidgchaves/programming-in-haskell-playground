@@ -73,3 +73,14 @@ p `orElse` q = \inp -> case parse p inp of
 -- parse (failure'    `orElse` return' 'd') "abc" --> [('d',"abc")]
 -- parse (item'       `orElse` return' 'd') "abc" --> [('a',"bc")]
 
+
+-- 8.4 Sequencing - combining sequentally two parsers (bind AKA then AKA >>=)
+
+-- bind: apply the first parser and then the second parser
+--       with the output string returned by the first parser
+--       becoming the input string to the second parser
+bind       :: Parser a -> (a -> Parser b) -> Parser b
+p `bind` f = \inp -> case parse p inp of
+                        []        -> []
+                        [(v,out)] -> parse (f v) out
+
