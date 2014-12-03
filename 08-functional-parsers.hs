@@ -139,3 +139,16 @@ p1st3rdAnd5thcs = item' `bind`
 -- p1st3rdAnd5thcs "abcde"       --> [(('a','c','e'),"")]
 -- p1st3rdAnd5thcs "abcdefghijk" --> [(('a','c','e'),"fghijk")]
 
+-- Ex3 p1st3rdAnd5thcs: Consumes 5 characters and returns the 1st, 3rd and 5th as triplet
+--                      Only succeeds if every parser in its defining sequence succeeds
+p1st3rdAnd5thcs' :: Parser (Char, Char, Char)
+p1st3rdAnd5thcs' = item' >>>=
+                   \v1 -> item' >>>=
+                          \_ -> item' >>>=
+                                \v3 -> item' >>>=
+                                       \_ -> item' >>>=
+                                             \v5 -> return' (v1,v3,v5)
+-- p1st3rdAnd5thcs' "abcd"        --> []
+-- p1st3rdAnd5thcs' "abcde"       --> [(('a','c','e'),"")]
+-- p1st3rdAnd5thcs' "abcdefghijk" --> [(('a','c','e'),"fghijk")]
+
