@@ -92,3 +92,11 @@ p >>= f = \inp -> case parse p inp of
                     []        -> []
                     [(v,out)] -> parse (f v) out
 
+-- Ex1 p1c: Consumes 1 character and returns it
+--          Only succeeds if every parser in its defining sequence succeeds
+p1c :: Parser Char
+p1c = item' `bind` (\v -> return' v)
+-- p1c ""    --> []
+-- p1c "a"   --> [('a',"")]
+-- p1c "abc" --> [('a',"bc")]
+
