@@ -118,6 +118,14 @@ p2cs = item' `bind`
 -- p2cs "ab"   --> [(('a','b'),"")]
 -- p2cs "abcd" --> [(('a','b'),"cd")]
 
+-- Ex2 p2cs: Consumes 2 characters and returns them as a pair
+--           Only succeeds if every parser in its defining sequence succeeds
+p2cs' :: Parser (Char, Char)
+p2cs' = item' >>>= \v1 -> item' >>>= \v2 -> return' (v1,v2)
+-- p2cs' "a"    --> []
+-- p2cs' "ab"   --> [(('a','b'),"")]
+-- p2cs' "abcd" --> [(('a','b'),"cd")]
+
 -- Ex3 p1st3rdAnd5thcs: Consumes 5 characters and returns the 1st, 3rd and 5th as triplet
 --                      Only succeeds if every parser in its defining sequence succeeds
 p1st3rdAnd5thcs :: Parser (Char, Char, Char)
