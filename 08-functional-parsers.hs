@@ -84,3 +84,11 @@ p `bind` f = \inp -> case parse p inp of
                         []        -> []
                         [(v,out)] -> parse (f v) out
 
+-- >>= : apply the first parser and then the second parser
+--       with the output string returned by the first parser
+--       becoming the input string to the second parser
+(>>=)   :: Parser a -> (a -> Parser b) -> Parser b
+p >>= f = \inp -> case parse p inp of
+                    []        -> []
+                    [(v,out)] -> parse (f v) out
+
