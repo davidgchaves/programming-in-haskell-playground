@@ -4,6 +4,7 @@
 --      - produces some form of tree (making the syntactic structure of the string explicit)
 --  * Most real-life programs use a parser to pre-process their input
 
+import Data.Char
 
 -- 8.2 The Parser type
 
@@ -162,4 +163,10 @@ sat   :: (Char -> Bool) -> Parser Char
 sat p = item' >>>= (\v -> if p v then return' v else failure')
 -- sat (== 'z') "abc" --> []
 -- sat (== 'a') "abc" --> [('a',"bc")]
+
+-- digit: parses digits
+digit :: Parser Char
+digit = sat isDigit
+-- parse digit "ab7" --> []
+-- parse digit "7ab" --> [('7',"ab")]
 
