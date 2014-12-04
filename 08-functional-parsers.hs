@@ -182,3 +182,9 @@ upper = sat isUpper
 -- parse upper "abc" --> []
 -- parse upper "Abc" --> [('A',"bc")]
 
+-- letter: parses alphabetic Unicode characters
+letter :: Parser Char
+letter = sat isAlpha
+-- parse letter "1bc" --> []
+-- parse letter "a1b" --> [('a',"1b")]
+
