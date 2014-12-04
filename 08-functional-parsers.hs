@@ -188,3 +188,10 @@ letter = sat isAlpha
 -- parse letter "1bc" --> []
 -- parse letter "a1b" --> [('a',"1b")]
 
+-- alphanum: parses alphabetic and numeric digit Unicode characters
+alphanum :: Parser Char
+alphanum = sat isAlphaNum
+-- parse alphanum "?ab" --> []
+-- parse alphanum "a?b" --> [('a',"?b")]
+-- parse alphanum "1?b" --> [('1',"?b")]
+
