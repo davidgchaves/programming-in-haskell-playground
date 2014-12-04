@@ -176,3 +176,9 @@ lower = sat isLower
 -- parse lower "Abc" --> []
 -- parse lower "abc" --> [('a',"bc")]
 
+-- upper: parses uppercase characters
+upper :: Parser Char
+upper = sat isUpper
+-- parse upper "abc" --> []
+-- parse upper "Abc" --> [('A',"bc")]
+
