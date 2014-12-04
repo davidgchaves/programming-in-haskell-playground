@@ -195,3 +195,9 @@ alphanum = sat isAlphaNum
 -- parse alphanum "a?b" --> [('a',"?b")]
 -- parse alphanum "1?b" --> [('1',"?b")]
 
+-- char: a char parser
+char   :: Char -> Parser Char
+char x = sat (== x)
+-- parse (char '1') "abc" --> []
+-- parse (char 'a') "abc" --> [('a',"bc")]
+
