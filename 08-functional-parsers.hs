@@ -152,3 +152,14 @@ p1st3rdAnd5thcs' = item' >>>=
 -- p1st3rdAnd5thcs' "abcde"       --> [(('a','c','e'),"")]
 -- p1st3rdAnd5thcs' "abcdefghijk" --> [(('a','c','e'),"fghijk")]
 
+
+-- 8.6 Derived Primitives
+--  Using the 3 basic parsers: item, return and failure
+--  Using the bind operator: >>>=
+
+-- sat: parses single characters that satisfy the predicate p
+sat   :: (Char -> Bool) -> Parser Char
+sat p = item' >>>= (\v -> if p v then return' v else failure')
+-- sat (== 'z') "abc" --> []
+-- sat (== 'a') "abc" --> [('a',"bc")]
+
