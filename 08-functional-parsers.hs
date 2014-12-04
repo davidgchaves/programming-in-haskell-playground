@@ -170,3 +170,9 @@ digit = sat isDigit
 -- parse digit "ab7" --> []
 -- parse digit "7ab" --> [('7',"ab")]
 
+-- lower: parses lowercase characters
+lower :: Parser Char
+lower = sat isLower
+-- parse lower "Abc" --> []
+-- parse lower "abc" --> [('a',"bc")]
+
