@@ -228,3 +228,9 @@ ident = lower >>>= \x -> many alphanum >>>= \xs -> return' (x:xs)
 -- parse ident "anIdentifier13 blah"      --> [("anIdentifier13"," blah")]
 -- parse ident "     anIdentifier13 blah" --> []
 
+-- nat: parses a Haskell natural number
+nat :: Parser Int
+nat = many1 digit >>>= \ns -> return' (read ns)
+-- parse nat "12345 bl"    --> [(12345," bl")]
+-- parse nat "   12345 bl" --> []
+
