@@ -262,3 +262,13 @@ symbol    :: String -> Parser String
 symbol xs = token (string xs)
 -- parse (symbol "[") "\n  [123]  " --> [("[","123]  ")]
 
+-- p: a parser for a non-empty list of natural numbers that ignores spacing around tokens
+p :: Parser [Int]
+p = symbol "[" >>>=
+    \_  -> natural >>>=
+    \n  -> many (symbol "," >>>= \_ -> natural) >>>=
+    \ns -> symbol "]" >>>=
+    \_  -> return' (n:ns)
+-- parse p " \n  [1, 2, 3,4,5, 6]  \n" --> [([1,2,3,4,5,6],"")]
+-- parse p "  [1,2, ] "                --> []
+
