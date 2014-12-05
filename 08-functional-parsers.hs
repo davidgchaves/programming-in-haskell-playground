@@ -239,3 +239,11 @@ space :: Parser ()
 space = many (sat isSpace) >>>= \_ -> return' ()
 -- parse space "  \n\n   hello world 1 !" --> [((),"hello world 1 !")]
 
+
+-- 8.7 Handling spacing
+
+-- token: ignores any space before and after applying a parser for a token
+token   :: Parser a -> Parser a
+token p = space >>>= \_ -> p >>>= \v -> space >>>= \_ -> return' v
+-- parse (token nat) "    \n   123456\n  \n" --> [(123456,"")]
+
