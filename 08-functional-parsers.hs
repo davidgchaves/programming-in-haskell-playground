@@ -252,3 +252,8 @@ identifier :: Parser String
 identifier = token ident
 -- parse identifier "  \n aNewIdentifier24\n  " --> [("aNewIdentifier24","")]
 
+-- natural: parser for Haskell natural numbers
+natural :: Parser Int
+natural = token nat
+-- parse natural "\n\n  123456  \n " --> [(123456,"")]
+
