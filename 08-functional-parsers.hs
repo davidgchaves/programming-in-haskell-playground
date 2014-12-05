@@ -222,3 +222,9 @@ many1 p = p >>>= \v -> many p >>>= \vs -> return' (v:vs)
 -- parse (many  digit) "123abc" --> [("123","abc")]
 -- parse (many1 digit) "123abc" --> [("123","abc")]
 
+-- ident: parses a Haskell identifier
+ident :: Parser String
+ident = lower >>>= \x -> many alphanum >>>= \xs -> return' (x:xs)
+-- parse ident "anIdentifier13 blah"      --> [("anIdentifier13"," blah")]
+-- parse ident "     anIdentifier13 blah" --> []
+
