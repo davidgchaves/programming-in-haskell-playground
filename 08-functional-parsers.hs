@@ -257,3 +257,8 @@ natural :: Parser Int
 natural = token nat
 -- parse natural "\n\n  123456  \n " --> [(123456,"")]
 
+-- symbol: parser for Haskell special symbols (like [])
+symbol    :: String -> Parser String
+symbol xs = token (string xs)
+-- parse (symbol "[") "\n  [123]  " --> [("[","123]  ")]
+
