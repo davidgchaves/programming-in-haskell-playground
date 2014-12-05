@@ -234,3 +234,8 @@ nat = many1 digit >>>= \ns -> return' (read ns)
 -- parse nat "12345 bl"    --> [(12345," bl")]
 -- parse nat "   12345 bl" --> []
 
+-- space: parses zero or more space, tab and newline characters
+space :: Parser ()
+space = many (sat isSpace) >>>= \_ -> return' ()
+-- parse space "  \n\n   hello world 1 !" --> [((),"hello world 1 !")]
+
