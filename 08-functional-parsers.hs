@@ -209,3 +209,16 @@ string (x:xs) = char x >>>= \_ -> string xs >>>= \_ -> return' (x:xs)
 -- parse (string "abc") "ab123"  --> []
 -- parse (string "abc") "abc123" --> [("abc","123")]
 
+-- many:  parse 0 or more times (apply as many times as possible until it fails)
+-- many1: parse 1 or more times (apply as many times as possible until it fails)
+many   :: Parser a -> Parser [a]
+many p = many1 p +++ return' []
+
+many1   :: Parser a -> Parser [a]
+many1 p = p >>>= \v -> many p >>>= \vs -> return' (v:vs)
+
+-- parse (many  digit) "abc123" --> [("","abc123")]
+-- parse (many1 digit) "abc123" --> []
+-- parse (many  digit) "123abc" --> [("123","abc")]
+-- parse (many1 digit) "123abc" --> [("123","abc")]
+
