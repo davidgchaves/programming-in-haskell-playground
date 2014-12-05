@@ -201,3 +201,11 @@ char x = sat (== x)
 -- parse (char '1') "abc" --> []
 -- parse (char 'a') "abc" --> [('a',"bc")]
 
+-- string: a string parser (only succeeds if the entire target string is consumed)
+--         with the string itself returned as the result value
+string        :: String -> Parser String
+string []     = return' []
+string (x:xs) = char x >>>= \_ -> string xs >>>= \_ -> return' (x:xs)
+-- parse (string "abc") "ab123"  --> []
+-- parse (string "abc") "abc123" --> [("abc","123")]
+
