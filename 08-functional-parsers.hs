@@ -247,3 +247,8 @@ token   :: Parser a -> Parser a
 token p = space >>>= \_ -> p >>>= \v -> space >>>= \_ -> return' v
 -- parse (token nat) "    \n   123456\n  \n" --> [(123456,"")]
 
+-- identifier: parser for Haskell identifiers
+identifier :: Parser String
+identifier = token ident
+-- parse identifier "  \n aNewIdentifier24\n  " --> [("aNewIdentifier24","")]
+
