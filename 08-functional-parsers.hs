@@ -288,3 +288,33 @@ p = symbol "[" >>>=
 --      factor ::= (expr) | nat
 --      nat    ::= 0 | 1 | 2 | ...
 
+expr :: Parser Int
+expr = (term >>>= plusExpr) +++ (term >>>= epsilon)
+       where
+           plusExpr = \t -> symbol "+" >>>= \_ -> expr >>>= \e -> return' (t+e)
+           epsilon  = \t -> return' t
+
+term :: Parser Int
+term = (factor >>>= multiTerm) +++ (factor >>>= epsilon)
+       where
+           multiTerm = \f -> symbol "*" >>>= \_ -> term >>>= \t -> return' (f*t)
+           epsilon   = \f -> return' f
+
+factor :: Parser Int
+factor = exprWithParens +++ natural
+         where
+             exprWithParens = symbol "(" >>>= \_ -> expr >>>= \e -> symbol ")" >>>= \_ -> return' e
+
+-- parse expr "2*3+4"         --> [(10,"")]
+-- parse expr "2*(3+4)"       --> [(14,"")]
+-- parse expr "2 * ( 3 + 4 )" --> [(14,"")]
+
+eval    :: String -> Int
+eval xs = case parse expr xs of
+            [(n,[])]  -> n
+            [(_,out)] -> error ("unused input" ++ out)
+            []        -> error "invalid input"
+-- eval "2*3+4" --> 10
+-- eval "2*3-4" --> *** Exception: unused input-4
+-- eval "-1"    --> *** Exception: invalid input
+
