@@ -272,3 +272,19 @@ p = symbol "[" >>>=
 -- parse p " \n  [1, 2, 3,4,5, 6]  \n" --> [([1,2,3,4,5,6],"")]
 -- parse p "  [1,2, ] "                --> []
 
+
+-- 8.8 Aritmethic expressions
+--  A Grammar for a simple form of arithmetic expressions:
+--      - built up from natural numbers
+--      - using addition, multiplication, and parentheses
+--      - addition and multiplication associate to the right
+--      - multiplication has higher priority than addition
+--  Examples:
+--      - 2 + 3 + 4 means 2 + (3 + 4)
+--      - 2 * 3 + 4 means (2 * 3) + 4
+--  Final Grammar:
+--      expr   ::= term (+ expr | E)
+--      term   ::= factor (* term | E)
+--      factor ::= (expr) | nat
+--      nat    ::= 0 | 1 | 2 | ...
+
