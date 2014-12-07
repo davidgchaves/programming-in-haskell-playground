@@ -108,7 +108,9 @@ Derived primitives
 >                                     return ()
 >
 > comment                       :: Parser ()
-> comment                       =  error "You must implement comment"
+> comment                       =  do string "--"
+>                                     many (sat (/= '\n'))
+>                                     return ()
 >
 > expr                          :: Parser Int
 > expr                          =  error "You must implement expr"
