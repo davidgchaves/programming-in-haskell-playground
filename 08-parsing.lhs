@@ -98,6 +98,11 @@ Derived primitives
 >                                      return (-n))
 >                                  +++ nat
 >
+> int'                          :: Parser Int
+> int'                          =  negative +++ nat
+>                                  where
+>                                      negative = char '-' >>= \_ -> nat >>= \n -> return (-n)
+>
 > space                         :: Parser ()
 > space                         =  do many (sat isSpace)
 >                                     return ()
