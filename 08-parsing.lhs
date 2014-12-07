@@ -120,6 +120,11 @@ Derived primitives
 >                                     ns <- many (do symbol "-"
 >                                                    natural)
 >                                     return (foldl (-) n ns)
+>
+> expr'                         :: Parser Int
+> expr'                         =  natural >>= \n -> rest >>= \ns -> return (foldl (-) n ns)
+>                                  where
+>                                      rest = many (symbol "-" >>= \_ -> natural)
 
 Ignoring spacing
 ----------------
