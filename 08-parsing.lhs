@@ -93,7 +93,10 @@ Derived primitives
 >                                     return (read xs)
 >
 > int                           :: Parser Int
-> int                           =  error "You must implement int"
+> int                           =  (do char '-'
+>                                      n <- nat
+>                                      return (-n))
+>                                  +++ nat
 >
 > space                         :: Parser ()
 > space                         =  do many (sat isSpace)
