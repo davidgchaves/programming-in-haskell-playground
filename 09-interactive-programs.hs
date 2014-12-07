@@ -12,3 +12,13 @@
 --  (3) return  :: a -> IO ()
 --      'return v' returns v without performing any interaction
 
+-- 9.4 Sequencing
+
+--  (1) (>>=)   :: IO a -> (a -> IO b) -> IO b
+--      f >>= g = \world -> case f world of
+--                              (v,newWorld) -> g v newWorld
+--
+--      'f >>= g' apply the action f to the current world,
+--      then apply the function g to the result value to give a second action,
+--      which is then applied to the modified world to give the final result
+
