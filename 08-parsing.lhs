@@ -116,7 +116,10 @@ Derived primitives
 > comment'                      =  string "--" >>= \_ -> many (sat (/= '\n')) >>= \_ -> return ()
 >
 > expr                          :: Parser Int
-> expr                          =  error "You must implement expr"
+> expr                          =  do n <- natural
+>                                     ns <- many (do symbol "-"
+>                                                    natural)
+>                                     return (foldl (-) n ns)
 
 Ignoring spacing
 ----------------
