@@ -112,6 +112,9 @@ Derived primitives
 >                                     many (sat (/= '\n'))
 >                                     return ()
 >
+> comment'                      :: Parser ()
+> comment'                      =  string "--" >>= \_ -> many (sat (/= '\n')) >>= \_ -> return ()
+>
 > expr                          :: Parser Int
 > expr                          =  error "You must implement expr"
 
