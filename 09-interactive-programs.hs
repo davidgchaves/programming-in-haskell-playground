@@ -40,3 +40,8 @@ putStr' []     = return ()
 putStr' (x:xs) = putChar x >> putStr' xs
 -- putStr' "Hello World!" --> Hello World!
 
+-- putStrLn: writes a string to the screen moving on to a new line afterwards
+putStrLn'    :: String -> IO ()
+putStrLn' xs = putStr' xs >> putChar '\n'
+-- putStrLn' "Hello World!" --> Hello World!
+
