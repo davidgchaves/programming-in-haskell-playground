@@ -45,3 +45,15 @@ putStrLn'    :: String -> IO ()
 putStrLn' xs = putStr' xs >> putChar '\n'
 -- putStrLn' "Hello World!" --> Hello World!
 
+-- strlen: action that prompts for a string to be entered from the keyboard,
+--         and then displays its length
+strlen :: IO ()
+strlen = putStr' "Enter a string: " >>
+         getLine >>= \xs ->
+         putStr' "The string has " >>
+         putStr' (show (length xs)) >>
+         putStrLn' " characters"
+-- strlen
+--  --> Enter a string: haskell
+--  --> The string has 7 characters
+
