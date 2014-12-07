@@ -34,3 +34,9 @@ getLine' = do x <- getChar
               if x == '\n' then return []
                            else getLine' >>= \xs -> return (x:xs)
 
+-- putStr: writes a string to the screen
+putStr'        :: String -> IO ()
+putStr' []     = return ()
+putStr' (x:xs) = putChar x >> putStr' xs
+-- putStr' "Hello World!" --> Hello World!
+
