@@ -22,3 +22,15 @@
 --      then apply the function g to the result value to give a second action,
 --      which is then applied to the modified world to give the final result
 
+-- 9.5 Derived primitives
+--  Using the three basic 'IO a' actions:
+--      getChar, putChar c, return v
+--  and sequencing:
+--      >>=
+
+-- getLine: reads a string of characters from the keyboard
+getLine' :: IO String
+getLine' = do x <- getChar
+              if x == '\n' then return []
+                           else getLine' >>= \xs -> return (x:xs)
+
