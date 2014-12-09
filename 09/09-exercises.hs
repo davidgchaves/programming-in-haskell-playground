@@ -169,3 +169,16 @@ filterM' p (x:xs) = do
     ys <- filterM' p xs
     if flag then return (x:ys) else return ys
 
+
+-- Extra Exercise 09-9:
+--  Implement the function foldLeftM :: Monad m => (a -> b -> m a) -> a -> [b] -> m a that
+--      - takes an accumulation function a -> b -> m a, and
+--      - takes a seed of type a and
+--      - left folds a list of elements of type b
+--      - into a single result of type m a
+foldLeftM            :: Monad m => (a -> b -> m a) -> a -> [b] -> m a
+foldLeftM f a []     = return a
+foldLeftM f a (b:bs) = f a b >>= (\a' -> foldLeftM f a' bs)
+-- foldLeftM (\a b -> putChar b >> return (b : a ++ [b])) [] "haskell" >>= \r -> putStrLn r
+--  --> haskelllleksahhaskell
+
