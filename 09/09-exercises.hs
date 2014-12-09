@@ -182,3 +182,16 @@ foldLeftM f a (b:bs) = f a b >>= (\a' -> foldLeftM f a' bs)
 -- foldLeftM (\a b -> putChar b >> return (b : a ++ [b])) [] "haskell" >>= \r -> putStrLn r
 --  --> haskelllleksahhaskell
 
+
+-- Extra Exercise 09-10:
+--  Implement the function foldRightM :: Monad m => (a -> b -> m b) -> b -> [a] -> m b that
+--      - takes an accumulation function a -> b -> m b, and
+--      - takes a seed of type b and
+--      - left folds a list of elements of type a
+--      - into a single result of type m b
+foldRightM            :: Monad m => (a -> b -> m b) -> b -> [a] -> m b
+foldRightM f b []     = return b
+foldRightM f b (a:as) = foldRightM f b as >>= (\b' -> f a b')
+-- foldRightM (\a b -> putChar a >> return (a:b)) [] (show [1,3..10]) >>= \r -> putStrLn r
+--  --> ]9,7,5,3,1[[1,3,5,7,9]
+
