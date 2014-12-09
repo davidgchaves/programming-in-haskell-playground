@@ -91,3 +91,34 @@ sequence_'''' ms = foldr (>>) (return ()) ms
 -- sequence_'''' []
 -- sequence_'''' $ map print [1,2,3] --> 1 2 3
 
+
+-- Extra Exercise 09-6:
+--  Define a function sequence :: Monad m => [m a] -> m [a] that
+--      - takes a list of monadic values, and
+--      - evaluates them in sequence (left to right) collecting all intermediate results
+sequence'        :: Monad m => [m a] -> m [a]
+sequence' []     = return []
+sequence' (m:ms) = m >>=
+                    \a -> do as <- sequence' ms
+                             return (a:as)
+-- sequence' []                  --> []
+-- sequence' $ map print [1,2,3] --> 1 2 3 [(),(),()]
+
+sequence''        :: Monad m => [m a] -> m [a]
+sequence'' []     = return []
+sequence'' (m:ms) = do a <- m
+                       as <- sequence'' ms
+                       return (a:as)
+-- sequence'' []                  --> []
+-- sequence'' $ map print [1,2,3] --> 1 2 3 [(),(),()]
+
+sequence'''    :: Monad m => [m a] -> m [a]
+sequence''' ms = foldr func (return []) ms
+    where
+        func       :: (Monad m) => m a -> m [a] -> m [a]
+        func m acc = do x <- m
+                        xs <- acc
+                        return (x:xs)
+-- sequence''' []                  --> []
+-- sequence''' $ map print [1,2,3] --> 1 2 3 [(),(),()]
+
