@@ -30,3 +30,25 @@ putStrLn''''    :: String -> IO ()
 putStrLn'''' [] = putChar '\n'
 putStrLn'''' xs = putStr' xs >> putStr' "\n"
 
+
+-- Extra Exercise 09-3:
+--  Define a function getLine :: IO String that
+--      - reads a line, up to the first \n character, from the standard input
+--  You can use getChar :: IO Char that
+--      - reads a single character from the standard input
+getLine' :: IO String
+getLine' = get []
+
+get    :: String -> IO String
+get xs = do x <- getChar
+            case x of
+                '\n' -> return xs
+                _    -> get (xs ++ [x])
+
+-- 1: invoke checkGetLine
+-- 2: in the new line type the line you want getLine' to get
+-- 3: check the result (should be the same)
+checkGetLine :: IO ()
+checkGetLine = do xs <- getLine'
+                  putStrLn' xs
+
