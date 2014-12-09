@@ -63,3 +63,31 @@ interact' f = do input <- getLine'
                  putStrLn' (f input)
 -- check it with interact' reverse for example
 
+
+-- Extra Exercise 09-5:
+--  Define a function sequence_ :: Monad m => [m a] -> m () that
+--      - takes a list of monadic values, and
+--      - evaluates them in sequence (left to right) ignoring all intermediate results
+sequence_'        :: Monad m => [m a] -> m ()
+sequence_' []     = return ()
+sequence_' (m:ms) = m >> sequence_' ms
+-- sequence_' []
+-- sequence_' $ map print [1,2,3] --> 1 2 3
+
+sequence_''        :: Monad m => [m a] -> m ()
+sequence_'' []     = return ()
+sequence_'' (m:ms) = m >>= \_ -> sequence_'' ms
+-- sequence_'' []
+-- sequence_''' $ map print [1,2,3] --> 1 2 3
+
+sequence_'''        :: Monad m => [m a] -> m ()
+sequence_''' []     = return ()
+sequence_''' (m:ms) = (foldl (>>) m ms) >> return ()
+-- sequence_''' []
+-- sequence_''' $ map print [1,2,3] --> 1 2 3
+
+sequence_''''    :: Monad m => [m a] -> m ()
+sequence_'''' ms = foldr (>>) (return ()) ms
+-- sequence_'''' []
+-- sequence_'''' $ map print [1,2,3] --> 1 2 3
+
