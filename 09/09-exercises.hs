@@ -52,3 +52,14 @@ checkGetLine :: IO ()
 checkGetLine = do xs <- getLine'
                   putStrLn' xs
 
+
+-- Extra Exercise 09-4:
+--  Define a function interact :: (String -> String) -> IO () that
+--      - takes a function of type String -> String, and
+--      - reads a line from the standard input and passes it to this function
+--      - and then prints the resulting output followed by a newline on the standard output
+interact'   :: (String -> String) -> IO ()
+interact' f = do input <- getLine'
+                 putStrLn' (f input)
+-- check it with interact' reverse for example
+
