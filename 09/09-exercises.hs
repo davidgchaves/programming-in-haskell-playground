@@ -155,3 +155,17 @@ mapM'''' f (a:as) = f a >>= \b ->
                            return (b:bs)
 -- mapM'''' print [1,2,3] --> 1 2 3 [(),(),()]
 
+
+-- Extra Exercise 09-8:
+--  Define a function filterM :: Monad m => (a -> m Bool) -> [a] -> m [a] that
+--      - takes a predicate of type a -> m Bool, and
+--      - takes a list of elements of type a, and
+--      - uses the predicate to filter the list of elements of type a
+--        (similarly to filter)
+filterM'          :: Monad m => (a -> m Bool) -> [a] -> m [a]
+filterM' _ []     = return []
+filterM' p (x:xs) = do
+    flag <- p x
+    ys <- filterM' p xs
+    if flag then return (x:ys) else return ys
+
