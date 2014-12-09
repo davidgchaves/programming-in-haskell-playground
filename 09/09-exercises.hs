@@ -122,3 +122,36 @@ sequence''' ms = foldr func (return []) ms
 -- sequence''' []                  --> []
 -- sequence''' $ map print [1,2,3] --> 1 2 3 [(),(),()]
 
+
+-- Extra Exercise 09-7:
+--  Define a function mapM :: Monad m => (a -> m b) -> [a] -> m [b] that
+--      - takes a function of type a -> m b, and
+--      - takes a list of elements of type a, and
+--      - applies the function to every element of the list
+--        but produces the resulting list wrapped inside a monadic action
+--        (similarly to map)
+mapM'      :: Monad m => (a -> m b) -> [a] -> m [b]
+mapM' f as = sequence' (map f as)
+-- mapM' print [1,2,3] --> 1 2 3 [(),(),()]
+
+mapM''          :: Monad m => (a -> m b) -> [a] -> m [b]
+mapM'' f []     = return []
+mapM'' f (a:as) = f a >>=
+                  \b -> mapM'' f as >>=
+                  \bs -> return (b:bs)
+-- mapM'' print [1,2,3] --> 1 2 3 [(),(),()]
+
+mapM'''          :: Monad m => (a -> m b) -> [a] -> m [b]
+mapM''' f []     = return []
+mapM''' f (a:as) = do b <- f a
+                      bs <- mapM''' f as
+                      return (b:bs)
+-- mapM''' print [1,2,3] --> 1 2 3 [(),(),()]
+
+mapM''''          :: Monad m => (a -> m b) -> [a] -> m [b]
+mapM'''' f []     = return []
+mapM'''' f (a:as) = f a >>= \b ->
+                        do bs <- mapM'''' f as
+                           return (b:bs)
+-- mapM'''' print [1,2,3] --> 1 2 3 [(),(),()]
+
