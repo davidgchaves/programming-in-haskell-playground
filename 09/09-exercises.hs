@@ -195,3 +195,18 @@ foldRightM f b (a:as) = foldRightM f b as >>= (\b' -> f a b')
 -- foldRightM (\a b -> putChar a >> return (a:b)) [] (show [1,3..10]) >>= \r -> putStrLn r
 --  --> ]9,7,5,3,1[[1,3,5,7,9]
 
+
+-- Extra Exercise 09-11:
+--  Implement the function liftM :: Monad m => (a -> b) -> m a -> m b that
+--      - takes a function of type a -> b, and
+--      - "maps" it over a monadic value of type m a
+--      - to produce a value of type m b
+liftM'     :: Monad m => (a -> b) -> m a -> m b
+liftM' f m = do x <- m
+                return (f x)
+-- liftM' (*3) (Just 8) --> Just 24
+
+liftM''     :: Monad m => (a -> b) -> m a -> m b
+liftM'' f m = m >>= \a -> return (f a)
+-- liftM'' (*3) (Just 8) --> Just 24
+
