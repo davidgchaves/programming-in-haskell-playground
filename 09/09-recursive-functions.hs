@@ -46,10 +46,20 @@ poem = [ "Three Types for the Lisp-kings under the parentheses,"
 
 -- ===================================
 -- Ex. 2
+-- Define a recursive function that implements euclid
+--  - Euclid's Algorithm returns the greatest common factor of two integers n and m
+--    where both n and m are greater than 0
+--  - The algorithm repeatedly subtracts the smaller number from the larger
+--    until the two numbers are equal, and then returns that number
 -- ===================================
 
-euclid :: (Int,  Int) -> Int
-euclid (x, y) = undefined
+euclid          :: (Int,  Int) -> Int
+euclid (x,y)
+    | x > y     = euclid (x-y, y)
+    | x < y     = euclid (x, y-x)
+    | otherwise = x
+-- euclid (5,7) --> 1
+-- euclid (4,2) --> 2
 
 -- ===================================
 -- Ex. 3
