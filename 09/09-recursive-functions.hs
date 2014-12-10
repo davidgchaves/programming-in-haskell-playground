@@ -19,10 +19,17 @@ triangle n = n + triangle (n-1)
 
 -- ===================================
 -- Ex. 1
+-- Define a recursive function count that
+--  counts how many times a given value occurs in a list
 -- ===================================
 
-count :: Eq a => a -> [a] -> Int
-count x xs = undefined
+count           :: Eq a => a -> [a] -> Int
+count _ []      = 0
+count a (x:xs)
+    | a == x    = 1 + count a xs
+    | otherwise = count a xs
+-- count "Haskell" ["Java", "PHP", "Javascript", "C#"]       --> 0
+-- count 'e' "The quick brown fox jumped over the lazy dog." --> 4
 
 xs = [1,2,35,2,3,4,8,2,9,0,5,2,8,4,9,1,9,7,3,9,2,0,5,2,7,6,92,8,3,6,1,9,2,4,8,7,1,2,8,0,4,5,2,3,6,2,3,9,8,4,7,1,4,0,1,8,4,1,2,4,56,7,2,98,3,5,28,4,0,12,4,6,8,1,9,4,8,62,3,71,0,3,8,10,2,4,7,12,9,0,3,47,1,0,23,4,8,1,20,5,7,29,3,5,68,23,5,6,3,4,98,1,0,2,3,8,1]
 ys = map (\x -> ((x + 1) * 3) ^ 3 - 7) xs
