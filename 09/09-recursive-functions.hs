@@ -8,10 +8,14 @@ import Data.Char
 
 -- ===================================
 -- Ex. 0
+-- Define a recursive function by induction over integers triangle such that
+--  triangle n returns the sum of all numbers in the list [0..n], where n >= 0
 -- ===================================
 
-triangle :: Integer -> Integer
-triangle n = undefined
+triangle   :: Integer -> Integer
+triangle 0 = 0
+triangle n = n + triangle (n-1)
+-- triangle 500 --> 125250
 
 -- ===================================
 -- Ex. 1
