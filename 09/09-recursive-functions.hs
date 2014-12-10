@@ -63,8 +63,15 @@ euclid (x,y)
 
 -- ===================================
 -- Ex. 3
+-- Define a recursive function funkyMap that
+--  - takes as arguments two functions f and g and a list xs
+--  - applies f to all elements at even positions ([0, 2..]) in xs
+--  - applies g to all elements at odd positions ([1, 3..]) in xs
 -- ===================================
 
-funkyMap :: (a -> b) -> (a -> b) -> [a] -> [b]
-funkyMap f g xs = undefined
+funkyMap              :: (a -> b) -> (a -> b) -> [a] -> [b]
+funkyMap _ _ []       = []
+funkyMap f g (x:y:xs) = f x : g y : funkyMap f g xs
+funkyMap f g (x:xs)   = f x : funkyMap f g xs
+-- funkyMap (+10) (+100) [1,2,3,4,5] --> [11,102,13,104,15]
 
