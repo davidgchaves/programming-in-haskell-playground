@@ -37,3 +37,6 @@ find k t = head [v | (k',v) <- t, k == k']
 --          * Be stored in data structures (such as lists)
 --          * Be used in patterns (pattern matching)
 
+-- Move: example of data declaration with 4 constructors
+data Move = Left' | Right' | Up | Down
+
