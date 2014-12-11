@@ -86,3 +86,17 @@ area (Rect x y) = x * y
 -- area (Rect 4 6) --> 24.0
 -- area (square 3) --> 9.0
 
+
+--  DATA DECLARATIONS:
+--      - Can have parameters
+
+-- The Maybe a type is like a list that is:
+--  - empty (Nothing) or
+--  - has a single value (Just a)
+--
+-- ALTERNATIVELY
+-- We can think of values of type Maybe a as values of type a that may fail:
+--  - Nothing represents failure
+--  - Just represents success
+data Maybe' a = Nothing' | Just' a
+
