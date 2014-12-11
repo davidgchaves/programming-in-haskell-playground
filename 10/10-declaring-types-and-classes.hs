@@ -100,3 +100,10 @@ area (Rect x y) = x * y
 --  - Just represents success
 data Maybe' a = Nothing' | Just' a
 
+-- safediv: safe version of div using Maybe
+safediv     :: Int -> Int -> Maybe Int
+safediv _ 0 = Nothing
+safediv x y = Just (x `div` y)
+-- safediv 7 0 --> Nothing
+-- safediv 7 3 --> Just 2
+
