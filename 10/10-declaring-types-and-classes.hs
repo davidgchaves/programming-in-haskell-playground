@@ -114,3 +114,16 @@ safehead (x:xs) = Just x
 -- safehead []     --> Nothing
 -- safehead [1..5] --> Just 1
 
+
+------------------------------------------
+-- ONE WAY TO LOOK AT DATA DECLARATIONS --
+------------------------------------------
+--
+-- data Bool = False | True
+--  * data Bool   <--- Abstract base class Bool
+--  * False, True <--- Bool subtypes
+--  * you cannot create an instance of Bool (it's abstract)
+--  * you can only create instances of False and True, but with a twist:
+--      - False and True DON'T HAVE their own types
+--      - False and True ARE Bool (:t False --> Bool and :t True --> Bool)
+
