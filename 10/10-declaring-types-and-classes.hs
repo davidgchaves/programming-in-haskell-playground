@@ -58,3 +58,12 @@ moves []     p = p
 moves (m:ms) p = moves ms (move m p)
 -- moves [Up, Up, Up, Left', Right', Right', Down] (3,3) --> (4,5)
 
+-- flip': flip the direction of a Move
+flip'        :: Move -> Move
+flip' Left'  = Right'
+flip' Right' = Left'
+flip' Up     = Down
+flip' Down   = Up
+-- move (flip' Left') (3,3)           --> (4,3)
+-- moves [Up, Up, Up, flip' Up] (3,3) --> (3,5)
+
