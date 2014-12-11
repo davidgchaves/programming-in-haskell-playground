@@ -5,3 +5,8 @@
 --      - Cannot be recursive
 --      - Can be parameterised (with more than one type parameter) by other types
 
+-- Assoc: a type of lookup tables that associate
+--        keys (k) of one type to values (v) of another type
+--        declared as a list of pairs (k,v)
+type Assoc k v = [(k,v)]
+
