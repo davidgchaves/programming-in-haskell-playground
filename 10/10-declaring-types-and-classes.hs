@@ -40,3 +40,15 @@ find k t = head [v | (k',v) <- t, k == k']
 -- Move: example of data declaration with 4 constructors
 data Move = Left' | Right' | Up | Down
 
+type Pos = (Int, Int)
+-- move: apply a Move to a Position
+move              :: Move -> Pos -> Pos
+move Left'  (x,y) = (x-1, y)
+move Right' (x,y) = (x+1, y)
+move Up     (x,y) = (x,   y+1)
+move Down   (x,y) = (x,   y-1)
+-- move Left'  (3,3) --> (2,3)
+-- move Right' (3,3) --> (4,3)
+-- move Up     (3,3) --> (3,4)
+-- move Down   (3,3) --> (3,2)
+
