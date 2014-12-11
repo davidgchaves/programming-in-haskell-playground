@@ -107,3 +107,10 @@ safediv x y = Just (x `div` y)
 -- safediv 7 0 --> Nothing
 -- safediv 7 3 --> Just 2
 
+-- safehead: safe version of head using Maybe
+safehead        :: [a] -> Maybe a
+safehead []     = Nothing
+safehead (x:xs) = Just x
+-- safehead []     --> Nothing
+-- safehead [1..5] --> Just 1
+
