@@ -67,3 +67,12 @@ flip' Down   = Up
 -- move (flip' Left') (3,3)           --> (4,3)
 -- moves [Up, Up, Up, flip' Up] (3,3) --> (3,5)
 
+
+--  CONSTRUCTORS:
+--      - Can have arguments
+
+-- The type Shape has values of the form:
+--  - Circle r, where r is a floating-point number
+--  - Rect x y, where x and y are floating-point numbers
+data Shape = Circle Float | Rect Float Float
+
