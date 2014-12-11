@@ -15,3 +15,10 @@ lookupTable = [(1, "watch"), (3, "this"), (1, "space")]
 -- lookupTable    --> [(1,"watch"),(3,"this"),(1,"space")]
 -- :t lookupTable --> lookupTable :: Assoc Integer String
 
+-- find: returns the first value (v) that is associated
+--       with a given key (k) in a lookup table (t)
+find     :: Eq k => k -> Assoc k v -> v
+find k t = head [v | (k',v) <- t, k == k']
+-- find 3 lookupTable --> "this"
+-- find 1 lookupTable --> "watch"
+
