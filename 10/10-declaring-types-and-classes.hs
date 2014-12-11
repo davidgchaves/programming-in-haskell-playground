@@ -76,3 +76,13 @@ flip' Down   = Up
 --  - Rect x y, where x and y are floating-point numbers
 data Shape = Circle Float | Rect Float Float
 
+square   :: Float -> Shape
+square n = Rect n n
+
+area            :: Shape -> Float
+area (Circle r) = pi * r^2
+area (Rect x y) = x * y
+-- area (Circle 5) --> 78.53982
+-- area (Rect 4 6) --> 24.0
+-- area (square 3) --> 9.0
+
