@@ -22,3 +22,18 @@ find k t = head [v | (k',v) <- t, k == k']
 -- find 3 lookupTable --> "this"
 -- find 1 lookupTable --> "watch"
 
+
+-- 10.2 Data declarations
+
+--  DATA DECLARATIONS: A completely new (opposed to a synonym) type
+--      - You need to specify the new values of the type
+--
+--  CONSTRUCTORS: The new values of the type
+--      - The name of a constructor must begin with CAPITAL LETTER
+--      - The same constructor name cannot be used in more than one type
+--      - Can be used in the same way as built-in types:
+--          * Be passed as arguments to functions
+--          * Be returned as results form from functions
+--          * Be stored in data structures (such as lists)
+--          * Be used in patterns (pattern matching)
+
