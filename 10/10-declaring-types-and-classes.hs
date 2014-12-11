@@ -127,3 +127,19 @@ safehead (x:xs) = Just x
 --      - False and True DON'T HAVE their own types
 --      - False and True ARE Bool (:t False --> Bool and :t True --> Bool)
 
+
+-------------------------------------
+-- ONE WAY TO LOOK AT CONSTRUCTORS --
+-------------------------------------
+--
+-- data Shape = Circle Float | Rect Float Float
+--  * Circle and Rect are 2 Shape Subtypes
+--    (REMEMBER: They don't have their own types, they are Shapes)
+--  * The Constructor Circle and Rect can be viewed as functions that
+--    construct values of type Shape
+--      Circle :: Float (r) -> Shape
+--      :t Circle --> Circle :: Float -> Shape
+--
+--      Rect   :: Float (x) -> Float (y) -> Shape
+--      :t Rect --> Rect :: Float -> Float -> Shape
+
