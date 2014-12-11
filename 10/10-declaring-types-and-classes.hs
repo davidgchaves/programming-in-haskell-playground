@@ -52,3 +52,9 @@ move Down   (x,y) = (x,   y-1)
 -- move Up     (3,3) --> (3,4)
 -- move Down   (3,3) --> (3,2)
 
+-- moves: apply a list of Moves to a Position
+moves          :: [Move] -> Pos -> Pos
+moves []     p = p
+moves (m:ms) p = moves ms (move m p)
+-- moves [Up, Up, Up, Left', Right', Right', Down] (3,3) --> (4,5)
+
