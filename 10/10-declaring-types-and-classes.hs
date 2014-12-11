@@ -10,3 +10,8 @@
 --        declared as a list of pairs (k,v)
 type Assoc k v = [(k,v)]
 
+lookupTable :: Assoc Integer String
+lookupTable = [(1, "watch"), (3, "this"), (1, "space")]
+-- lookupTable    --> [(1,"watch"),(3,"this"),(1,"space")]
+-- :t lookupTable --> lookupTable :: Assoc Integer String
+
