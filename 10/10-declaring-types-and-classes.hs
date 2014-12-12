@@ -159,3 +159,10 @@ nat2int (Succ n) = 1 + nat2int n
 -- nat2int (Succ Zero)        --> 1
 -- nat2int (Succ (Succ Zero)) --> 2
 
+int2nat   :: Int -> Nat
+int2nat 0 = Zero
+int2nat n = Succ (int2nat (n-1))
+-- int2nat 0 --> Zero
+-- int2nat 1 --> Succ Zero
+-- int2nat 2 --> Succ (Succ Zero)
+
