@@ -166,3 +166,8 @@ int2nat n = Succ (int2nat (n-1))
 -- int2nat 1 --> Succ Zero
 -- int2nat 2 --> Succ (Succ Zero)
 
+add            :: Nat -> Nat -> Nat
+add Zero     n = n
+add (Succ m) n = Succ (add m n)
+-- add (int2nat 3) (int2nat 4) --> Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))
+
