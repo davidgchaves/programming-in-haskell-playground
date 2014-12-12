@@ -171,3 +171,6 @@ add Zero     n = n
 add (Succ m) n = Succ (add m n)
 -- add (int2nat 3) (int2nat 4) --> Succ (Succ (Succ (Succ (Succ (Succ (Succ Zero))))))
 
+
+data List a = Nil | Cons a (List a)
+
