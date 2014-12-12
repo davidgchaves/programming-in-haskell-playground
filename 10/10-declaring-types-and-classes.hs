@@ -143,3 +143,12 @@ safehead (x:xs) = Just x
 --      Rect   :: Float (x) -> Float (y) -> Shape
 --      :t Rect --> Rect :: Float -> Float -> Shape
 
+
+-- 10.3 Recursive types
+
+--  DATA DECLARATIONS:
+--      - Can be recursive
+
+data Nat = Zero | Succ Nat
+           deriving Show
+
