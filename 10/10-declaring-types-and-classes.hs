@@ -152,3 +152,10 @@ safehead (x:xs) = Just x
 data Nat = Zero | Succ Nat
            deriving Show
 
+nat2int          :: Nat -> Int
+nat2int Zero     = 0
+nat2int (Succ n) = 1 + nat2int n
+-- nat2int Zero               --> 0
+-- nat2int (Succ Zero)        --> 1
+-- nat2int (Succ (Succ Zero)) --> 2
+
