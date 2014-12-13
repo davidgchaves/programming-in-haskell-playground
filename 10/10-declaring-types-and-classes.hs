@@ -179,3 +179,8 @@ len Nil         = 0
 len (Cons _ xs) = 1 + len xs
 -- len (Cons 'a' (Cons 'b' (Cons 'c' Nil))) --> 3
 
+
+-- Binary Trees
+data Tree = Leaf Int
+          | Node Tree Int Tree
+
