@@ -196,3 +196,9 @@ occurs m (Node l n r) = m == n || occurs m l || occurs m r
 -- occurs 8 exampleTree --> False
 -- occurs 4 exampleTree --> True
 
+-- flatten: flattens a tree to a list
+flatten              :: Tree -> [Int]
+flatten (Leaf n)     = [n]
+flatten (Node l n r) = flatten l ++ [n] ++ flatten r
+-- flatten exampleTree --> [1,3,4,5,6,7,9]
+
