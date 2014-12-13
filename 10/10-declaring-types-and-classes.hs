@@ -184,3 +184,8 @@ len (Cons _ xs) = 1 + len xs
 data Tree = Leaf Int
           | Node Tree Int Tree
 
+exampleTree :: Tree
+exampleTree = Node (Node (Leaf 1) 3 (Leaf 4))
+                   5
+                   (Node (Leaf 6) 7 (Leaf 9))
+
