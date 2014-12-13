@@ -213,3 +213,7 @@ occurs' m (Node l n r)
 -- occurs' 8 exampleTree --> False
 -- occurs' 4 exampleTree --> True
 
+-- A more generic binary tree
+data Tree' a = Leaf' a
+             | Node' (Tree' a) a (Tree' a)
+
