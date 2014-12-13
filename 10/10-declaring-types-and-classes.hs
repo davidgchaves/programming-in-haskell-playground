@@ -202,3 +202,14 @@ flatten (Leaf n)     = [n]
 flatten (Node l n r) = flatten l ++ [n] ++ flatten r
 -- flatten exampleTree --> [1,3,4,5,6,7,9]
 
+-- occurs: decides if a given integer occurs in a SEARCH tree
+--         NOTE: SEARCH Trees flatten to an ordered list
+occurs'            :: Int -> Tree -> Bool
+occurs' m (Leaf n) = m == n
+occurs' m (Node l n r)
+    | m == n = True
+    | m < n  = occurs' m l
+    | m > n  = occurs' m r
+-- occurs' 8 exampleTree --> False
+-- occurs' 4 exampleTree --> True
+
