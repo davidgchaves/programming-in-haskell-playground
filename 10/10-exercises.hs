@@ -147,3 +147,19 @@ balanced (Node' l r) = abs (leaves l - leaves r) <= 1 &&
 -- balanced balTree   --> True
 -- balanced unbalTree --> False
 
+
+-- Exercise 10-4:
+--  Given the definition of binary trees from exercise 10-3.
+--  First define a function halve :: [Integer] -> ([Integer],[Integer]) that
+--  splits a list into two halves whose length differs by at most one
+halve    :: [Integer] -> ([Integer], [Integer])
+halve xs = splitAt (length xs `div` 2) xs
+
+--  Then define a function balance :: [Integer] -> Tree that
+--  converts a non-empty list of integers into a balanced tree
+balance      :: [Integer] -> Tree'
+balance [x]  = Leaf' x
+balance xs   = Node' (balance ys) (balance zs)
+    where (ys,zs) = halve xs
+-- balanced (balance [1,3,4,6,7,8,9]) --> True
+
