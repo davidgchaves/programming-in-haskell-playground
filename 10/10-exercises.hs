@@ -79,3 +79,25 @@ mult m (Succ n) = add m (mult m n)
 -- mult (Succ (Succ Zero))        (Succ (Succ (Succ Zero))) --> Succ (Succ (Succ (Succ (Succ (Succ Zero)))))
 -- mult (Succ (Succ (Succ Zero))) (Succ (Succ Zero))        --> Succ (Succ (Succ (Succ (Succ (Succ Zero)))))
 
+
+-- Exercise 10-2:
+--  Define a function occurs :: Integer -> Tree -> Bool that
+--  decides if a given integer occurs in a Binary Search Tree
+--  (Use the standard library ADT (algebraic data type) Ordering)
+data Tree = Leaf Integer
+          | Node Tree Integer Tree
+
+bst = Node (Node (Leaf 1) 3 (Leaf 4))
+           5
+           (Node (Leaf 6) 7 (Leaf 9))
+
+occurs                :: Integer -> Tree -> Bool
+occurs m (Leaf n)     = m == n
+occurs m (Node l n r) = case compare m n of
+                            LT -> occurs m l
+                            EQ -> True
+                            GT -> occurs m r
+-- occurs 1 bst --> True
+-- occurs 5 bst --> True
+-- occurs 8 bst --> False
+
