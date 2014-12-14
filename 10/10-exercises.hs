@@ -183,3 +183,15 @@ instance Monad Maybe' where
     Nothing'  >>= _ = Nothing'
     (Just' x) >>= f = f x
 
+
+-- Exercise 10-8b: Complete the instance declaration of the List Monad
+
+--  First write down the types of return and >>= for the List Monad
+--      return :: a -> [a]
+--      (>>=)  :: [a] -> (a -> [b]) -> [b]
+
+--  Then complete the instance declaration
+--      instance Monad [] where
+--         return x = [x]
+--         xs >>= f = concat (map f xs)
+
