@@ -232,3 +232,23 @@ instance Functor Maybe' where
   fmap _ Nothing'  = Nothing'
   fmap f (Just' a) = Just' (f a)
 
+
+-- Extra Exercise 10-7: Complete the instance declaration of the Foldable List
+--  Given
+--      - a type constructor f such that Functor f
+--      - an element type a such that Monoid a
+--  we can define a function fold :: (Foldable f, Monoid a) => f a -> a that
+--  folds the values in the argument "collection" using
+--      - the monoids neutral element mempty
+--      - the operation <>
+--  NOTE: The Foldable class definition
+--      class (Functor f) => Foldable f where
+--        fold :: (Monoid m) => f m -> m
+
+--  First write down the types of fold for the Foldable List
+--      fold :: (Monoid m) => [a] -> a
+
+--  Then complete the instance declaration
+--      instance Foldable [] where
+--        fold = foldr (<>) mempty
+
