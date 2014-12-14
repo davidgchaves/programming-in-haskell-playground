@@ -33,3 +33,19 @@ natToInteger''' = \n -> genericLength [c | c <- show n, c =='S']
 -- natToInteger''' Zero                      --> 0
 -- natToInteger''' (Succ (Succ (Succ Zero))) --> 3
 
+
+-- Extra Exercise 10-2:
+--  Define a function integerToNat :: Integer -> Nat that
+--  converts any Integer value >= 0, into the corresponding Nat value
+integerToNat   :: Integer -> Nat
+integerToNat 0 = Zero
+integerToNat n = Succ (integerToNat (n-1))
+-- integerToNat 0 --> Zero
+-- integerToNat 3 --> Succ (Succ (Succ Zero))
+
+integerToNat'   :: Integer -> Nat
+integerToNat' 0 = Zero
+integerToNat' n = let m = integerToNat' (n-1) in Succ m
+-- integerToNat' 0 --> Zero
+-- integerToNat' 3 --> Succ (Succ (Succ Zero))
+
