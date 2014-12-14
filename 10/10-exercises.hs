@@ -163,3 +163,23 @@ balance xs   = Node' (balance ys) (balance zs)
     where (ys,zs) = halve xs
 -- balanced (balance [1,3,4,6,7,8,9]) --> True
 
+
+-- Exercise 10-8a: Complete the instance declaration of the Maybe Monad
+--  NOTE: The Monad Laws
+--      1st - Left Identity:  return a >>= f  <===> f a
+--      2nd - Right Identity: m >>= return    <===> m
+--      3rd - Associativity:  (m >>= f) >>= g <===> m >>= (\x -> f x >>= g)
+data Maybe' a = Nothing'
+              | Just' a
+
+--  First write down the types of return and >>= for the Maybe Monad
+--      return :: a -> Maybe a
+--      (>>=)  :: Maybe a -> (a -> Maybe b) -> Maybe b
+
+--  Then complete the instance declaration
+instance Monad Maybe' where
+    return x = Just' x
+
+    Nothing'  >>= _ = Nothing'
+    (Just' x) >>= f = f x
+
