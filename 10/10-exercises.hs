@@ -116,3 +116,34 @@ occurs' m (Node l n r)
 -- occurs' 5 bst --> True
 -- occurs' 8 bst --> False
 
+
+-- Exercise 10-3:
+--  Consider the following type of Binary Trees (with only values at the leafs)
+data Tree' = Leaf' Integer
+           | Node' Tree' Tree'
+
+--  Define a function balanced :: Tree -> Bool that
+--  decides if a Tree is (or not) balanced
+--  (We say that a tree is balanced if the number of leaves in the left
+--  and right subtree of every node differs by at most one)
+balTree = Node' (Node' (Leaf' 1) (Leaf' 4))
+                (Node' (Leaf' 6) (Leaf' 9))
+
+unbalTree = Node'
+                (Node'
+                    (Node' (Leaf' 1) (Leaf' 4))
+                    (Node' (Leaf' 6) (Leaf' 8)))
+                (Leaf' 9)
+
+leaves            :: Tree' -> Integer
+leaves (Leaf' _)   = 1
+leaves (Node' l r) = leaves l + leaves r
+
+balanced             :: Tree' -> Bool
+balanced (Leaf' _)   = True
+balanced (Node' l r) = abs (leaves l - leaves r) <= 1 &&
+                       balanced l &&
+                       balanced r
+-- balanced balTree   --> True
+-- balanced unbalTree --> False
+
