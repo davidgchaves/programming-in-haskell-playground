@@ -214,3 +214,21 @@ instance Monad Maybe' where
 --         mempty = []
 --         (<>)   = (++)
 
+
+-- Extra Exercise 10-6: Complete the instance declaration of the Maybe Functor
+--  NOTE: A functor is a type constructor with
+--      an operation fmap :: Functor f => (a -> b) -> f a -> f b
+--        A value of type Functor f => f a can be considered
+--      as a "collection" with elements of type a and shape f
+--  NOTE: Functor Laws
+--      1st: fmap id             <===> id
+--      2nd: (fmap f) . (fmap g) <===> fmap (f . g)
+
+--  First write down the types of fmap for the Maybe Functor
+--      fmap :: (a -> b) -> Maybe a -> Maybe b
+
+--  Then complete the instance declaration
+instance Functor Maybe' where
+  fmap _ Nothing'  = Nothing'
+  fmap f (Just' a) = Just' (f a)
+
