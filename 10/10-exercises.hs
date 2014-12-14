@@ -195,3 +195,22 @@ instance Monad Maybe' where
 --         return x = [x]
 --         xs >>= f = concat (map f xs)
 
+
+-- Extra Exercise 10-5: Complete the instance declaration of the List Monoid
+--  NOTE: A monoid is an algebraic structure over a type a with
+--      a single associative binary operation (<>)   :: Monoid a => a -> a -> a
+--      and a neutral element                 mempty :: Monoid a => a
+--  NOTE: The Monoid Laws
+--      1st: mempty <> x   <===> x
+--      2nd: x <> mempty   <===> x
+--      3rd: (x <> y) <> z <===> x <> (y <> z)
+
+--  First write down the types of mempty and <> for the List Monoid
+--      mempty :: [a]
+--      (<>)   :: [a] -> [a] -> [a]
+
+--  Then complete the instance declaration
+--      instance Monoid [a] where
+--         mempty = []
+--         (<>)   = (++)
+
