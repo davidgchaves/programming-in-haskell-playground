@@ -101,3 +101,18 @@ occurs m (Node l n r) = case compare m n of
 -- occurs 5 bst --> True
 -- occurs 8 bst --> False
 
+
+-- Extra Exercise 10-4:
+--  Define a function occurs :: Integer -> Tree -> Bool that
+--  decides if a given integer occurs in a Binary Search Tree
+--  (Don't use the standard library ADT (algebraic data type) Ordering)
+occurs'                :: Integer -> Tree -> Bool
+occurs' m (Leaf n)     = m == n
+occurs' m (Node l n r)
+    | m == n    = True
+    | m < n     = occurs' m l
+    | otherwise = occurs' m r
+-- occurs' 1 bst --> True
+-- occurs' 5 bst --> True
+-- occurs' 8 bst --> False
+
