@@ -65,3 +65,17 @@ add' n (Succ m) = Succ (add' m n)
 -- add' (Succ Zero)        Zero        --> Succ Zero
 -- add' (Succ (Succ Zero)) (Succ Zero) --> Succ (Succ (Succ Zero))
 
+
+-- Exercise 10-1:
+--  Define a function mult :: Nat -> Nat -> Nat that
+--  multiplies two natural numbers m and n
+--  (Use recursion and the function add :: Nat -> Nat -> Nat)
+mult            :: Nat -> Nat -> Nat
+mult m Zero     = Zero
+mult m (Succ n) = add m (mult m n)
+-- mult Zero               (Succ (Succ Zero)) --> Zero
+-- mult (Succ (Succ Zero)) Zero               --> Zero
+--
+-- mult (Succ (Succ Zero))        (Succ (Succ (Succ Zero))) --> Succ (Succ (Succ (Succ (Succ (Succ Zero)))))
+-- mult (Succ (Succ (Succ Zero))) (Succ (Succ Zero))        --> Succ (Succ (Succ (Succ (Succ (Succ Zero)))))
+
