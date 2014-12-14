@@ -49,3 +49,19 @@ integerToNat' n = let m = integerToNat' (n-1) in Succ m
 -- integerToNat' 0 --> Zero
 -- integerToNat' 3 --> Succ (Succ (Succ Zero))
 
+
+-- Extra Exercise 10-3:
+--  Define a function add :: Nat -> Nat -> Nat that
+--  adds two natural numbers m and n
+add            :: Nat -> Nat -> Nat
+add Zero     n = n
+add (Succ m) n = Succ (add m n)
+-- add (Succ Zero)        Zero        --> Succ Zero
+-- add (Succ (Succ Zero)) (Succ Zero) --> Succ (Succ (Succ Zero))
+
+add'            :: Nat -> Nat -> Nat
+add' n Zero     = n
+add' n (Succ m) = Succ (add' m n)
+-- add' (Succ Zero)        Zero        --> Succ Zero
+-- add' (Succ (Succ Zero)) (Succ Zero) --> Succ (Succ (Succ Zero))
+
