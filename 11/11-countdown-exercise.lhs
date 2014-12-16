@@ -199,3 +199,11 @@ removeOne: removes the first occurence of a given element from a list
 >           | x == y    = ys
 >           | otherwise = y : removeOne x ys
 
+Extra Exercise 11-3
+isChoice xs ys: checks whether all elements in xs are present in ys
+
+> isChoice           :: Eq a => [a] -> [a] -> Bool
+> isChoice []     _  = True
+> isChoice (x:xs) [] = False
+> isChoice (x:xs) ys = elem x ys && isChoice xs (removeOne x ys)
+
