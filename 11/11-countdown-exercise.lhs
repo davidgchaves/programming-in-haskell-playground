@@ -189,3 +189,13 @@ Interactive version for testing
 >                                     putStr "Enter the target number : "
 >                                     n  <- readLn
 >                                     display (solutions'' ns n)
+
+Extra Exercise 11-2
+removeOne: removes the first occurence of a given element from a list
+
+> removeOne             :: Eq a => a -> [a] -> [a]
+> removeOne x []        = []
+> removeOne x (y:ys)
+>           | x == y    = ys
+>           | otherwise = y : removeOne x ys
+
