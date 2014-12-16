@@ -64,7 +64,9 @@ Brute force solution
 --------------------
 
 > split                         :: [a] -> [([a],[a])]
-> split                         =  undefined
+> split []                      =  []
+> split [_]                     =  []
+> split (x:xs)                  =  ([x], xs) : [(x:ls, rs) | (ls, rs) <- split xs]
 >
 > exprs                         :: [Int] -> [Expr]
 > exprs []                      =  []
