@@ -56,3 +56,17 @@
 -- - Outermost (call-by-name) Evaluation is preferable to Innermost (call-by-value)
 --   for the purpose of ensuring that evaluation TERMINATES as often as possible
 
+
+-- 12.4 Number of reductions
+
+-- Arguments are evaluated precisely once using Innermost (call-by-value) Evaluation,
+--   but may be evaluated many times using Outermost (call-by-name) Evaluation
+
+-- Sharing:
+--  - Use pointers to indicate sharing of expressions during evaluation
+--  - Solves the Outermost (call-by-name) Evaluation efficiency problem
+
+-- LAZY EVALUATION = Outermost (call-by-name) Evaluation + Sharing
+--  - Reduction strategy used by Haskell
+--  - Never requires more steps than Innermost (call-by-value) Evaluation
+
