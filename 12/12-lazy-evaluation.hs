@@ -43,3 +43,16 @@
 --  - Reductions within the body of a function is only permitted
 --    once the function has been applied
 
+
+-- 12.3 Termination
+
+-- - Outermost (call-by-name) Evaluation may produce a result when
+--   Innermost (call-by-value) Evaluation FAILS to TERMINATE
+--
+-- - If there exists any evaluation sequence that terminates for a given expression,
+--   then Outermost (call-by-name) Evaluation will also TERMINATE for this expression,
+--   and produce the same final result
+--
+-- - Outermost (call-by-name) Evaluation is preferable to Innermost (call-by-value)
+--   for the purpose of ensuring that evaluation TERMINATES as often as possible
+
