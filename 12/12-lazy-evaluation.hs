@@ -77,3 +77,22 @@
 --  - Only evaluates arguments as and when strictly necessary to produce results
 --  - Allows programming with infinite structures (property of Outermost Evaluation)
 
+
+-- 12.6 Modular Programming
+--  Being able to separate control from data
+--  is one of the most important benefits of lazy evaluation
+
+-- Infinite Prime Numbers (the sieve of Eratosthenes)
+--  1: Write down the infinite sequence (seq) 2,3,4,5...
+--  2: Mark the first number (p) in seq as prime
+--  3: Delete all multiples of p from seq
+--  4: Return to 2
+--  NOTE: 1 and 3 require an infinite amount of work
+primes :: [Int]
+primes = sieve [2..]
+
+sieve :: [Int] -> [Int]
+sieve (p:xs) = p : sieve [x | x <- xs, x `mod` p /= 0]
+-- take 20 primes         --> [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71]
+-- takeWhile (<50) primes --> [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47]
+
