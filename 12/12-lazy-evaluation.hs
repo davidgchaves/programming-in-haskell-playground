@@ -70,3 +70,10 @@
 --  - Reduction strategy used by Haskell
 --  - Never requires more steps than Innermost (call-by-value) Evaluation
 
+
+-- 12.5 Infinite structures
+
+-- LAZY EVALUATION:
+--  - Only evaluates arguments as and when strictly necessary to produce results
+--  - Allows programming with infinite structures (property of Outermost Evaluation)
+
