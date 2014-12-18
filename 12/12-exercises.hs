@@ -36,3 +36,14 @@ largeFib :: Integer
 largeFib = head (dropWhile (<= 1000) fibs)
 -- largeFib --> 1597
 
+
+-- Exercise 12-6a:
+--  Given the following type of binary trees:
+data Tree a = Leaf
+            | Node (Tree a) a (Tree a)
+--  Define a function repeatTree :: a -> Tree a that
+--  has an analogous behavior to that of the library function repeat
+repeatTree   :: a -> Tree a
+repeatTree x = Node t x t where
+           t = repeatTree x
+
