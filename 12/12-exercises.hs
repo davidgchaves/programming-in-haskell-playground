@@ -27,3 +27,12 @@ fib n = fibs !! n
 -- fib 5 --> 5
 -- fib 6 --> 8
 
+
+-- Exercise 12-5b:
+--  Define a function largeFib :: Integer that
+--  calculates the first Fibonacci number greater than 1000
+--  NOTE: use fibs
+largeFib :: Integer
+largeFib = head (dropWhile (<= 1000) fibs)
+-- largeFib --> 1597
+
