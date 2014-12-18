@@ -12,3 +12,18 @@ fibs :: [Integer]
 fibs = 0 : 1 : [x+y | (x,y) <- zip fibs (tail fibs)]
 -- take 10 fibs --> [0,1,1,2,3,5,8,13,21,34]
 
+
+-- Exercise 12-5a:
+--  Define a function fib :: Int -> Integer that
+--  returns the nth Fibonnaci number (counting from zero)
+--  NOTE: use fibs
+fib   :: Int -> Integer
+fib n = fibs !! n
+-- fib 0 --> 0
+-- fib 1 --> 1
+-- fib 2 --> 1
+-- fib 3 --> 2
+-- fib 4 --> 3
+-- fib 5 --> 5
+-- fib 6 --> 8
+
