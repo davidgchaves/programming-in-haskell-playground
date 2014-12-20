@@ -101,6 +101,9 @@ action (Concurrent f) = f (\a -> Stop)
 --  Technically, we need to return a function of type ((a -> Action) -> Action)
 --  (wrapped in the Concurrent data type) that ends the computation
 
+stop' :: ((a -> Action) -> Action)
+stop' = \c -> Stop
+
 stop :: Concurrent a
 stop = error "You have to implement stop"
 
