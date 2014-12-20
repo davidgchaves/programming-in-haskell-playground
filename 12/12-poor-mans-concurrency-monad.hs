@@ -84,6 +84,13 @@ action (Concurrent f) = f (\a -> Stop)
 -- action (Concurrent (\a -> Atom $ putStr "Haskell" >> return Stop)) --> atom
 
 
+--  To make the constructors of the data type Action easily accessible,
+--  we can define helper functions that hide the boilerplate required to use them:
+--      - (Ex. 1) stop :: Concurrent a
+--      - (Ex. 2) atom :: IO a -> Concurrent a
+--      - (Ex. 3) fork :: Concurrent a -> Concurrent ()
+
+
 -- ===================================
 -- Ex. 1
 -- ===================================
