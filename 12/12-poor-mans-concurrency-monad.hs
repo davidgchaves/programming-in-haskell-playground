@@ -1,18 +1,53 @@
+-- Lab 5: a Monad for handling concurrency
+--  We are going to simulate concurrent processes by interleaving them.
+--  Interleaving implements concurrency by
+--      1 - running the first part of one process,
+--      2 - suspending it, and then
+--      3 - allowing another process to run
 module Lab5 where
 
 import Control.Monad
 
+-- To suspend a process, we need to grab its "future" and store it away for later use.
+-- Continuations are an excellent way of implementing this.
+-- We can change a function into continuation passing style by
+-- adding an extra parameter, the continuation, that represents
+-- the "future" work that needs to be done after this function terminates.
+-- Instead of producing its result directly,
+-- the function will now apply the continuation to the result.
+
+-- Given a computation of type Action, a function that
+-- uses a continuation with result type a has the following type:
+--  (a -> Action) -> Action
+
+-- This type can be read as a function that:
+--  - takes as input a continuation function (a -> Action),
+--    that specifies how to continue once the result of type a
+--    of the current computation is available.
+--  - An application f c of this type will call c with its result
+--    when it becomes available.
+
+-- Unfortunately, because we want to make (a -> Action) -> Action into a monad,
+-- we first need to wrap it into a trivial ADT,
+-- which we have to wrap and unwrap when implementing the monad operators:
 data Concurrent a = Concurrent ((a -> Action) -> Action)
 
+-- A process is represented by the recursive ADT Action that encodes primitive actions that:
 data Action
-    = Atom (IO Action)
-    | Fork Action Action
-    | Stop
+    = Atom (IO Action)    -- 1 - perform a side-effect and then return a continuation action
+    | Fork Action Action  -- 2 - perform the concurrent execution of 2 actions
+    | Stop                -- 3 - represent an action that has terminated
 
 instance Show Action where
     show (Atom x) = "atom"
     show (Fork x y) = "fork " ++ show x ++ " " ++ show y
     show Stop = "stop"
+
+-- NOTE: We find it easiest to derive the implementations
+--       by ignoring the wrapper (think like a fundamentalist)
+--       since that makes "listening to the types" easier,
+--       and then add pattern matching and constructor calls
+--       to make GHC happy (code like a hacker).
 
 -- ===================================
 -- Ex. 0
