@@ -49,9 +49,30 @@ instance Show Action where
 --       and then add pattern matching and constructor calls
 --       to make GHC happy (code like a hacker).
 
--- ===================================
--- Ex. 0
--- ===================================
+-- ===============================================================
+-- Ex. 0 - Implement the function action :: Concurrent a -> Action
+-- ===============================================================
+
+--  To express the connection between:
+--      - an expression of type Concurrent a, and
+--      - an expression of type Action,
+--  we define a function action :: Concurrent a -> Action that
+--      transforms a ((a -> Action) -> Action) into an Action that
+--      uses Stop :: Action to create the continuation
+--      to the Concurrent a passed as the first argument to action.
+
+--  The easiest road to implement this function is to
+--      - initially ignore the Concurrent wrapper,
+--        (define a function action :: ((a -> Action) -> Action) -> Action)
+--      - later add the pattern-matching to remove the wrapper
+--        (transform a value of type Concurrent a into
+--         a value of type ((a -> Action) -> Action) -> Action)
+
+--  As always, let the types guide you:
+--      - there is only one obvious way to create
+--        a value of type a -> Action from the value Stop :: Action
+--      - when you get a value of type ma :: ((a -> Action) -> Action)
+--        there is only one way to combine these two to obtain a value of type Action.
 
 action :: Concurrent a -> Action
 action = error "You have to implement action"
