@@ -74,6 +74,9 @@ instance Show Action where
 --      - when you get a value of type ma :: ((a -> Action) -> Action)
 --        there is only one way to combine these two to obtain a value of type Action.
 
+action'   :: ((a -> Action) -> Action) -> Action
+action' f = f (\a -> Stop)
+
 action :: Concurrent a -> Action
 action = error "You have to implement action"
 
