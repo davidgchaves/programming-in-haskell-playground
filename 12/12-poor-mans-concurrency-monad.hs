@@ -77,8 +77,11 @@ instance Show Action where
 action'   :: ((a -> Action) -> Action) -> Action
 action' f = f (\a -> Stop)
 
-action :: Concurrent a -> Action
-action = error "You have to implement action"
+action                :: Concurrent a -> Action
+action (Concurrent f) = f (\a -> Stop)
+-- action (Concurrent (\a -> Stop))                                   --> stop
+-- action (Concurrent (\a -> Fork Stop $ Fork Stop Stop))             --> fork stop fork stop stop
+-- action (Concurrent (\a -> Atom $ putStr "Haskell" >> return Stop)) --> atom
 
 
 -- ===================================
