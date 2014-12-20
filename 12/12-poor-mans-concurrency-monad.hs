@@ -90,10 +90,16 @@ action (Concurrent f) = f (\a -> Stop)
 --      - (Ex. 2) atom :: IO a -> Concurrent a
 --      - (Ex. 3) fork :: Concurrent a -> Concurrent ()
 
+-- ==========================================================
+-- Ex. 1 - Implement the helper function stop :: Concurrent a
+-- ==========================================================
 
--- ===================================
--- Ex. 1
--- ===================================
+--  The function stop :: Concurrent a, discards any continuation (ending a computation):
+--      - takes a continuation, which gets discarded
+--      - returns a Stop action
+--
+--  Technically, we need to return a function of type ((a -> Action) -> Action)
+--  (wrapped in the Concurrent data type) that ends the computation
 
 stop :: Concurrent a
 stop = error "You have to implement stop"
