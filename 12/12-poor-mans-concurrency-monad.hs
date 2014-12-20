@@ -105,7 +105,8 @@ stop' :: ((a -> Action) -> Action)
 stop' = \c -> Stop
 
 stop :: Concurrent a
-stop = error "You have to implement stop"
+stop = Concurrent (\c -> Stop)
+-- action stop --> stop
 
 
 -- ===================================
