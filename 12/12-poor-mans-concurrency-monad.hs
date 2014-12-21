@@ -179,8 +179,12 @@ fork (Concurrent f) = Concurrent (\c -> Fork (action (Concurrent f)) (c ()))
 par'     :: ((a -> Action) -> Action) -> ((a -> Action) -> Action) -> ((a -> Action) -> Action)
 par' f g = \c -> Fork (f c) (g c)
 
-par :: Concurrent a -> Concurrent a -> Concurrent a
-par = error "You have to implement par"
+par                               :: Concurrent a -> Concurrent a -> Concurrent a
+par (Concurrent f) (Concurrent g) = Concurrent (\c -> Fork (f c) (g c))
+-- action $ par stop stop                                      --> fork stop stop
+-- action (par (atom (putStr "think")) (atom (putStr "hack"))) --> fork atom atom
+-- action (par stop $ fork stop)                               --> fork stop fork stop stop
+-- action $ par (atom $ putChar 'x') (fork stop)               --> fork atom fork stop stop
 
 
 -- ===================================
