@@ -109,9 +109,34 @@ stop = Concurrent (\c -> Stop)
 -- action stop --> stop
 
 
--- ===================================
--- Ex. 2
--- ===================================
+-- ==================================================================
+-- Ex. 2 - Implement the helper function atom :: IO a -> Concurrent a
+-- ==================================================================
+
+--  The function atom :: IO a -> Concurrent a,
+--      - turns an arbitrary computation in the IO Monad
+--      - into an atomic action represented using the Atom constructor
+
+--  REMEMBER: The easiest road to implement this function is to
+--      - initially ignore the Concurrent wrapper,
+--          1: define a function atom :: IO a -> ((a -> Action) -> Action))
+--          2: take a value x of type IO a
+--          3: return a value of type ((a -> Action) -> Action)
+--             which looks like \c -> value-of-type-action
+--             where c :: (a -> Action)
+--                   value-of-type-action could be Atom
+--          4: use (>>=) to combine
+--              - a value of type IO a and
+--              - a function of type a -> IO b into
+--              - a value of type IO b
+--                (in this case b is instantiated to Action)
+--          5: use return to convert
+--              - a value of type Action into
+--              - a value of type IO Action
+--          6: use the Atom Constructor (check 3) to turn
+--              - a value of type IO Action into
+--              - an Action
+--      - later wrap and unwrap the Concurrent data type
 
 atom :: IO a -> Concurrent a
 atom = error "You have to implement atom"
