@@ -167,7 +167,7 @@ fork' f = \c -> Fork (action' f) (c ())
 
 fork                :: Concurrent a -> Concurrent ()
 fork (Concurrent f) = Concurrent (\c -> Fork (action (Concurrent f)) (c ()))
--- action $ fork stop --> fork stop stop
+-- action $ fork stop                     --> fork stop stop
 -- action (fork (atom (putStr "Hacker"))) --> fork atom stop
 
 
