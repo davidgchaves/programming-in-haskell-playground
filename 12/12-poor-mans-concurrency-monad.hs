@@ -138,6 +138,11 @@ stop = Concurrent (\c -> Stop)
 --              - an Action
 --      - later wrap and unwrap the Concurrent data type
 
+atom'   :: IO a -> ((a -> Action) -> Action)
+atom' x = \c -> Atom (x >>= \a -> return (c a))
+--atom' x = \c -> Atom (do a <- x
+--                         return (c a))
+
 atom :: IO a -> Concurrent a
 atom = error "You have to implement atom"
 
