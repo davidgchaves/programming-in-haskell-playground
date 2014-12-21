@@ -176,6 +176,9 @@ fork (Concurrent f) = Concurrent (\c -> Fork (action (Concurrent f)) (c ()))
 --      - forking them both and
 --      - passing the given continuation to both parts
 
+par'     :: ((a -> Action) -> Action) -> ((a -> Action) -> Action) -> ((a -> Action) -> Action)
+par' f g = \c -> Fork (f c) (g c)
+
 par :: Concurrent a -> Concurrent a -> Concurrent a
 par = error "You have to implement par"
 
