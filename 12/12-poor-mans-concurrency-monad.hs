@@ -162,6 +162,9 @@ atom x = Concurrent (\c -> Atom (x >>= \a -> return (c a)))
 --      - forks its argument by turning it into an action and
 --      - continues by passing () as the input to the continuation
 
+fork'   :: ((a -> Action) -> Action) -> ((() -> Action) -> Action)
+fork' f = \c -> Fork (action' f) (c ())
+
 fork :: Concurrent a -> Concurrent ()
 fork = error "You have to implement fork"
 
