@@ -143,8 +143,13 @@ atom' x = \c -> Atom (x >>= \a -> return (c a))
 --atom' x = \c -> Atom (do a <- x
 --                         return (c a))
 
-atom :: IO a -> Concurrent a
-atom = error "You have to implement atom"
+atom   :: IO a -> Concurrent a
+atom x = Concurrent (\c -> Atom (x >>= \a -> return (c a)))
+--atom x = Concurrent (\c -> Atom (do a <- x
+--                                    return (c a)))
+
+-- action . atom . putStrLn $ "Haskell" --> atom
+-- action $ atom undefined              --> atom
 
 
 -- ===================================
