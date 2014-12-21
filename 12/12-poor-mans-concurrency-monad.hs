@@ -153,11 +153,22 @@ atom x = Concurrent (\c -> Atom (x >>= \a -> return (c a)))
 
 
 -- ===================================
--- Ex. 3
+-- Ex. 3 - Implement the helper functions:
+--          fork :: Concurrent a -> Concurrent ()
+--          par  :: Concurrent a -> Concurrent a -> Concurrent a
 -- ===================================
+
+--  fork :: Concurrent a -> Concurrent ()
+--      - forks its argument by turning it into an action and
+--      - continues by passing () as the input to the continuation
 
 fork :: Concurrent a -> Concurrent ()
 fork = error "You have to implement fork"
+
+--  par :: Concurrent a -> Concurrent a -> Concurrent a
+--  combines two computations into one by
+--      - forking them both and
+--      - passing the given continuation to both parts
 
 par :: Concurrent a -> Concurrent a -> Concurrent a
 par = error "You have to implement par"
