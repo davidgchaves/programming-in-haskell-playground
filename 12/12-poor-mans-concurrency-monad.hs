@@ -187,9 +187,35 @@ par (Concurrent f) (Concurrent g) = Concurrent (\c -> Fork (f c) (g c))
 -- action $ par (atom $ putChar 'x') (fork stop)               --> fork atom fork stop stop
 
 
--- ===================================
--- Ex. 4
--- ===================================
+-- =================================================
+-- Ex. 4 - Implement (>>=) for the Concurrency Monad
+-- =================================================
+
+--  Let the types guide you
+--      - There is really just one way to wire up all the pieces
+--        to create a result of the required type
+--      - Don't try to understand what the code does operationally,
+--        trust the types
+
+--  REMEMBER: The easiest road to implement this function is to
+--      - initially ignore the Concurrent wrapper,
+--          1: define a function ma >>= f
+--             given ma :: ((a -> Action) -> Action)
+--                   f  :: (a -> ((b -> Action) -> Action))
+--             produce  :: ((b -> Action) -> Action)
+--          2: let the types lead you to the only reasonable implementation
+--          3: to return a value of type ((b -> Action) -> Action)
+--             create something like \c -> expression-of-type-action
+--          4: to pass a value of type (a -> ((b -> Action) -> Action))
+--             create something like \a -> expression-of-type-((b -> Action) -> Action)
+--      - later wrap and unwrap the Concurrent data type
+
+--  NOTES:
+--      - the solution only needs
+--          * two lambda expressions and
+--          * a couple of function applications
+--      - you don't need to look at the structure of Action at all
+--        (this would work for any type instead of Action)
 
 instance Monad Concurrent where
     (Concurrent f) >>= g = error "You have to implement >>="
