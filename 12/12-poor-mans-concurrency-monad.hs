@@ -218,8 +218,15 @@ par (Concurrent f) (Concurrent g) = Concurrent (\c -> Fork (f c) (g c))
 --        (this would work for any type instead of Action)
 
 instance Monad Concurrent where
-    (Concurrent f) >>= g = error "You have to implement >>="
+    -- ma  :: Concurrent a
+    -- f   :: a -> Concurrent b
+    -- out :: Concurrent b
+    (Concurrent ma) >>= f = Concurrent (\c -> ma (\a -> applyC (f a) c))
+                            where applyC (Concurrent f) a = f a
     return x = Concurrent (\c -> c x)
+
+-- action (stop >>= (\c -> stop))         --> stop
+-- action (fork stop >>= \_ -> fork stop) --> fork stop fork stop stop
 
 
 -- ===================================
