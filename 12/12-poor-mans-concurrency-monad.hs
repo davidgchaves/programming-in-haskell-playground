@@ -229,12 +229,30 @@ instance Monad Concurrent where
 -- action (fork stop >>= \_ -> fork stop) --> fork stop fork stop stop
 
 
--- ===================================
--- Ex. 5
--- ===================================
+-- ==============================================================
+-- Ex. 5 - Implement the function roundRobin :: [Action] -> IO ()
+-- ==============================================================
+
+--  At any moment, the status of the computation
+--  is going to be modelled as a list of "concurrently running" actions
+
+--  The Round Robin scheduling technique
+--  (to interleave the "list of concurrently running" processes):
+--      1: take the first process from the list
+--      2: run its first part
+--      3: take the resulting continuation
+--      4: put the continuation from 3 at at the back of the list
+--      5: go to 1 until the list is empty
+
+--  NOTES:
+--      - Atom monadically executes its argument and
+--        puts the resulting process at the back of the process list
+--      - Fork creates two new processes
+--      - Stop discards its process
 
 roundRobin :: [Action] -> IO ()
 roundRobin = error "You have to implement roundRobin"
+
 
 -- ===================================
 -- Tests
