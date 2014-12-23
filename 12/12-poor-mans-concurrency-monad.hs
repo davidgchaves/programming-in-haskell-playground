@@ -250,8 +250,12 @@ instance Monad Concurrent where
 --      - Fork creates two new processes
 --      - Stop discards its process
 
-roundRobin :: [Action] -> IO ()
-roundRobin = error "You have to implement roundRobin"
+roundRobin        :: [Action] -> IO ()
+roundRobin []     = return ()
+roundRobin (a:as) = case a of
+    Atom a     -> a >>= \c -> roundRobin (as ++ [c])
+    Fork a1 a2 -> roundRobin (as ++ [a1] ++ [a2])
+    Stop       -> roundRobin as
 
 
 -- ===================================
