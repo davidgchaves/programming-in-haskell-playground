@@ -264,12 +264,14 @@ roundRobin (a:as) = case a of
 
 ex0 :: Concurrent ()
 ex0 = par (loop (genRandom 1337)) (loop (genRandom 2600) >> atom (putStrLn ""))
+-- run ex0 --> 183969836351184424447619541356283739
 
 ex1 :: Concurrent ()
 ex1 = do atom (putStr "Haskell")
          fork (loop $ genRandom 7331)
          loop $ genRandom 42
          atom (putStrLn "")
+-- run ex1 --> Haskell177173719217361422167291191835716587475
 
 
 -- ===================================
