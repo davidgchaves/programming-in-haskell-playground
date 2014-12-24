@@ -290,3 +290,34 @@ genRandom 42   = [71, 71, 17, 14, 16, 91, 18, 71, 58, 75]
 loop :: [Int] -> Concurrent ()
 loop xs = mapM_ (atom . putStr . show) xs
 
+
+-- ===================================
+-- Suggested examples
+-- ===================================
+
+-- myex0 should produce: hohohohihihi
+myex0 = run $ (ho >> ho >> ho) >>
+              (hi >> hi >> hi) >> atom (putStr "\n")
+    where ho = atom (putStr "ho")
+          hi = atom (putStr "hi")
+-- myex0 --> hohohohihihi
+
+-- myex1 should produce: hohihohihohi
+myex1 = run $ fork (ho >> ho >> ho) >>
+                   (hi >> hi >> hi) >> atom (putStr "\n")
+    where ho = atom (putStr "ho")
+          hi = atom (putStr "hi")
+-- myex1 --> hohihohihohi
+
+-- myex2 should produce: babadibubadibudibu
+myex2 = run $ fork (put3 "ba") >> fork (put3 "di") >>
+        put3 "bu" >> atom (putStr "\n")
+    where put3 = sequence . take 3 . repeat . atom . putStr
+-- myex2 --> babadibubadibudibu
+
+-- myex3 should produce: badibadibadi
+myex3 = run $ par (put3 "ba") (put3 "di" >> stop) >>
+              atom (putStr "\n")
+    where put3 = sequence . take 3 . repeat . atom . putStr
+-- myex3 --> badibadibadi
+
