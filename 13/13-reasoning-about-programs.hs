@@ -42,3 +42,20 @@ reverse' (x:xs) = reverse' xs ++ [x]  -- (2)
 --  ---> (applying reverse (1)) = [] ++ [x]
 --  ---> (applying ++)          = [x]
 
+
+--  NEGATE: Show that negate is its own inverse
+--          (negate (negate b) = b for all logical values b)
+negate'       :: Bool -> Bool
+negate' False = True
+negate' True  = False
+
+-- Case analysis on the two possible values for b: True and False
+--  CASE 1: b = True
+--      negate (negate True)
+--          ---> (applying the inner negate) = negate False
+--          ---> (applying negate)           = True
+--  CASE 2: b = False
+--      negate (negate False)
+--          ---> (applying the inner negate) = negate True
+--          ---> (applying negate)           = False
+
