@@ -27,3 +27,18 @@ double x = x + x
 --  DISJOINT or NON-OVERLAPPING PATTERNS
 --      Patterns that do not rely on the order in which they are matched
 
+
+-- 13.3 Simple examples
+
+--  REVERSE: Show that reverse has no effect on singleton lists
+--           (reverse [x] = [x] for any element x)
+reverse'        :: [a] -> [a]
+reverse' []     = []                  -- (1)
+reverse' (x:xs) = reverse' xs ++ [x]  -- (2)
+
+-- reverse [x]
+--  ---> (list notation)        = reverse (x:[])
+--  ---> (applying reverse (2)) = reverse [] ++ [x]
+--  ---> (applying reverse (1)) = [] ++ [x]
+--  ---> (applying ++)          = [x]
+
