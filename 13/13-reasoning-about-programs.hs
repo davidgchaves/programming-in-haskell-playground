@@ -86,3 +86,25 @@ add (Succ n) m = Succ (add n m)  -- (2)
 --          ---> (applying add (2))     = Succ (add n Zero)
 --          ---> (induction hypotheses) = Succ n
 
+
+-- EXAMPLE 2: Show that addition of natural numbers is associative, which means that
+--            add x (add y z) = add (add x y) z for all natural numbers x y z
+--      NOTE: The add function is defined by pattern matching on its first argument,
+--            so it is natural to try induction on x,
+--            which appears twice as the first argument to add in the associativity equation,
+--            whereas y only appears once as such and z never
+
+--  BASE CASE: Show that add Zero (add y z) = add (add Zero y) z
+--      add Zero (add y z)
+--          ---> (applying the outer add (1)) = add y z
+--          ---> (unapplying add (1) to y)    = add (add Zero y) z
+--
+--  INDUCTIVE CASE: if add x (add y z) (INDUCTION HYPOTHESIS) holds
+--                  (which means add x (add y z) = add (add x y) z)
+--                  show that add (Succ x) (add y z) = add (add (Succ x) y) z
+--      add (Succ x) (add y z)
+--          ---> (applying outer add (2))   = Succ (add x (add y z))
+--          ---> (induction hypothesis)     = Succ (add (add x y) z)
+--          ---> (unapplying outer add (2)) = add (Succ (add x y)) z
+--          ---> (unapplying inner add (2)) = add (add (Succ x) y) z
+
