@@ -71,3 +71,18 @@ data Nat = Zero
 --      - INDUCTIVE CASE: if the property p holds for any natural number n (induction hypothesis),
 --                        then it also holds for Succ n
 
+-- EXAMPLE 1: Show that add n Zero = n, which we abbreviate by p, holds for all natural numbers n
+add            :: Nat -> Nat -> Nat
+add Zero     m = m               -- (1)
+add (Succ n) m = Succ (add n m)  -- (2)
+
+--  BASE CASE: Show that add Zero Zero = Zero
+--      add Zero Zero
+--          ---> (applying add (1)) = Zero
+--
+--  INDUCTIVE CASE: if add n Zero (INDUCTION HYPOTHESIS) holds (which means add n Zero = n)
+--                  show that add (Succ n) Zero = Succ n
+--      add (Succ n) Zero
+--          ---> (applying add (2))     = Succ (add n Zero)
+--          ---> (induction hypotheses) = Succ n
+
