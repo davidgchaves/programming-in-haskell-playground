@@ -108,3 +108,24 @@ add (Succ n) m = Succ (add n m)  -- (2)
 --          ---> (unapplying outer add (2)) = add (Succ (add x y)) z
 --          ---> (unapplying inner add (2)) = add (add (Succ x) y) z
 
+
+-- EXAMPLE 3: Show that replicate does produce a list with n elements, which means that
+--            length (replicate n x) = n for all n >= 0
+replicate'     :: Int -> a -> [a]
+replicate' 0 _ = []                      -- (1)
+replicate' n x = x : replicate' (n-1) x  -- (2)
+
+--  BASE CASE: Show that length (replicate 0 x) = 0
+--      length (replicate 0 x)
+--          ---> (applying replicate (1)) = length []
+--          ---> (applying length)        = 0
+--
+--  INDUCTIVE CASE: if length (replicate n x) (INDUCTION HYPOTHESIS) holds
+--                  (which means length (replicate n x) = n)
+--                  show that (replicate (n+1) x) = n+1
+--      length (replicate (n+1) x)
+--          ---> (applying replicate (2)) = length (x : replicate n x)
+--          ---> (applying length)        = 1 + length (replicate n x)
+--          ---> (induction hypothesis)   = 1+n
+--          ---> (+ commutativity)        = n+1
+
