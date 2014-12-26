@@ -144,3 +144,31 @@ replicate' n x = x : replicate' (n-1) x  -- (2)
 --                        then it also holds for x : xs
 --  NOTE: Both the element x and the list xs must be of the appropriate types
 
+--  EXAMPLE 1: Show that reverse is its own inverse, which means that
+--             reverse (reverse xs) = xs (by induction on xs)
+reverse''        :: [a] -> [a]
+reverse'' []     = []                   -- (1)
+reverse'' (x:xs) = reverse'' xs ++ [x]  -- (2)
+
+--  BASE CASE: Show that reverse (reverse []) = []
+--      reverse (reverse [])
+--          ---> (applying inner reverse (1)) = reverse []
+--          ---> (applying reverse)           = []
+--
+--  INDUCTIVE CASE: if reverse (reverse xs) (INDUCTION HYPOTHESIS) holds
+--                  (which means reverse (reverse xs) = xs)
+--                  show that reverse (reverse (x:xs)) = x:xs
+--      reverse (reverse (x:xs))
+--          ---> (applying inner reverse (2))      = reverse (reverse xs ++ [x])
+--          ---> (++ distributivity (NOTE 1))      = reverse [x] ++ reverse (reverse xs)
+--          ---> (induction hypothesis)            = reverse [x] ++ xs
+--          ---> (reverse singleton list (NOTE 2)) = [x] ++ xs
+--          ---> (applying ++)                     = x:xs
+--
+--      NOTE 1: ++ distributivity property:
+--          reverse (xs ++ ys) = reverse ys ++ reverse xs
+--
+--      NOTE 2: reverse a singleton list property:
+--          reverse [x] = [x]
+--
+
