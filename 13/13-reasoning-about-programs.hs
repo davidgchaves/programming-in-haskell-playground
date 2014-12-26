@@ -59,3 +59,15 @@ negate' True  = False
 --          ---> (applying the inner negate) = negate True
 --          ---> (applying negate)           = False
 
+
+-- 13.4 Induction on numbers
+
+--  Suppose we want to prove that some property, p say, holds for all (finite) natural numbers.
+data Nat = Zero
+         | Succ Nat
+
+--  Then the PRINCIPLE of INDUCTION states that it is sufficient to show that
+--      - BASE CASE: p holds for Zero
+--      - INDUCTIVE CASE: if the property p holds for any natural number n (induction hypothesis),
+--                        then it also holds for Succ n
+
