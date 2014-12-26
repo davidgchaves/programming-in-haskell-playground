@@ -129,3 +129,18 @@ replicate' n x = x : replicate' (n-1) x  -- (2)
 --          ---> (induction hypothesis)   = 1+n
 --          ---> (+ commutativity)        = n+1
 
+
+-- 13.5 Induction on lists
+
+-- Induction is not restricted to natural numbers,
+-- but can also be used to reason about other recursive types,
+-- such as the type of lists
+
+--  Suppose we want to prove that some property p holds for all lists
+--
+--  Then the PRINCIPLE of INDUCTION states that it is sufficient to show that
+--      - BASE CASE: p holds for the empty list []
+--      - INDUCTIVE CASE: if the property p holds for any list xs (induction hypothesis),
+--                        then it also holds for x : xs
+--  NOTE: Both the element x and the list xs must be of the appropriate types
+
