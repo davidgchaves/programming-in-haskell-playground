@@ -219,3 +219,13 @@ reVerse           :: [a] -> [a] -> [a]
 reVerse []     ys = ys                 -- DEF-1
 reVerse (x:xs) ys = reVerse xs (x:ys)  -- DEF-2
 
+
+--  Suppose we want to prove that some property p holds for all Trees
+data Tree = Leaf Int
+          | Node Tree Tree
+
+--  Then the PRINCIPLE of INDUCTION states that it is sufficient to show that
+--      - BASE CASE: p holds for all trees of the form Leaf n
+--      - INDUCTIVE CASE: if the property p holds for any trees l and r (induction hypothesis),
+--                        then it also holds for Node l r
+
