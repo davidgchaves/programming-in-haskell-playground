@@ -144,7 +144,7 @@ replicate' n x = x : replicate' (n-1) x  -- (2)
 --                        then it also holds for x : xs
 --  NOTE: Both the element x and the list xs must be of the appropriate types
 
---  EXAMPLE 1: Show that reverse is its own inverse, which means that
+--  EXAMPLE: Show that reverse is its own inverse, which means that
 --             reverse (reverse xs) = xs (by induction on xs)
 reverse''        :: [a] -> [a]
 reverse'' []     = []                   -- (1)
