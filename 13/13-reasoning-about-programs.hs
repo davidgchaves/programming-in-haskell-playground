@@ -228,3 +228,37 @@ data Tree = Leaf Int
 --      - INDUCTIVE CASE: if the property p holds for any trees l and r (induction hypothesis),
 --                        then it also holds for Node l r
 
+-- flatTen: our attempt to produce an efficient flatten on Trees,
+--          making ++ vanish
+
+--  Show that flatTen combines flatten and ++, such that
+--  so that flatTen t ns = flatten t ++ ns (3)
+
+flatten            :: Tree -> [Int]
+flatten (Leaf n)   = [n]                     -- (1)
+flatten (Node l r) = flatten l ++ flatten r  -- (2)
+
+--  BASE CASE: Show that flatTen (Leaf n) ns = ?
+--      flatTen (Leaf n) ns
+--          ---> (applying (3))         = flatten (Leaf n) ++ ns
+--          ---> (applying flatten (1)) = [n] ++ ns
+--          ---> (applying ++)          = n:ns
+--      So, we have flatTen (Leaf n) ns = n:ns (DEF-3)
+--
+--  INDUCTIVE CASE: if flatTen t ns (INDUCTION HYPOTHESIS) holds
+--                  (which means flatTen l ns = flatten l ++ ns
+--                           and flatTen r ns = flatten r ++ ns)
+--                  show that flatTen (Node l r) ns = ?
+--      flatTen (Node l r) ns
+--          ---> (applying (3))                               = flatten (Node l r) ++ ns
+--          ---> (applying flatten (2))                       = (flatten l ++ flatten r) ++ ns
+--          ---> (++ associativity)                           = flatten l ++ (flatten r ++ ns)
+--          ---> (induction hypothesis for l (right-to-left)) = flatTen l (flatten r ++ ns)
+--          ---> (induction hypothesis for r (right-to-left)) = flatTen l (flatTen r ns)
+--      So, we have flatTen (Node l r) ns = flatTen l (flatTen r ns) (DEF-4)
+
+-- Using DEF-3 and DEF-4 we have our flatTen definition
+flatTen               :: Tree -> [Int] -> [Int]
+flatTen (Leaf n)   ns = n:ns
+flatTen (Node l r) ns = flatTen l (flatTen r ns)
+
