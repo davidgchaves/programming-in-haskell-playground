@@ -172,3 +172,50 @@ reverse'' (x:xs) = reverse'' xs ++ [x]  -- (2)
 --          reverse [x] = [x]
 --
 
+
+-- 13.6 Making append vanish
+
+-- The efficiency problem of append (++):
+--  - The append operator ++ carries a considerable efficiency cost
+--    when used recursively
+--  - It makes the reverse function to take quadratic time
+--    in the length of its argument
+--  - Example: reversing a list with 10.000 elements
+--             will take about 50.000.000 reduction steps
+
+--  reVerse: our attempt to define a more general function, which
+--           combines the behaviours of reverse and ++
+--
+--  reVerse :: [a] -> [a] -> [a]
+
+--  Show that reVerse produces the reversing of the 1st and 2nd lists appended
+--  which means that reVerse xs ys = reverse xs ++ ys (3)
+
+reverse'''        :: [a] -> [a]
+reverse''' []     = []                    -- (1)
+reverse''' (x:xs) = reverse''' xs ++ [x]  -- (2)
+
+--  BASE CASE: Show that reVerse [] ys = ?
+--      reVerse [] ys
+--          ---> (applying (3))         = reverse [] ++ ys
+--          ---> (applying reverse (1)) = [] ++ ys
+--          ---> (applying ++)          = ys
+--      So, we have reVerse [] ys = ys (DEF-1)
+--
+--  INDUCTIVE CASE: if reVerse xs ys (INDUCTION HYPOTHESIS) holds
+--                  (which means reVerse xs ys = reverse xs ++ ys)
+--                  show that reVerse (x:xs) ys = ?
+--      reVerse (x:xs) ys
+--          ---> (applying (3))                         = reverse (x:xs) ++ ys
+--          ---> (applying reverse (2))                 = (reverse xs ++ [x]) ++ ys
+--          ---> (++ associativity)                     = reverse xs ++ ([x] ++ ys)
+--          ---> (induction hypothesis (right-to-left)) = reVerse xs ([x] ++ ys)
+--          ---> (applying ++)                          = reVerse xs (x:ys)
+--      So, we have reVerse (x:xs) ys = reVerse xs (x:ys) (DEF-2)
+--
+
+-- Using DEF-1 and DEF-2 we have our reVerse definition
+reVerse           :: [a] -> [a] -> [a]
+reVerse []     ys = ys                 -- DEF-1
+reVerse (x:xs) ys = reVerse xs (x:ys)  -- DEF-2
+
