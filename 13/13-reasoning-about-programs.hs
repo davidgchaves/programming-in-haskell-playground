@@ -212,7 +212,6 @@ reverse''' (x:xs) = reverse''' xs ++ [x]  -- (2)
 --          ---> (induction hypothesis (right-to-left)) = reVerse xs ([x] ++ ys)
 --          ---> (applying ++)                          = reVerse xs (x:ys)
 --      So, we have reVerse (x:xs) ys = reVerse xs (x:ys) (DEF-2)
---
 
 -- Using DEF-1 and DEF-2 we have our reVerse definition
 reVerse           :: [a] -> [a] -> [a]
