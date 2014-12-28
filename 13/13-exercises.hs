@@ -123,3 +123,27 @@ all' p (x:xs) = p x && all p xs          -- (4)
 --          ---> (unapplying ++ (2))    = (x : (xs ++ ys)) ++ zs
 --          ---> (unapplying ++ (2))    = ((x:xs) ++ ys) ++ zs
 
+
+-- Exercise 13-7:
+--  Show that map f (map g xs) = map (f . g) xs, by induction on xs
+
+map' f []     = []               -- (1)
+map' f (x:xs) = f x : map' f xs  -- (2)
+(f . g) x     = f (g x)          -- (3)
+
+--  BASE CASE: Show that map f (map g []) = map (f . g) []
+--      map f (map g [])
+--          ---> (applying inner map (1))     = map f []
+--          ---> (applying map (1))           = []
+--          ---> (unapplying map (1) for f.g) = map (f . g) []
+--
+--  INDUCTIVE CASE: if map f (map g xs) (INDUCTION HYPOTHESIS) holds,
+--                  (which means that map f (map g xs) = map (f . g) xs)
+--                  show that map f (map g (x:xs)) = map (f . g) (x:xs)
+--      map f (map g (x:xs))
+--          ---> (applying inner map (2)) = map f (g x : map g xs)
+--          ---> (applying outer map (2)) = f (g x) : map f (map g xs)
+--          ---> (induction hypothesis)   = f (g x) : map (f . g) xs
+--          ---> (unapplying . (3))       = (f . g) x : map (f . g) xs
+--          ---> (unapplying map (2))     = map (f . g) (x:xs)
+
