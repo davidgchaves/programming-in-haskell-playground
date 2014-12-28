@@ -35,7 +35,7 @@ add (Succ n) m = Succ (add n m)  -- (2)
 --                  show that add (Succ n) (Succ m) = Succ (add (Succ n) m)
 --      add (Succ n) (Succ m)
 --          ---> (applying add (2))     = Succ (add n (Succ m))
---          ---> (induction hypotheses) = Succ (Succ (add n m))
+--          ---> (induction hypothesis) = Succ (Succ (add n m))
 --          ---> (unapplying add (2))   = Succ (add (Succ n) m)
 
 
@@ -56,7 +56,7 @@ add (Succ n) m = Succ (add n m)  -- (2)
 --                  show that add (Succ n) m = add m (Succ n)
 --      add (Succ n) m
 --          ---> (applying add (2))     = Succ (add n m)
---          ---> (induction hypotheses) = Succ (add m n)
+--          ---> (induction hypothesis) = Succ (add m n)
 --          ---> (unapplying (P1))      = add m (Succ n)
 
 
@@ -85,7 +85,7 @@ all' p (x:xs) = p x && all p xs          -- (4)
 --          ---> (applying all (4))       = x == x && all (== x) (replicate n x)
 --          ---> (applying ==)            = True && all (== x) (replicate n x)
 --          ---> (applying &&)            = all (== x) (replicate n x)
---          ---> (induction hypotheses)   = True
+--          ---> (induction hypothesis)   = True
 
 
 -- Exercise 13-5a:
@@ -103,7 +103,7 @@ all' p (x:xs) = p x && all p xs          -- (4)
 --                  show that (x:xs) ++ [] = (x:xs)
 --      (x:xs) ++ []
 --          ---> (applying ++ (2))      = x : (xs ++ [])
---          ---> (induction hypotheses) = x : xs
+--          ---> (induction hypothesis) = x : xs
 
 
 -- Exercise 13-5b:
@@ -119,7 +119,7 @@ all' p (x:xs) = p x && all p xs          -- (4)
 --                  show that (x:xs) ++ (ys ++ zs) = ((x:xs) ++ ys) ++ zs
 --      (x:xs) ++ (ys ++ zs)
 --          ---> (applying ++ (2))      = x : (xs ++ (ys ++ zs))
---          ---> (induction hypotheses) = x : ((xs ++ ys) ++ zs)
+--          ---> (induction hypothesis) = x : ((xs ++ ys) ++ zs)
 --          ---> (unapplying ++ (2))    = (x : (xs ++ ys)) ++ zs
 --          ---> (unapplying ++ (2))    = ((x:xs) ++ ys) ++ zs
 
