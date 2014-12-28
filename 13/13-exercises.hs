@@ -38,3 +38,24 @@ add (Succ n) m = Succ (add n m)  -- (2)
 --          ---> (induction hypotheses) = Succ (Succ (add n m))
 --          ---> (unapplying add (2))   = Succ (add (Succ n) m)
 
+
+-- Exercise 13-3:
+--  Using the properties:
+--      add n (Succ m) = Succ (add n m) (P1)
+--      add n Zero = n                  (P2)
+--  Show that addition is commutative, by induction on n
+--  (add n m = add m n)
+
+--  BASE CASE: Show that add Zero m = add m Zero
+--      add Zero m
+--          ---> (applying add (1)) = m
+--          ---> (unapplying (P2))  = add m Zero
+--
+--  INDUCTIVE CASE: if add n m (INDUCTION HYPOTHESIS) holds,
+--                  (which means that add n m = add m n)
+--                  show that add (Succ n) m = add m (Succ n)
+--      add (Succ n) m
+--          ---> (applying add (2))     = Succ (add n m)
+--          ---> (induction hypotheses) = Succ (add m n)
+--          ---> (unapplying (P1))      = add m (Succ n)
+
