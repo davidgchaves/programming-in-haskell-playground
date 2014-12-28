@@ -147,3 +147,31 @@ map' f (x:xs) = f x : map' f xs  -- (2)
 --          ---> (unapplying . (3))       = (f . g) x : map (f . g) xs
 --          ---> (unapplying map (2))     = map (f . g) (x:xs)
 
+
+-- Extra Exercise 13-1:
+--  Show that length (xs ++ ys) = length xs + length ys, by induction on xs
+
+length'        :: [a] -> Int
+length' []     = 0                 -- (1)
+length' (x:xs) = 1 + length' xs    -- (2)
+
+(++++)         :: [a] -> [a] -> [a]
+[]     ++++ ys = ys                -- (3)
+(x:xs) ++++ ys = x : (xs ++++ ys)  -- (4)
+
+--  BASE CASE: Show that length ([] ++ ys) = length [] + length ys
+--      length ([] ++ ys)
+--          ---> (applying ++ (3))       = length ys
+--          ---> (identity of +)         = 0 + length ys
+--          ---> (unapplying length (1)) = length [] + length ys
+--
+--  INDUCTIVE CASE: if length (xs ++ ys) (INDUCTION HYPOTHESIS) holds,
+--                  (which means that length (xs ++ ys) = length xs + length ys)
+--                  show that length ((x:xs) ++ ys) = length (x:xs) + length ys
+--      length ((x:xs) ++ ys)
+--          ---> (applying ++ (4))       = length (x : (xs ++ ys))
+--          ---> (applying length (2))   = 1 + length (xs ++ ys)
+--          ---> (induction hypothesis)  = 1 + (length xs + length ys)
+--          ---> (associativity of +)    = (1 + length xs) + length ys
+--          ---> (unapplying length (2)) = length (x:xs) + length ys
+
