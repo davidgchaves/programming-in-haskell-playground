@@ -87,3 +87,21 @@ all' p (x:xs) = p x && all p xs          -- (4)
 --          ---> (applying &&)            = all (== x) (replicate n x)
 --          ---> (induction hypotheses)   = True
 
+
+-- Exercise 13-5a:
+--  Show that xs ++ [] = xs, by induction on xs
+
+[]     +++ ys = ys               -- (1)
+(x:xs) +++ ys = x : (xs +++ ys)  -- (2)
+
+--  BASE CASE: Show that [] ++ [] = []
+--      [] ++ []
+--          ---> (applying ++ (1)) = []
+--
+--  INDUCTIVE CASE: if xs ++ [] (INDUCTION HYPOTHESIS) holds,
+--                  (which means that xs ++ [] = xs)
+--                  show that (x:xs) ++ [] = (x:xs)
+--      (x:xs) ++ []
+--          ---> (applying ++ (2))      = x : (xs ++ [])
+--          ---> (induction hypotheses) = x : xs
+
