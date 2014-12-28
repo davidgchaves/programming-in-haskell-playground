@@ -59,3 +59,31 @@ add (Succ n) m = Succ (add n m)  -- (2)
 --          ---> (induction hypotheses) = Succ (add m n)
 --          ---> (unapplying (P1))      = add m (Succ n)
 
+
+-- Exercise 13-4:
+--  Show that replicate produces a list with identical elements, by induction on n >= 0
+--  (the same as proving that all (== x) (replicate n x) is always true)
+
+replicate'     :: Int -> a -> [a]
+replicate' 0 x = []                      -- (1)
+replicate' n x = x : replicate' (n-1) x  -- (2)
+
+all'          :: (a -> Bool) -> [a] -> Bool
+all' p []     = True                     -- (3)
+all' p (x:xs) = p x && all p xs          -- (4)
+
+--  BASE CASE: Show that all (== x) (replicate 0 x) = True
+--      all (== x) (replicate 0 x)
+--          ---> (applying replicate (1)) = all (== x) []
+--          ---> (applying all (3))       = True
+--
+--  INDUCTIVE CASE: if all (== x) (replicate n x) (INDUCTION HYPOTHESIS) holds,
+--                  (which means that all (== x) (replicate n x) = True)
+--                  show that all (== x) (replicate (n+1) x) = True
+--      all (== x) (replicate (n+1) x)
+--          ---> (applying replicate (2)) = all (== x) (x : replicate n x)
+--          ---> (applying all (4))       = x == x && all (== x) (replicate n x)
+--          ---> (applying ==)            = True && all (== x) (replicate n x)
+--          ---> (applying &&)            = all (== x) (replicate n x)
+--          ---> (induction hypotheses)   = True
+
