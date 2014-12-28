@@ -105,3 +105,21 @@ all' p (x:xs) = p x && all p xs          -- (4)
 --          ---> (applying ++ (2))      = x : (xs ++ [])
 --          ---> (induction hypotheses) = x : xs
 
+
+-- Exercise 13-5b:
+--  Show that xs ++ (ys ++ zs) = (xs ++ ys) ++ zs, by induction on xs
+
+--  BASE CASE: Show that [] ++ (ys ++ zs) = ([] ++ ys) ++ zs
+--      [] ++ (ys ++ zs)
+--          ---> (applying ++ (1))         = ys ++ zs
+--          ---> (unapplying ++ (1) to ys) = ([] ++ ys) ++ zs
+--
+--  INDUCTIVE CASE: if xs ++ (ys ++ zs) (INDUCTION HYPOTHESIS) holds,
+--                  (which means that xs ++ (ys ++ zs) = (xs ++ ys) ++ zs)
+--                  show that (x:xs) ++ (ys ++ zs) = ((x:xs) ++ ys) ++ zs
+--      (x:xs) ++ (ys ++ zs)
+--          ---> (applying ++ (2))      = x : (xs ++ (ys ++ zs))
+--          ---> (induction hypotheses) = x : ((xs ++ ys) ++ zs)
+--          ---> (unapplying ++ (2))    = (x : (xs ++ ys)) ++ zs
+--          ---> (unapplying ++ (2))    = ((x:xs) ++ ys) ++ zs
+
