@@ -175,3 +175,34 @@ length' (x:xs) = 1 + length' xs    -- (2)
 --          ---> (associativity of +)    = (1 + length xs) + length ys
 --          ---> (unapplying length (2)) = length (x:xs) + length ys
 
+
+-- Extra Exercise 13-2:
+--  Show that length (take n (repeat x)) = n, by induction on n
+
+length''        :: [a] -> Int
+length'' []     = 0                  -- (1)
+length'' (x:xs) = 1 + length'' xs    -- (2)
+
+take'          :: Int -> [a] -> [a]
+take' 0 _      = []                  -- (3)
+take' n []     = []                  -- (4)
+take' n (x:xs) = x : take' (n-1) xs  -- (5)
+
+repeat'        :: a -> [a]
+repeat' x      = x : repeat' x       -- (6)
+
+--  BASE CASE: Show that length (take 0 (repeat x)) = 0
+--      length (take 0 (repeat x))
+--          ---> (applying take (3))   = length []
+--          ---> (applying length (1)) = 0
+--
+--  INDUCTIVE CASE: if length (take n (repeat x)) (INDUCTION HYPOTHESIS) holds,
+--                  (which means that length (take n (repeat x)) = n)
+--                  show that length (take (n+1) (repeat x)) = n+1
+--      length (take (n+1) (repeat x))
+--          ---> (applying repeat (6))  = length (take (n+1) (x : repeat x))
+--          ---> (applying take (2))    = length (x : take n (repeat x))
+--          ---> (applying length (2))  = 1 + length (take n (repeat x))
+--          ---> (induction hypothesis) = 1+n
+--          ---> (commutativity of +)   = n+1
+
