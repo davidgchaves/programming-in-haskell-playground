@@ -36,11 +36,18 @@ ex2 = root . head . children . head . children . head . drop 2 $ children xs
 -- Ex. 3-7
 -- ===================================
 
-size :: Rose a -> Int
-size = error "you have to implement size"
+size           :: Rose a -> Int
+size (_ :> []) = 1
+size (_ :> as) = 1 + sum (map size as)
 
 leaves :: Rose a -> Int
 leaves = error "you have to implement leaves"
+
+xs1 = 0 :> [1 :> [2 :> [3 :> [4 :> []]]]]
+-- size xs1 --> 5
+
+xs2 = 0 :> [1 :> [2 :> [3 :> [4 :> [], 5 :> []]]]]
+-- size xs2 --> 6
 
 ex7 = (*) (leaves . head . children . head . children $ xs) (product . map size . children . head . drop 2 . children $ xs)
 
