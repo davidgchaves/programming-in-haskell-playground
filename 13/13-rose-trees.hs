@@ -76,7 +76,10 @@ ex7 = (*) (leaves . head . children . head . children $ xs) (product . map size 
 --   fmap :: (a -> b) -> f a -> f b
 
 instance Functor Rose where
-  fmap = error "you have to implement fmap for Rose"
+--  fmap             :: (a -> b) -> Rose a -> Rose b
+    fmap f (a :> as) = f a :> (map (fmap f) as)
+-- fmap (*2) (1 :> [2 :> [], 3 :> []]) --> 2 :> [4 :> [],6 :> []]
+-- fmap (+1) (1 :> [])                 --> 2 :> []
 
 ex10 = round . root . head . children . fmap (\x -> if x > 0.5 then x else 0) $ fmap (\x -> sin(fromIntegral x)) xs
 
