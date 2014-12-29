@@ -53,9 +53,10 @@ xs2 = 0 :> [1 :> [2 :> [3 :> [4 :> [], 5 :> []]]]]
 -- leaves xs2 --> 2
 
 tree3 = 1 :> map (\c -> c :> []) [1..5]
--- size tree3                     --> 6
--- size . head . children $ tree3 --> 1
--- leaves tree3                   --> 5
+-- size tree3                            --> 6
+-- size . head . children $ tree3        --> 1
+-- leaves tree3                          --> 5
+-- product (map leaves (children tree3)) --> 1
 
 ex7 = (*) (leaves . head . children . head . children $ xs) (product . map size . children . head . drop 2 . children $ xs)
 
