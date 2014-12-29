@@ -41,13 +41,16 @@ size (_ :> []) = 1
 size (_ :> as) = 1 + sum (map size as)
 
 leaves :: Rose a -> Int
-leaves = error "you have to implement leaves"
+leaves (_ :> []) = 1
+leaves (_ :> as) = sum (map leaves as)
 
 xs1 = 0 :> [1 :> [2 :> [3 :> [4 :> []]]]]
--- size xs1 --> 5
+-- size xs1   --> 5
+-- leaves xs1 --> 1
 
 xs2 = 0 :> [1 :> [2 :> [3 :> [4 :> [], 5 :> []]]]]
--- size xs2 --> 6
+-- size xs2   --> 6
+-- leaves xs2 --> 2
 
 ex7 = (*) (leaves . head . children . head . children $ xs) (product . map size . children . head . drop 2 . children $ xs)
 
