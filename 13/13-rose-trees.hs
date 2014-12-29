@@ -21,15 +21,16 @@ children (_ :> as) = as
 -- children (1 :> [2 :> [], 3 :> []]) --> [2 :> [],3 :> []]
 -- children ('a' :> [])               --> []
 
-xs = 0 :> [1 :> [2 :> [3 :> [4 :> [], 5 :> []]]], 6 :> [], 7 :> [8 :> [9 :> [10 :> []], 11 :> []], 12 :> [13 :> []]]]
-
-ex2 = root . head . children . head . children . head . drop 2 $ children xs
-
 tree1 = 'x' :> map (flip (:>) []) ['a'..'x']
 -- length $ children tree1 --> 24
 
 tree2 = 'x' :> map (\c -> c :> []) ['a'..'A']
 -- length (children tree2) --> 0
+
+xs = 0 :> [1 :> [2 :> [3 :> [4 :> [], 5 :> []]]], 6 :> [], 7 :> [8 :> [9 :> [10 :> []], 11 :> []], 12 :> [13 :> []]]]
+
+ex2 = root . head . children . head . children . head . drop 2 $ children xs
+-- ex2 --> 9
 
 -- ===================================
 -- Ex. 3-7
