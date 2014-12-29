@@ -28,6 +28,9 @@ ex2 = root . head . children . head . children . head . drop 2 $ children xs
 tree1 = 'x' :> map (flip (:>) []) ['a'..'x']
 -- length $ children tree1 --> 24
 
+tree2 = 'x' :> map (\c -> c :> []) ['a'..'A']
+-- length (children tree2) --> 0
+
 -- ===================================
 -- Ex. 3-7
 -- ===================================
