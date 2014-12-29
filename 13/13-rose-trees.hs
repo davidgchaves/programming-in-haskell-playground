@@ -25,6 +25,9 @@ xs = 0 :> [1 :> [2 :> [3 :> [4 :> [], 5 :> []]]], 6 :> [], 7 :> [8 :> [9 :> [10 
 
 ex2 = root . head . children . head . children . head . drop 2 $ children xs
 
+tree1 = 'x' :> map (flip (:>) []) ['a'..'x']
+-- length $ children tree1 --> 24
+
 -- ===================================
 -- Ex. 3-7
 -- ===================================
