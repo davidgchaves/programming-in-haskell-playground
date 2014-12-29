@@ -59,6 +59,7 @@ tree3 = 1 :> map (\c -> c :> []) [1..5]
 -- product (map leaves (children tree3)) --> 1
 
 ex7 = (*) (leaves . head . children . head . children $ xs) (product . map size . children . head . drop 2 . children $ xs)
+-- ex7 --> 16
 
 -- ===================================
 -- Ex. 8-10
