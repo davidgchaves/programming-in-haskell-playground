@@ -2,6 +2,9 @@
 -- ROSE TREES, FUNCTORS, MONOIDS, FOLDABLES
 ------------------------------------------------------------------------------------------------------------------------------
 
+-- A Rose Tree (multi-way tree) is a tree data structure in which each node can
+--  - store one value and
+--  - have an arbitrary number of children
 data Rose a = a :> [Rose a] deriving Show
 
 -- ===================================
