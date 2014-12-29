@@ -88,6 +88,7 @@ f1   :: Rose a -> Rose a
 f1 r = fmap head $ fmap (\x -> [x]) r
 
 ex10 = round . root . head . children . fmap (\x -> if x > 0.5 then x else 0) $ fmap (\x -> sin(fromIntegral x)) xs
+-- ex10 --> 1
 
 -- ===================================
 -- Ex. 11-13
