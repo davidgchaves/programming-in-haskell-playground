@@ -81,6 +81,8 @@ instance Functor Rose where
 -- fmap (*2) (1 :> [2 :> [], 3 :> []]) --> 2 :> [4 :> [],6 :> []]
 -- fmap (+1) (1 :> [])                 --> 2 :> []
 
+-- size (fmap leaves (fmap (:> []) tree3)) --> 6
+
 ex10 = round . root . head . children . fmap (\x -> if x > 0.5 then x else 0) $ fmap (\x -> sin(fromIntegral x)) xs
 
 -- ===================================
