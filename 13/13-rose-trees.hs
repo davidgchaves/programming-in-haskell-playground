@@ -16,8 +16,10 @@ root (a :> _) = a
 -- root (1 :> [2 :> [], 3 :> []]) --> 1
 -- root ('a' :> [])               --> 'a'
 
-children :: Rose a -> [Rose a]
-children = error "you have to implement children"
+children           :: Rose a -> [Rose a]
+children (_ :> as) = as
+-- children (1 :> [2 :> [], 3 :> []]) --> [2 :> [],3 :> []]
+-- children ('a' :> [])               --> []
 
 xs = 0 :> [1 :> [2 :> [3 :> [4 :> [], 5 :> []]]], 6 :> [], 7 :> [8 :> [9 :> [10 :> []], 11 :> []], 12 :> [13 :> []]]]
 
