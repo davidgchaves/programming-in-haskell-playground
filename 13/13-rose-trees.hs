@@ -65,6 +65,16 @@ ex7 = (*) (leaves . head . children . head . children $ xs) (product . map size 
 -- Ex. 8-10
 -- ===================================
 
+-- Similarly to how we might want to apply a function uniformly to all elements in a list,
+-- we might also want to apply a function uniformly to all the elements in a rose tree,
+-- or any other container-like data structure for that matter.
+--
+-- For this purpose Haskell has a Functor type class,
+-- exposing a single function fmap that generalizes the map function:
+--
+-- class Functor f where
+--   fmap :: (a -> b) -> f a -> f b
+
 instance Functor Rose where
   fmap = error "you have to implement fmap for Rose"
 
