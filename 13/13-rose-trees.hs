@@ -11,8 +11,10 @@ data Rose a = a :> [Rose a] deriving Show
 -- Ex. 0-2
 -- ===================================
 
-root :: Rose a -> a
-root = error "you have to implement root"
+root          :: Rose a -> a
+root (a :> _) = a
+-- root (1 :> [2 :> [], 3 :> []]) --> 1
+-- root ('a' :> [])               --> 'a'
 
 children :: Rose a -> [Rose a]
 children = error "you have to implement children"
