@@ -116,8 +116,10 @@ unSum (Sum a) = a
 -- unSum $ Sum 5 --> 5
 
 instance Num a => Monoid (Sum a) where
-  mempty = error "you have to implement mempty for Sum"
-  mappend = error "you have to implement mappend for Sum"
+    mempty                    = Sum 0
+    (Sum x) `mappend` (Sum y) = Sum (x+y)
+-- unSum $ Sum 4 `mappend` mempty --> 4
+-- unSum $ Sum 4 `mappend` Sum 3  --> 7
 
 unProduct             :: Product a -> a
 unProduct (Product a) = a
