@@ -131,6 +131,8 @@ instance Num a => Monoid (Product a) where
 -- unProduct $ mempty    `mappend` Product 5 --> 5
 -- unProduct $ Product 4 `mappend` Product 5 --> 20
 
+-- unProduct (Product 6 `mappend` (Product . unSum $ Sum 3 `mappend` Sum 4)) --> 42
+
 num1 = mappend (mappend (Sum 2) (mappend (mappend mempty (Sum 1)) mempty)) (mappend (Sum 2) (Sum 1))
 
 num2 = mappend (Sum 3) (mappend mempty (mappend (mappend (mappend (Sum 2) mempty) (Sum (-1))) (Sum 3)))
