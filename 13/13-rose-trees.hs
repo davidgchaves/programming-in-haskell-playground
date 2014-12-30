@@ -138,6 +138,7 @@ num1 = mappend (mappend (Sum 2) (mappend (mappend mempty (Sum 1)) mempty)) (mapp
 num2 = mappend (Sum 3) (mappend mempty (mappend (mappend (mappend (Sum 2) mempty) (Sum (-1))) (Sum 3)))
 
 ex13 = unSum (mappend (Sum 5) (Sum (unProduct (mappend (Product (unSum num2)) (mappend (Product (unSum num1)) (mappend mempty (mappend (Product 2) (Product 3))))))))
+-- ex13 --> 257
 
 -- ===================================
 -- Ex. 14-15
