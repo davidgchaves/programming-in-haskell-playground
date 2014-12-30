@@ -150,13 +150,13 @@ ex13 = unSum (mappend (Sum 5) (Sum (unProduct (mappend (Product (unSum num2)) (m
 
 -- The following declaration defines the type class Foldable:
 class Functor f => Foldable f where
-  fold :: Monoid m => f m -> m
+    fold :: Monoid m => f m -> m
 
-  foldMap :: Monoid m => (a -> m) -> (f a -> m)
-  foldMap = error "you have to implement foldMap"
+    foldMap :: Monoid m => (a -> m) -> (f a -> m)
+    foldMap = error "you have to implement foldMap"
 
 instance Foldable Rose where
-  fold = error "you have to implement fold for Rose"
+    fold (a :> as) = a `mappend` (foldr mappend mempty (map fold as))
 
 sumxs = Sum 0 :> [Sum 13 :> [Sum 26 :> [Sum (-31) :> [Sum (-45) :> [], Sum 23 :> []]]], Sum 27 :> [], Sum 9 :> [Sum 15 :> [Sum 3 :> [Sum (-113) :> []], Sum 1 :> []], Sum 71 :> [Sum 55 :> []]]]
 
