@@ -188,8 +188,8 @@ ex18 = unSum (mappend (mappend (foldMap (\x -> Sum x) xs) (Sum (unProduct (mappe
 -- ===================================
 
 fproduct, fsum :: (Foldable f, Num a) => f a -> a
-fsum xs        = unSum $ fold $ fmap Sum xs
-fproduct = error "you have to implement fproduct"
+fsum     xs    = unSum     $ fold $ fmap Sum xs
+fproduct xs    = unProduct $ fold $ fmap Product xs
 
 ex21 = ((fsum . head . drop 1 . children $ xs) + (fproduct . head . children . head . children . head . drop 2 . children $ xs)) - (fsum . head . children . head . children $ xs)
 
