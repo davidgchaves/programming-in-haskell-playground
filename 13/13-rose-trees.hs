@@ -174,6 +174,9 @@ ex15 = unSum (mappend (mappend (fold sumxs) (mappend (fold . head . drop 2 . chi
 -- Ex. 16-18
 -- ===================================
 
+tree6 = 42 :> [3 :> [2:> [], 1 :> [0 :> []]]]
+-- unSum $ foldMap Sum tree6 --> 48
+
 ex17 = unSum (mappend (mappend (foldMap (\x -> Sum x) xs) (mappend (foldMap (\x -> Sum x) . head . drop 2 . children $ xs) (Sum 30))) (foldMap (\x -> Sum x) . head . children $ xs))
 
 ex18 = unSum (mappend (mappend (foldMap (\x -> Sum x) xs) (Sum (unProduct (mappend (foldMap (\x -> Product x) . head . drop 2 . children $ xs) (Product 3))))) (foldMap (\x -> Sum x) . head . children $ xs))
