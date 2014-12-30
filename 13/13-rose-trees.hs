@@ -94,10 +94,20 @@ ex10 = round . root . head . children . fmap (\x -> if x > 0.5 then x else 0) $ 
 -- Ex. 11-13
 -- ===================================
 
+-- A Monoid is an algebraic structure over a type m with
+--  - a single associative binary operation mappend :: m -> m -> m
+--  - an identity element mempty :: m
+
 class Monoid m where
   mempty :: m
   mappend :: m -> m -> m
 
+-- Numbers form a Monoid, both
+--  - under addition with 0 as the identity element
+--  - under multiplication with 1 as the identity element
+
+-- We are only allowed to give one instance per combination of type and type class.
+-- To overcome this limitation we create some newtype wrappers:
 newtype Sum a = Sum a
 newtype Product a = Product a
 
