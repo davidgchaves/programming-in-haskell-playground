@@ -194,4 +194,5 @@ fproduct xs    = unProduct $ fold $ fmap Product xs
 -- fproduct xs --> 0
 
 ex21 = ((fsum . head . drop 1 . children $ xs) + (fproduct . head . children . head . children . head . drop 2 . children $ xs)) - (fsum . head . children . head . children $ xs)
+-- ex21 --> 82
 
