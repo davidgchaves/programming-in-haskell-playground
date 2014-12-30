@@ -119,12 +119,13 @@ instance Num a => Monoid (Sum a) where
   mempty = error "you have to implement mempty for Sum"
   mappend = error "you have to implement mappend for Sum"
 
+unProduct             :: Product a -> a
+unProduct (Product a) = a
+-- unProduct $ Product 6 --> 6
+
 instance Num a => Monoid (Product a) where
   mempty = error "you have to implement mempty for Product"
   mappend = error "you have to implement mappend for Product"
-
-unProduct :: Product a -> a
-unProduct = error "you have to implement unProduct"
 
 num1 = mappend (mappend (Sum 2) (mappend (mappend mempty (Sum 1)) mempty)) (mappend (Sum 2) (Sum 1))
 
