@@ -126,8 +126,10 @@ unProduct (Product a) = a
 -- unProduct $ Product 6 --> 6
 
 instance Num a => Monoid (Product a) where
-  mempty = error "you have to implement mempty for Product"
-  mappend = error "you have to implement mappend for Product"
+    mempty                            = Product 1
+    (Product x) `mappend` (Product y) = Product (x*y)
+-- unProduct $ mempty    `mappend` Product 5 --> 5
+-- unProduct $ Product 4 `mappend` Product 5 --> 20
 
 num1 = mappend (mappend (Sum 2) (mappend (mappend mempty (Sum 1)) mempty)) (mappend (Sum 2) (Sum 1))
 
