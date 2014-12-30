@@ -158,6 +158,13 @@ class Functor f => Foldable f where
 instance Foldable Rose where
     fold (a :> as) = a `mappend` (foldr mappend mempty (map fold as))
 
+tree4 :: Rose Int
+tree4  = 1 :> [2 :> [], 3 :> [4 :> []]]
+
+tree5 :: Rose (Product Int)
+tree5 = fmap Product tree4
+-- unProduct $ fold tree5 --> 24
+
 sumxs = Sum 0 :> [Sum 13 :> [Sum 26 :> [Sum (-31) :> [Sum (-45) :> [], Sum 23 :> []]]], Sum 27 :> [], Sum 9 :> [Sum 15 :> [Sum 3 :> [Sum (-113) :> []], Sum 1 :> []], Sum 71 :> [Sum 55 :> []]]]
 
 ex15 = unSum (mappend (mappend (fold sumxs) (mappend (fold . head . drop 2 . children $ sumxs) (Sum 30))) (fold . head . children $ sumxs))
