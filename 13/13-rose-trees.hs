@@ -111,6 +111,10 @@ class Monoid m where
 newtype Sum a = Sum a
 newtype Product a = Product a
 
+unSum         :: Sum a -> a
+unSum (Sum a) = a
+-- unSum $ Sum 5 --> 5
+
 instance Num a => Monoid (Sum a) where
   mempty = error "you have to implement mempty for Sum"
   mappend = error "you have to implement mappend for Sum"
@@ -119,8 +123,6 @@ instance Num a => Monoid (Product a) where
   mempty = error "you have to implement mempty for Product"
   mappend = error "you have to implement mappend for Product"
 
-unSum :: Sum a -> a
-unSum = error "you have to implement unSum"
 unProduct :: Product a -> a
 unProduct = error "you have to implement unProduct"
 
