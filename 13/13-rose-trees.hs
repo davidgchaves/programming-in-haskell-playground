@@ -144,8 +144,14 @@ ex13 = unSum (mappend (Sum 5) (Sum (unProduct (mappend (Product (unSum num2)) (m
 -- Ex. 14-15
 -- ===================================
 
+-- If f is some container-like data structure storing elements of type m that form a Monoid,
+-- then there is a way of folding all the elements in the data structure
+-- into a single element of the monoid m.
+
+-- The following declaration defines the type class Foldable:
 class Functor f => Foldable f where
   fold :: Monoid m => f m -> m
+
   foldMap :: Monoid m => (a -> m) -> (f a -> m)
   foldMap = error "you have to implement foldMap"
 
