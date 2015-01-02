@@ -183,6 +183,50 @@ reverse'' = foldr snoc []
 -- reverse'' [1,2,3,4] --> [4,3,2,1]
 
 
+-- 7.4 The foldl function
+
+-- Many functions that take a list as their argument can be defined
+-- using the following simple pattern of recursion on lists:
+--      g v []     = v
+--      g v (x:xs) = g (v `op` x) xs
+--
+-- The function g maps:
+--      - the empty list to the accumulator value v
+--      - any non-empty list to the result of recursively processing the tail
+--        using a new accumulator value obtained by applying an operator `op`
+--        to the current value and the head of the list
+--
+-- foldl encapsulates this pattern of recursion for defining functions on lists,
+-- with the operator `op` and the value v as arguments:
+--      - v stays the same
+--      - op becomes f
+--      - g becomes foldl
+
+-- foldl defined using recursion
+foldl'            :: (a -> b -> a) -> a -> [b] -> a
+foldl' f v []     = v
+foldl' f v (x:xs) = foldl' f (f v x) xs
+-- foldl' (+) 0 [1,2,3,4] --> 10
+-- NOTE: operators (like +) must be parenthesised when used as arguments
+
+-- It is best to think of the behaviour of 'foldl f v' in a non-recursive manner,
+-- in terms of an operator `op` that is assumed to associate to the left
+-- So:
+--  1 : (2 : (3 : [])) ---> becomes ---> (((0 `op` 1) `op` 2) `op` 3)
+
+-- The name fold LEFT (foldl) reflects the use of an OPERATOR op
+-- that is assumed to ASSOCIATE to the LEFT.
+--
+-- Example:
+--      foldl (+) 0 [1, 2, 3] ---> (((0 + 1) + 2) + 3)
+--      the bracketing specifies that addition here is assumed to associate to the left
+--
+-- More generally, the behaviour of foldl can be summarised as follows:
+--      foldl (op) v [x0, x1, ..., xn] = ( ... ((v `op` x0) `op` x1) ... ) `op` xn
+--
+-- REMEMBER: fold(L) --> Start folding from LEFT (to right)
+
+
 -- 7.5 The composition operator
 
 -- composition
