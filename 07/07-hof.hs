@@ -77,16 +77,48 @@ dropWhile' p (x:xs)
 
 -- 7.3 The foldr function
 
+-- Many functions that take a list as their argument can be defined
+-- using the following simple pattern of recursion on lists:
+--      g []     = v
+--      g (x:xs) = x `op` g xs
+--
+-- The function g maps:
+--      - the empty list to a value v
+--      - any non-empty list to
+--          * an operator `op` applied to the head of the list, and
+--          * the result of recursively processing the tail
+--
+-- foldr encapsulates this pattern of recursion for defining functions on lists,
+-- with the operator `op` and the value v as arguments:
+--      - v stays the same
+--      - op becomes f
+--      - g becomes foldr
+
 -- foldr defined using recursion
 foldr'            :: (a -> b -> b) -> b -> [a] -> b
 foldr' f v []     = v
 foldr' f v (x:xs) = f x (foldr' f v xs)
 -- foldr' (+) 0 [1,2,3,4] --> 10
+-- NOTE: operators (like +) must be parenthesised when used as arguments
 
 -- It is best to think of the behaviour of 'foldr f v' in a non-recursive manner.
--- As simply replacing:
---  * each cons operator (:) in a list by the function f
+-- Simply replacing:
+--  * each cons operator (:) in a list by the function f (or the operator `op`)
 --  * the empty list [] by the value v
+-- So:
+--  1 : (2 : (3 : [])) ---> becomes ---> 1 `op` (2 `op` (3 `op` 0))
+
+-- The name fold RIGHT (foldr) reflects the use of an OPERATOR op
+-- that is assumed to ASSOCIATE to the RIGHT.
+--
+-- Example:
+--      foldr (+) 0 [1, 2, 3] ---> 1 + (2 + (3 + 0))
+--      the bracketing specifies that addition here is assumed to associate to the right
+--
+-- More generally, the behaviour of foldr can be summarised as follows:
+--      foldr (op) v [x0, x1, ..., xn] = x0 `op` (x1 `op` ( ... (xn `op` v) ... ))
+--
+-- REMEMBER: fold(R) --> Start folding from RIGHT (to left)
 
 -- sum defined using foldr
 --  * (:) -> (+)
