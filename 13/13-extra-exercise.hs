@@ -14,3 +14,14 @@
 --      foldr f v []     = v
 --      foldr f v (x:xs) = f x (foldr f v xs)
 --
+--
+--  2 - Comparing foldl and foldr
+--
+--    The base case of foldr and foldl is identical
+--      foldr f v [] = v
+--      foldl f v [] = v
+--
+--    The recursive one is not
+--      foldr f v (x:xs) = f x (foldr f v xs)
+--      foldl f v (x:xs) = foldl f (f v x) xs
+--
