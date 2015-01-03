@@ -63,3 +63,10 @@
 --      And yet again, we use the previous lambda to factor out 'foldl2 f bs' (as h)
 --      foldl2 f (b:bs) = (\b h a -> h (f a b)) b (foldl2 f bs)
 --
+--
+--  4 - foldl2: the new foldl definition
+--
+--    This is how foldl2 is defined after all the transformations
+--      foldl2 f []     = id
+--      foldl2 f (b:bs) = (\b h a -> h (f a b)) b (foldl2 f bs)
+--
