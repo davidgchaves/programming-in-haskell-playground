@@ -59,3 +59,7 @@
 --      We use the previous lambda to factor out the list element b
 --      foldl2 f (b:bs) = (\b a -> foldl2 f bs (f a b)) b
 --
+--    3.6 - Factoring out 'foldl2 f bs' in foldl2 recursive case
+--      And yet again, we use the previous lambda to factor out 'foldl2 f bs' (as h)
+--      foldl2 f (b:bs) = (\b h a -> h (f a b)) b (foldl2 f bs)
+--
