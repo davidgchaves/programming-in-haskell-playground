@@ -48,3 +48,10 @@
 --      eta-conversion: adding or dropping of abstraction over a function
 --      foldl2 f [] a = id a  --->  foldl2 f [] = id
 --
+--    3.4 - Rewriting foldl2 recursive case using a lambda and an eta-conversion
+--      We use a lambda to factor out the value a
+--      foldl2 f (b:bs) a = (\a -> foldl2 f bs (f a b)) a
+--
+--      And now the eta-conversion
+--      foldl2 f (b:bs) = \a -> foldl2 f bs (f a b)
+--
