@@ -55,3 +55,7 @@
 --      And now the eta-conversion
 --      foldl2 f (b:bs) = \a -> foldl2 f bs (f a b)
 --
+--    3.5 - Factoring out b in foldl2 recursive case
+--      We use the previous lambda to factor out the list element b
+--      foldl2 f (b:bs) = (\b a -> foldl2 f bs (f a b)) b
+--
