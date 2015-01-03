@@ -25,3 +25,10 @@
 --      foldr f v (x:xs) = f x (foldr f v xs)
 --      foldl f v (x:xs) = foldl f (f v x) xs
 --
+--
+--  3 - Transforming the foldl definition
+--
+--    We are going to apply a transformation to the foldl definition
+--    so it can be rewritten in the form
+--      f x (g xs)
+--
