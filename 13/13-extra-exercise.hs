@@ -2,3 +2,15 @@
 -- Extra Exercise: Implement foldl in terms of foldr
 --
 
+--  1 - The Universal Property of foldr
+--
+--    The Universal Property of foldr says that if we have some function g defined as
+--      g []     = v            (BASE CASE)
+--      g (x:xs) = f x (g xs)   (RECURSIVE CASE)
+--    then
+--      g = foldr f v
+--
+--    If we substitute 'foldr f v' into the definition of g we get a definition of foldr:
+--      foldr f v []     = v
+--      foldr f v (x:xs) = f x (foldr f v xs)
+--
