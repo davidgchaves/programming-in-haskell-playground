@@ -41,3 +41,10 @@
 --      foldl2 f []     a = a
 --      foldl2 f (b:bs) a = foldl2 f bs (f a b)
 --
+--    3.3 - Rewriting foldl2 base case using id and an eta-conversion
+--      id: returns the input parameter unchanged (identity function)
+--      foldl2 f [] a = a  --->  foldl2 f [] a = id a
+--
+--      eta-conversion: adding or dropping of abstraction over a function
+--      foldl2 f [] a = id a  --->  foldl2 f [] = id
+--
