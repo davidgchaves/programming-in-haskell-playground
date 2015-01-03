@@ -37,3 +37,7 @@
 --      foldl f a []     = a
 --      foldl f a (b:bs) = foldl f (f a b) bs
 --
+--    3.2 - Swapping the last 2 parameters - enter foldl2
+--      foldl2 f []     a = a
+--      foldl2 f (b:bs) a = foldl2 f bs (f a b)
+--
