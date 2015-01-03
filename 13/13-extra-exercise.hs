@@ -32,3 +32,8 @@
 --    so it can be rewritten in the form
 --      f x (g xs)
 --
+--    3.1 - The foldl definition with types
+--      foldl            :: (a -> b -> a) -> a -> [b] -> a
+--      foldl f a []     = a
+--      foldl f a (b:bs) = foldl f (f a b) bs
+--
