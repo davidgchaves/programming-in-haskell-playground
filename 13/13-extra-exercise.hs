@@ -70,3 +70,21 @@
 --      foldl2 f []     = id
 --      foldl2 f (b:bs) = (\b h a -> h (f a b)) b (foldl2 f bs)
 --
+--
+--  5 - foldl2 and the "g-form" of the Universal Property of foldr
+--
+--    Right now we have almost managed to transform foldl
+--      foldl2 f (b:bs) = (\b h a -> h (f a b)) b (foldl2 f bs)
+--    into the "g-form" of the Universal Property of foldr
+--      g (x:xs) = k x (g xs)
+--    or more conveniently
+--      g (b:bs) = k b (g bs)
+--
+--    Just check it out
+--      g        (b:bs) = k                     b (g        bs)
+--      foldl2 f (b:bs) = (\b h a -> h (f a b)) b (foldl2 f bs)
+--
+--    where
+--      k = \b h a -> h (f a b)
+--      g = foldl2 f
+--
