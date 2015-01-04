@@ -121,3 +121,8 @@
 --      so
 --      foldl2 f = foldr (\b h a -> h (f a b)) id
 --
+--    7.3 - Restoring the parameters 'bs' and 'a' removed with eta-reductions
+--      We could restore the two parameters 'bs' and 'a' (from 3)
+--      that were removed by eta-reductions
+--      foldl2 f bs a = foldr (\b h a -> h (f a b)) id bs a
+--
