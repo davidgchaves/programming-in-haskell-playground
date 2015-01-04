@@ -135,3 +135,7 @@
 --
 --      foldl f a bs = foldr (\b h a -> h (f a b)) id bs a
 
+foldl'        :: (a -> b -> a) -> a -> [b] -> a
+foldl' f a bs = foldr (\b h a -> h (f a b)) id bs a
+-- foldl' (+) 0 [1..5] --> 15
+
