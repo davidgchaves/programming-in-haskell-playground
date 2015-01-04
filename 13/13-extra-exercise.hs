@@ -88,3 +88,17 @@
 --      k = \b h a -> h (f a b)
 --      g = foldl2 f
 --
+--
+--  6 - Combining foldl2 and foldr using the Universal Property of foldr
+--
+--    Consider the Universal Property of foldr (from 1)
+--      g = foldr k v
+--    or more conveniently
+--      g = foldr k a
+--
+--    and the transformed foldl (from 5)
+--      g = foldl2 f
+--
+--    Combining both, we arrive at
+--      foldl2 f = foldr k a
+--
