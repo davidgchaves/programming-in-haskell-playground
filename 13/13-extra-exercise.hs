@@ -109,3 +109,9 @@
 --      foldl2 f = foldr k a
 --    and then restore the removed parameters 'bs' and 'a'
 --
+--    7.1 - Replacing 'a' for 'id'
+--      We know from the base case (from 3.3) that
+--      a = id
+--      so (from 6)
+--      foldl2 f = foldr k id
+--
