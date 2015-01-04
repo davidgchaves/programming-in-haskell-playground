@@ -126,3 +126,12 @@
 --      that were removed by eta-reductions
 --      foldl2 f bs a = foldr (\b h a -> h (f a b)) id bs a
 --
+--
+--  8 - foldl in terms of foldr
+--
+--    Remember that foldl2 was only a rework of foldl (from 3.2)
+--    If we go back to the original foldl then
+--    we can finally express foldl in terms of foldr
+--
+--      foldl f a bs = foldr (\b h a -> h (f a b)) id bs a
+
