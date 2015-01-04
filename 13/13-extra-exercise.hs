@@ -115,3 +115,9 @@
 --      so (from 6)
 --      foldl2 f = foldr k id
 --
+--    7.2 - Replacing 'k' for the lambda expression
+--      We know (from 5) that
+--      k = \b h a -> h (f a b)
+--      so
+--      foldl2 f = foldr (\b h a -> h (f a b)) id
+--
