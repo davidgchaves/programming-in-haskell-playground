@@ -102,3 +102,10 @@
 --    Combining both, we arrive at
 --      foldl2 f = foldr k a
 --
+--
+--  7 - foldl2 in terms of foldr
+--
+--    We are going to replace 'k' and 'a' in
+--      foldl2 f = foldr k a
+--    and then restore the removed parameters 'bs' and 'a'
+--
