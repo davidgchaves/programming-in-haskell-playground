@@ -147,3 +147,8 @@ foldl' f a bs = foldr (\b h a -> h (f a b)) id bs a
 --    and this the foldl type
 --      :t foldl --> foldl :: (a -> b -> a) -> a -> [b] -> a
 --
+--    9.1 - The first parameter to foldr
+--      The first parameter to foldr, it's the cryptic lambda
+--      (\b h a -> h (f a b))
+--      which uses the f function that comes as the first argument to foldl
+--
