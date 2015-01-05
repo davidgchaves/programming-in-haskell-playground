@@ -159,3 +159,15 @@ foldl' f a bs = foldr (\b h a -> h (f a b)) id bs a
 --      The simplest possible f could be
 --      let f = (\a b -> a)
 --
+--    9.3 - The lambda type of the first parameter to foldr
+--      Using the previous f, we could know the lambda type
+--      :t (\b h a -> h (f a b))
+--        --> (\b h a -> h (f a b)) :: t2 -> (t1 -> t) -> (t1 -> t)
+--
+--      And this correspond to the expected type for the 1st argument to foldr
+--      (a -> b -> b)
+--
+--      We just need to make this match
+--      't2'        <--->  'a'
+--      '(t1 -> t)' <--->  'b'
+--
