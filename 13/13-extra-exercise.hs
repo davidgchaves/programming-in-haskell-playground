@@ -152,3 +152,10 @@ foldl' f a bs = foldr (\b h a -> h (f a b)) id bs a
 --      (\b h a -> h (f a b))
 --      which uses the f function that comes as the first argument to foldl
 --
+--    9.2 - The simplest possible f (as in foldl f a bs)
+--      So f type should be
+--      :t f --> f :: (a -> b -> a)
+--
+--      The simplest possible f could be
+--      let f = (\a b -> a)
+--
