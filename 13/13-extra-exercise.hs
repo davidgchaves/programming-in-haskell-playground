@@ -171,3 +171,15 @@ foldl' f a bs = foldr (\b h a -> h (f a b)) id bs a
 --      't2'        <--->  'a'
 --      '(t1 -> t)' <--->  'b'
 --
+--    9.4 - The new type signature of foldr
+--      Remember the foldr type (from 9)
+--      :t foldr --> foldr :: (a -> b -> b) -> b -> [a] -> b
+--
+--      Taking into account the new matches (from 9.3),
+--      our new foldr type could be written as
+--      :t foldr --> foldr :: (t2 -> (t1 -> t) -> (t1 -> t)) -> (t1 -> t) -> [t2] -> (t1 -> t)
+--
+--      Side by side:
+--      foldr :: (a  -> b         -> b)         -> b         -> [a]  -> b
+--      foldr :: (t2 -> (t1 -> t) -> (t1 -> t)) -> (t1 -> t) -> [t2] -> (t1 -> t)
+--
