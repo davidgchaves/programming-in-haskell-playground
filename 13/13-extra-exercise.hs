@@ -139,3 +139,11 @@ foldl'        :: (a -> b -> a) -> a -> [b] -> a
 foldl' f a bs = foldr (\b h a -> h (f a b)) id bs a
 -- foldl' (+) 0 [1..5] --> 15
 
+--  9 - Checking the type correction of our solution
+--
+--    As a reference this is the foldr type
+--      :t foldr --> foldr :: (a -> b -> b) -> b -> [a] -> b
+--
+--    and this the foldl type
+--      :t foldl --> foldl :: (a -> b -> a) -> a -> [b] -> a
+--
