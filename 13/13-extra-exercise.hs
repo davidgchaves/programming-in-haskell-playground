@@ -196,3 +196,15 @@ foldl' f a bs = foldr (\b h a -> h (f a b)) id bs a
 --      4rd parameter: ? :: t1
 --      producing:     ? :: t
 --
+--    9.7 - About the id function
+--      According to our implementation
+--      foldl f a bs = foldr (\b h a -> h (f a b)) id bs a
+--      the id function is the second parameter to foldr
+--
+--      Taking into account that the id function type is
+--      :t id --> id :: a -> a
+--
+--      we need to consider an additional restriction in
+--      2nd parameter: ? :: (t -> t)
+--      4rd parameter: ? :: t
+--
