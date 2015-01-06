@@ -212,3 +212,10 @@ foldl' f a bs = foldr (\b h a -> h (f a b)) id bs a
 --      This is the final foldr type with the additional restriction imposed by id function
 --      foldr :: (t2 -> (t -> t) -> (t -> t)) -> (t -> t) -> [t2] -> t -> t
 --
+--    9.9 - Disecting the 4 parameters of foldr
+--      1st parameter: f  :: (t2 -> (t -> t) -> (t -> t))
+--      2nd parameter: id :: (t -> t)
+--      3rd parameter: bs :: [t2]   (list we are folding)
+--      4rd parameter: a  :: t      (initial accumulator value)
+--      producing:     a  :: t      (final result)
+
