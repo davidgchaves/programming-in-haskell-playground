@@ -208,3 +208,7 @@ foldl' f a bs = foldr (\b h a -> h (f a b)) id bs a
 --      2nd parameter: ? :: (t -> t)
 --      4rd parameter: ? :: t
 --
+--    9.8 - Type correction of the 4-parameter-foldr
+--      This is the final foldr type with the additional restriction imposed by id function
+--      foldr :: (t2 -> (t -> t) -> (t -> t)) -> (t -> t) -> [t2] -> t -> t
+--
