@@ -183,3 +183,9 @@ foldl' f a bs = foldr (\b h a -> h (f a b)) id bs a
 --      foldr :: (a  -> b         -> b)         -> b         -> [a]  -> b
 --      foldr :: (t2 -> (t1 -> t) -> (t1 -> t)) -> (t1 -> t) -> [t2] -> (t1 -> t)
 --
+--    9.5 - foldr has now 4 parameters
+--      If we drop the parentheses in the foldr type (from 9.4)
+--      foldr :: (t2 -> (t1 -> t) -> (t1 -> t)) -> (t1 -> t) -> [t2] -> t1 -> t
+--
+--      we arrive at a foldr type with 4 parameters
+--
