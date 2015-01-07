@@ -219,3 +219,11 @@ foldl' f a bs = foldr (\b h a -> h (f a b)) id bs a
 --      4rd parameter: a  :: t      (initial accumulator value)
 --      producing:     a  :: t      (final result)
 
+--  FOOD FOR THOUGHT
+--  (1) "A tutorial on the universality and expressiveness of fold" by Graham Hutton
+--      http://www.cs.nott.ac.uk/~gmh/fold.pdf
+--  (2) "Expressing foldl in terms of foldr" by Jan Stolarek
+--      http://lambda.jstolarek.com/2012/07/expressing-foldl-in-terms-of-foldr/
+--  (3) "Haskell foldl as foldr"
+--      http://blog.wakatta.jp/blog/2011/11/09/haskell-foldl-as-foldr/
+
