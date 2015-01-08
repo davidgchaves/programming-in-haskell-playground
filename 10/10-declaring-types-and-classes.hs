@@ -268,3 +268,11 @@ type Subst = Assoc Char Bool
 --              declared as a list of pairs (k,v)
 --  type Assoc k v = [(k,v)]
 
+-- eval: evaluates a Proposition given a Substitution for its variables
+eval               :: Subst -> Prop -> Bool
+eval _ (Const b)   = b
+eval s (Var x)     = find x s
+eval s (Not p)     = not (eval s p)
+eval s (And p q)   = eval s p && eval s q
+eval s (Imply p q) = eval s p <= eval s q
+
