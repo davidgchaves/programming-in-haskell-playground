@@ -217,3 +217,10 @@ occurs' m (Node l n r)
 data Tree' a = Leaf' a
              | Node' (Tree' a) a (Tree' a)
 
+
+-- 10.4 Tautology checker
+
+--  Develop a function that decides if simple logical proposition is a tautology
+--
+--  TAUTOLOGY: Logical proposition that is always true
+
