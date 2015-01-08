@@ -276,3 +276,15 @@ eval s (Not p)     = not (eval s p)
 eval s (And p q)   = eval s p && eval s q
 eval s (Imply p q) = eval s p <= eval s q
 
+-- vars: produces the variables in a Proposition (does NOT remove duplicates)
+vars             :: Prop -> [Char]
+vars (Const _)   = []
+vars (Var x)     = [x]
+vars (Not p)     = vars p
+vars (And p q)   = vars p ++ vars q
+vars (Imply p q) = vars p ++ vars q
+-- vars p1 --> "AA"   --> ['A', 'A']
+-- vars p2 --> "ABA"  --> ['A', 'B', 'A']
+-- vars p3 --> "AAB"  --> ['A', 'A', 'B']
+-- vars p4 --> "AABB" --> ['A', 'A', 'B', 'B']
+
