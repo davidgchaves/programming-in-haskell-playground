@@ -231,3 +231,25 @@ data Prop = Const Bool
           | And Prop Prop
           | Imply Prop Prop
 
+-- Proposition Examples expressed using the Prop type
+-- p1 ---> A AND (NOT A)
+p1 :: Prop
+p1 = And (Var 'A')
+         (Not (Var 'A'))
+
+-- p2 ---> (A AND B) => A
+p2 :: Prop
+p2 = Imply (And (Var 'A') (Var 'B'))
+           (Var 'A')
+
+-- p3 ---> A => (A AND B)
+p3 :: Prop
+p3 = Imply (Var 'A')
+           (And (Var 'A') (Var 'B'))
+
+-- p4 ---> (A And (A => B)) => B
+p4 :: Prop
+p4 = Imply (And (Var 'A')
+                (Imply (Var 'A') (Var 'B')))
+           (Var 'B')
+
