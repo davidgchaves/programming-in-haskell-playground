@@ -253,3 +253,18 @@ p4 = Imply (And (Var 'A')
                 (Imply (Var 'A') (Var 'B')))
            (Var 'B')
 
+-- The Substitution Type:
+--  A lookup table that associates
+--      - variable names to
+--      - logical values
+--  using the Assoc type
+type Subst = Assoc Char Bool
+-- Example:
+--  The substitution [ ('A', False), ('B', True)] assigns
+--  the variable A to False, and B to True
+
+-- NOTE: Assoc: a type of lookup tables that associate
+--              keys (k) of one type to values (v) of another type
+--              declared as a list of pairs (k,v)
+--  type Assoc k v = [(k,v)]
+
