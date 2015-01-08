@@ -224,3 +224,10 @@ data Tree' a = Leaf' a
 --
 --  TAUTOLOGY: Logical proposition that is always true
 
+-- The Proposition Type
+data Prop = Const Bool
+          | Var Char
+          | Not Prop
+          | And Prop Prop
+          | Imply Prop Prop
+
