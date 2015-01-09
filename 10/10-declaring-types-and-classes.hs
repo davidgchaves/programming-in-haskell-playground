@@ -315,3 +315,24 @@ make n bs = take n (bs ++ repeat 0)
 -- make 2  [1,0,1] --> [1,0]
 -- make 10 [1,0,1] --> [1,0,1,0,0,0,0,0,0,0]
 
+--  The key to generating Substitutions is
+--  generating lists of logical values of a given length.
+--
+--  We are going to interpret Bools as Binary Digits:
+--      - False corresponds to 0
+--      - True  corresponds to 1
+--  Example:
+--      - [True, False, True]  corresponds to 101
+--      - [False, False, True] corresponds to 001
+--
+-- bools: produces all possible bool combinations in a list of n-lists,
+--        given the n in the n-list
+bools   :: Int -> [[Bool]]
+bools n = map (map bin2bool . make n . int2bin) [0..limit]
+          where
+            limit = (2 ^ n) - 1
+-- bools 2 --> [[False,False],
+--              [True, False],
+--              [False,True],
+--              [True, True]]
+
