@@ -288,3 +288,9 @@ vars (Imply p q) = vars p ++ vars q
 -- vars p3 --> "AAB"  --> ['A', 'A', 'B']
 -- vars p4 --> "AABB" --> ['A', 'A', 'B', 'B']
 
+
+-- HELPERS for bools functions
+
+-- A Type for Bits
+type Bit = Int
+
