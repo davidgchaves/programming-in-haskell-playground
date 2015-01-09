@@ -294,3 +294,10 @@ vars (Imply p q) = vars p ++ vars q
 -- A Type for Bits
 type Bit = Int
 
+-- bin2bool: converts a binary number into boolean
+bin2bool   :: Bit -> Bool
+bin2bool 0 = False
+bin2bool 1 = True
+-- bin2bool 0 --> False
+-- bin2bool 1 --> True
+
