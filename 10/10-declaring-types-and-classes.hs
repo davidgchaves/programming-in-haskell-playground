@@ -336,3 +336,9 @@ bools n = map (map bin2bool . make n . int2bin) [0..limit]
 --              [False,True],
 --              [True, True]]
 
+-- bools': the recursive way (much more revealing IMHO)
+bools'   :: Int -> [[Bool]]
+bools' 0 = [[]]
+bools' n = map (False:) bss ++ map (True:) bss
+           where bss = bools (n-1)
+
