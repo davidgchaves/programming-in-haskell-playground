@@ -301,3 +301,11 @@ bin2bool 1 = True
 -- bin2bool 0 --> False
 -- bin2bool 1 --> True
 
+-- int2bin: converts an integer into a "written in reverse" binary number
+int2bin   :: Int -> [Bit]
+int2bin 0 = []
+int2bin n = n `mod` 2 : int2bin (n `div` 2)
+-- int2bin 13 --> [1,0,1,1]
+-- REMEMBER: Binary numbers are written in reverse (from left to right)
+--           13 is 1101 in binary, but we write it in reverse 1011
+
