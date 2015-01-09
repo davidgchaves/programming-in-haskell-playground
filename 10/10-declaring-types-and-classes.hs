@@ -309,3 +309,9 @@ int2bin n = n `mod` 2 : int2bin (n `div` 2)
 -- REMEMBER: Binary numbers are written in reverse (from left to right)
 --           13 is 1101 in binary, but we write it in reverse 1011
 
+-- make: takes a number of bits filled with 0s if we try to take too many
+make :: Int -> [Bit] -> [Bit]
+make n bs = take n (bs ++ repeat 0)
+-- make 2  [1,0,1] --> [1,0]
+-- make 10 [1,0,1] --> [1,0,1,0,0,0,0,0,0,0]
+
