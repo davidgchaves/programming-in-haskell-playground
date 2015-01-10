@@ -346,3 +346,12 @@ bools' n = map (False:) bss ++ map (True:) bss
 --               [True, False],
 --               [True, True]]
 
+
+-- HELPERS for substs function
+
+-- rmdups: removes duplicates from a list
+rmdups        :: Eq a => [a] -> [a]
+rmdups []     = []
+rmdups (x:xs) = x : rmdups (filter (/= x) xs)
+-- rmdups ['A', 'A', 'B', 'A', 'B'] --> "AB" --> ['A', 'B']
+
