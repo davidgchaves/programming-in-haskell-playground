@@ -355,3 +355,11 @@ rmdups []     = []
 rmdups (x:xs) = x : rmdups (filter (/= x) xs)
 -- rmdups ['A', 'A', 'B', 'A', 'B'] --> "AB" --> ['A', 'B']
 
+-- uniqVars: produces the variables in a Proposition removing duplicates
+uniqVars :: Prop -> [Char]
+uniqVars = rmdups . vars
+-- uniqVars p1 --> "A"  --> ['A']
+-- uniqVars p2 --> "AB" --> ['A', 'B']
+-- uniqVars p3 --> "AB" --> ['A', 'B']
+-- uniqVars p4 --> "AB" --> ['A', 'B']
+
