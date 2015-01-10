@@ -378,3 +378,12 @@ substs p = map (zip vs) (bools (length vs))
 --                [('A',True) ,('B',True)]]
 
 
+-- isTaut: decides if a proposition is a tautology,
+--         by evaluating all possible substitutions
+isTaut   :: Prop -> Bool
+isTaut p = and [eval s p | s <- substs p]
+-- isTaut p1 --> False
+-- isTaut p2 --> True
+-- isTaut p3 --> False
+-- isTaut p4 --> True
+
