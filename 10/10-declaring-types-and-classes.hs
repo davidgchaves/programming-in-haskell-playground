@@ -289,7 +289,7 @@ vars (Imply p q) = vars p ++ vars q
 -- vars p4 --> "AABB" --> ['A', 'A', 'B', 'B']
 
 
--- HELPERS for bools functions
+-- HELPERS for bools function
 
 -- A Type for Bits
 type Bit = Int
@@ -341,4 +341,8 @@ bools'   :: Int -> [[Bool]]
 bools' 0 = [[]]
 bools' n = map (False:) bss ++ map (True:) bss
            where bss = bools (n-1)
+-- bools' 2 --> [[False,False],
+--               [False,True],
+--               [True, False],
+--               [True, True]]
 
