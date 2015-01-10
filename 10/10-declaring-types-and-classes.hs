@@ -363,3 +363,18 @@ uniqVars = rmdups . vars
 -- uniqVars p3 --> "AB" --> ['A', 'B']
 -- uniqVars p4 --> "AB" --> ['A', 'B']
 
+-- substs:
+--  Produces all substitutions for a proposition by
+--      1 - extracting its variables
+--      2 - removing duplicates from this list
+--      3 - generating all possible lists of logical values for this many variables
+--      4 - zipping the list of variables with each of the resulting lists
+substs   :: Prop -> [Subst]
+substs p = map (zip vs) (bools (length vs))
+           where vs = uniqVars p
+-- substs p2 --> [[('A',False),('B',False)],
+--                [('A',True) ,('B',False)],
+--                [('A',False),('B',True)],
+--                [('A',True) ,('B',True)]]
+
+
