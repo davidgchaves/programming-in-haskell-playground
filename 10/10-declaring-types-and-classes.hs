@@ -387,3 +387,14 @@ isTaut p = and [eval s p | s <- substs p]
 -- isTaut p3 --> False
 -- isTaut p4 --> True
 
+
+-- 10.5 Abstract Machine for Expressions
+--  Specifies the step-by-step process of the expression's evaluation
+--
+--  Consider:
+--  - Expr: simple arithmetic expressions built up from integers using an add operator
+--  - value: a function that evaluates such an expression to an integer value
+--
+--  EXAMPLE:
+--      (2 + 3) + 4 ---> value (Add (Add (Val 2) (Val 3)) (Val 4))
+
