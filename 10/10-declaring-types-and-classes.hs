@@ -402,3 +402,13 @@ isTaut p = and [eval s p | s <- substs p]
 data Expr = Val Int
           | Add Expr Expr
 
+-- Example expression
+e1 :: Expr
+e1 = (Add (Add (Val 2) (Val 3)) (Val 4))
+
+-- value: evaluates expressions to an integer value
+value           :: Expr -> Int
+value (Val n)   = n
+value (Add x y) = value x + value y
+-- value e1 --> 9
+
