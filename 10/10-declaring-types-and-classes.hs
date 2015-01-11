@@ -398,3 +398,7 @@ isTaut p = and [eval s p | s <- substs p]
 --  EXAMPLE:
 --      (2 + 3) + 4 ---> value (Add (Add (Val 2) (Val 3)) (Val 4))
 
+-- The Expression Type
+data Expr = Val Int
+          | Add Expr Expr
+
