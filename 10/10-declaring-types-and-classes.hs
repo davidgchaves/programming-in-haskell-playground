@@ -412,3 +412,10 @@ value (Val n)   = n
 value (Add x y) = value x + value y
 -- value e1 --> 9
 
+--  The definition of the value function does not specify that
+--      - the left argument of an addition should be evaluated before the right
+--      - the order of evaluation is determined by Haskell
+--
+--  ENTER Abstract Machine for Expressions
+--      which specifies the step-by-step process of their evaluation
+
