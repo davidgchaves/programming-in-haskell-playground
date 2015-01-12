@@ -457,3 +457,8 @@ exec []           n = n
 exec (EVAL y : c) n = eval' y (ADD n : c)
 exec (ADD n : c)  m = exec c (n + m)
 
+-- value: evaluates an expression to an integer
+value'   :: Expr -> Int
+value' e = eval' e []
+-- value' (Add (Add (Val 2) (Val 3)) (Val 4)) --> 9
+
