@@ -427,3 +427,16 @@ type Cont = [Op]
 data Op = EVAL Expr
         | ADD Int
 
+-- eval: evaluates an expression in the context of a control stack
+--  - if the expression is an integer
+--      it is already fully evaluated
+--      we begin executing the control stack
+--  - if the expression is an addition
+--      we evaluate x (the first argument)
+--      we place the operation EVAL y on top of c (the control stack)
+--      to indicate that y (the second argument)
+--      should be evaluated once that of the first argument is completed
+eval'             :: Expr -> Cont -> Int
+eval' (Val n)   c = exec c n
+eval' (Add x y) c = eval' x (EVAL y : c)
+
