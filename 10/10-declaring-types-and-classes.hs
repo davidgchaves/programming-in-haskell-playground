@@ -440,3 +440,20 @@ eval'             :: Expr -> Cont -> Int
 eval' (Val n)   c = exec c n
 eval' (Add x y) c = eval' x (EVAL y : c)
 
+-- exec: executes a control stack in the context of an integer argument
+--  - if the stack is empty
+--      we return the integer argument as the result of the execution
+--  - if the top of the stack is an operation EVAL y
+--      we evaluate the expression y
+--      we place the instruction ADD n on top of the remaining stack
+--      to indicate that n (the current integer argument)
+--      should be added together with the result of evaluating y once this is completed
+--  - if the top of the stack is an operation ADD n
+--      evaluation of the two arguments of an addition is now complete
+--      we execute the remaining control stack
+--      in the context of the sum of the two resulting integer values
+exec                :: Cont -> Int -> Int
+exec []           n = n
+exec (EVAL y : c) n = eval' y (ADD n : c)
+exec (ADD n : c)  m = exec c (n + m)
+
