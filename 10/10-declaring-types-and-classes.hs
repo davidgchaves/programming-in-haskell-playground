@@ -419,3 +419,11 @@ value (Add x y) = value x + value y
 --  ENTER Abstract Machine for Expressions
 --      which specifies the step-by-step process of their evaluation
 
+
+-- The Control Stack for the Abstract Machine Type:
+--  Comprise a list of Operations to be performed by the machine
+--  after the current evaluation has been completed
+type Cont = [Op]
+data Op = EVAL Expr
+        | ADD Int
+
