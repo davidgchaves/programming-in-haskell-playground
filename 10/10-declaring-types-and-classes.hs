@@ -408,9 +408,20 @@ e1 = (Add (Add (Val 2) (Val 3)) (Val 4))
 
 -- value: evaluates expressions to an integer value
 value           :: Expr -> Int
-value (Val n)   = n
-value (Add x y) = value x + value y
+value (Val n)   = n                  -- (1)
+value (Add x y) = value x + value y  -- (2)
 -- value e1 --> 9
+
+-- STEP BY STEP EVALUATION OF (2 + 3) + 4 (without the Abstract Machine)
+-- value (Add (Add (Val 2) (Val 3)) (Val 4))
+--  ---> (applying value (2))          = value (Add (Val 2) (Val 3)) + value (Val 4)
+--  ---> (applying leftmost value (2)) = (value (Val 2) + value (Val 3)) + value (Val 4)
+--  ---> (applying leftmost value (1)) = (2 + value (Val 3)) + value (Val 4)
+--  ---> (applying leftmost value (1)) = (2 + 3) + value (Val 4)
+--  ---> (applying first +)            = 5 + value (Val 4)
+--  ---> (applying value (1))          = 5 + 4
+--  ---> (applying +)                  = 9
+
 
 --  The definition of the value function does not specify that
 --      - the left argument of an addition should be evaluated before the right
