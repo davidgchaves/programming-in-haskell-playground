@@ -448,8 +448,8 @@ data Op = EVAL Expr
 --      to indicate that y (the second argument)
 --      should be evaluated once that of the first argument is completed
 eval'             :: Expr -> Cont -> Int
-eval' (Val n)   c = exec c n
-eval' (Add x y) c = eval' x (EVAL y : c)
+eval' (Val n)   c = exec c n              -- (1)
+eval' (Add x y) c = eval' x (EVAL y : c)  -- (2)
 
 -- exec: executes a control stack in the context of an integer argument
 --  - if the stack is empty
@@ -464,12 +464,29 @@ eval' (Add x y) c = eval' x (EVAL y : c)
 --      we execute the remaining control stack
 --      in the context of the sum of the two resulting integer values
 exec                :: Cont -> Int -> Int
-exec []           n = n
-exec (EVAL y : c) n = eval' y (ADD n : c)
-exec (ADD n : c)  m = exec c (n + m)
+exec []           n = n                    -- (1)
+exec (EVAL y : c) n = eval' y (ADD n : c)  -- (2)
+exec (ADD n : c)  m = exec c (n + m)       -- (3)
 
 -- value: evaluates an expression to an integer
 value'   :: Expr -> Int
 value' e = eval' e []
 -- value' (Add (Add (Val 2) (Val 3)) (Val 4)) --> 9
+
+-- STEP BY STEP EVALUATION OF (2 + 3) + 4 (using the Abstract Machine)
+-- value' (Add (Add (Val 2) (Val 3)) (Val 4))
+-- NOTE: ' ommited
+--  ---> (applying value)    = eval (Add (Add (Val 2) (Val 3)) (Val 4)) []
+--  ---> (applying eval (2)) = eval (Add (Val 2) (Val 3)) [EVAL (Val 4)]
+--  ---> (applying eval (2)) = eval (Val 2) [EVAL (Val 3), EVAL (Val 4)]
+--  ---> (applying eval (1)) = exec [EVAL (Val 3), EVAL (Val 4)] 2
+--  ---> (applying exec (2)) = eval (Val 3) [ADD 2, EVAL (Val 4)]
+--  ---> (applying eval (1)) = exec [ADD 2, EVAL (Val 4)] 3
+--  ---> (applying exec (3)) = exec [EVAL (Val 4)] (2 + 3)
+--  ---> (applying +)        = exec [EVAL (Val 4)] 5
+--  ---> (applying exec (2)) = eval (Val 4) [ADD 5]
+--  ---> (applying eval (1)) = exec [ADD 5] 4
+--  ---> (applying exec (3)) = exec [] (5 + 4)
+--  ---> (applying +)        = exec [] 9
+--  ---> (applying exec (1)) = 9
 
