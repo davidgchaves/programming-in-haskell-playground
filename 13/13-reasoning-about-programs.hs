@@ -279,3 +279,16 @@ eval           :: Expression -> Int
 eval (Val n)   = n
 eval (Add x y) = eval x + eval y
 
+
+-- INDIRECTLY (by means of Code that executes using a Stack)
+--
+-- A Stack is just a list of Integers
+type Stack = [Int]
+
+-- Code comprises a list of PUSH and ADD Operations on the Stack
+type Code  = [Operation]
+
+data Operation = PUSH Int
+               | ADD
+               deriving Show
+
