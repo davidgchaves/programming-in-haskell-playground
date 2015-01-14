@@ -262,3 +262,6 @@ flatTen               :: Tree -> [Int] -> [Int]
 flatTen (Leaf n)   ns = n:ns
 flatTen (Node l r) ns = flatTen l (flatTen r ns)
 
+
+-- 13.7 Compiler correctness
+
