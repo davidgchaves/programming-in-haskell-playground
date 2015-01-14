@@ -302,3 +302,17 @@ exec (ADD    : c) (m : n : s) = exec c (n + m : s)  -- (3)
 --  (3) The ADD Operation replaces n and m (the top two integers)
 --                        by their sum (n+m) on the top of s (the Stack)
 
+-- comp: Compiles an Expression into Code
+comp           :: Expression -> Code
+comp (Val n)   = [PUSH n]                   -- (4)
+comp (Add x y) = comp x ++ comp y ++ [ADD]  -- (5)
+--  (4) n (an integer value) is compiled by PUSHing n into the Stack
+--  (5) Add x y is compiled by:
+--      1st: compiling x and y (the two argument expressions)
+--      2nd: ADDing the resulting two integers on the Stack
+--
+--  NOTE: when an add operation is performed,
+--        the value of expression y will be the top of the stack,
+--        and the value of x will be the second top,
+--        hence the swapping of these two values in the definition of exec (3)
+
