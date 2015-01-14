@@ -316,3 +316,10 @@ comp (Add x y) = comp x ++ comp y ++ [ADD]  -- (5)
 --        and the value of x will be the second top,
 --        hence the swapping of these two values in the definition of exec (3)
 
+-- EXAMPLE: Using the expression (2 + 3) + 4
+e1 :: Expression
+e1 = Add (Add (Val 2) (Val 3)) (Val 4)
+-- eval e1           --> 9
+-- comp e1           --> [PUSH 2, PUSH 3, ADD, PUSH 4, ADD]
+-- exec (comp e1) [] --> [9]
+
