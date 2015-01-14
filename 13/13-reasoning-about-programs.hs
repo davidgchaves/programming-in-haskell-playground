@@ -292,3 +292,13 @@ data Operation = PUSH Int
                | ADD
                deriving Show
 
+-- exec: Executes a piece of Code using an initial Stack to give a final Stack
+exec                          :: Code -> Stack -> Stack
+exec []           s           = s                   -- (1)
+exec (PUSH n : c) s           = exec c (n     : s)  -- (2)
+exec (ADD    : c) (m : n : s) = exec c (n + m : s)  -- (3)
+--  (1) When there's no more Code, we return s (the Stack)
+--  (2) The PUSH Operation places n (a new integer) on the top of s (the Stack)
+--  (3) The ADD Operation replaces n and m (the top two integers)
+--                        by their sum (n+m) on the top of s (the Stack)
+
