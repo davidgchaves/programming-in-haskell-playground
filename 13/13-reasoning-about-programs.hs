@@ -270,3 +270,12 @@ data Expression = Val Int
                 | Add Expression Expression
                 deriving Show
 
+-- Such Arithmetic Expressions can be evaluated directly or indirectly
+--
+-- DIRECTLY
+--
+-- eval: evaluates an expression directly to an integer value
+eval           :: Expression -> Int
+eval (Val n)   = n
+eval (Add x y) = eval x + eval y
+
