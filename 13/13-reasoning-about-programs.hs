@@ -265,3 +265,8 @@ flatTen (Node l r) ns = flatTen l (flatTen r ns)
 
 -- 13.7 Compiler correctness
 
+-- Arithmetic Expressions Type: Built up from integers using an addition operator
+data Expression = Val Int
+                | Add Expression Expression
+                deriving Show
+
