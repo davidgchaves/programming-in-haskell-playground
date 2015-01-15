@@ -342,3 +342,16 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 --      evaluating the expression e and then converting the resulting integer into a singleton stack
 --
 
+--  RatCooCfE: The PRINCIPLE of INDUCTION for Expressions
+--
+--  data Expression = Val Int
+--                  | Add Expression Expression
+--
+--  Suppose we want to prove that some property p holds for all Expressions
+--
+--  Then the PRINCIPLE of INDUCTION states that it is sufficient to show that
+--      - BASE CASE: p holds for all expressions of the form Val Int
+--      - INDUCTIVE CASE: if the property p holds for any expressions x and y (induction hypothesis),
+--                        then it also holds for Add x y
+--
+
