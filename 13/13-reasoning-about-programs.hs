@@ -355,3 +355,11 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 --                        then it also holds for Add x y
 --
 
+--  RatCooCfE: The PRINCIPLE of INDUCTION for (Expressions vs Trees)
+--
+--  The Principle of Induction for Expressions it's the same as
+--  the Principle of Induction for Trees but with different constructors:
+--      (TREES) Leaf Int       ---> (EXPRESSIONS) Val Int
+--      (TREES) Node Tree Tree ---> (EXPRESSIONS) Add Expression Expression
+--
+
