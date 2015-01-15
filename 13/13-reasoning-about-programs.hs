@@ -378,4 +378,18 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 --      exec (comp e) s  = eval e : s
 --  holds.
 --
+--  BASE CASE: Show that exec (comp (Val n)) s = eval (Val n) : s
+--      exec (comp (Val n)) s
+--          ---> (applying comp (4))   = exec [PUSH n] s
+--          ---> (applying exec (2))   = exec [] (n : s)
+--          ---> (applying exec (1))   = n : s
+--          ---> (unapplying eval (6)) = eval (Val n) : s
+--      So, we have exec (comp (Val n)) s = eval (Val n) : s
+--
+--  NOTE: Used in steps above
+--      exec []           s = s               -- (1)
+--      exec (PUSH n : c) s = exec c (n : s)  -- (2)
+--      comp (Val n)        = [PUSH n]        -- (4)
+--      eval (Val n)        = n               -- (6)
+--
 
