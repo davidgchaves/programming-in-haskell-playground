@@ -328,3 +328,17 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 -- REASONING ABOUT THE CORRECTNESS OF OUR COMPILER FOR EXPRESSIONS
 --
 
+--  RatCooCfE: THE PROBLEM
+--
+--  Generalising from the example, the correctness of our compiler for expressions
+--  can be expressed by the following equation:
+--
+--      exec (comp e) [] = [eval e]
+--
+--   Left-hand side equals:
+--      compiling an expression e and then executing the resulting code using an empty initial stack
+--
+--   Right-hand side equals:
+--      evaluating the expression e and then converting the resulting integer into a singleton stack
+--
+
