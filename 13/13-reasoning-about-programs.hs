@@ -372,3 +372,10 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 --      exec (comp e) s  = eval e : s
 --
 
+--  RatCooCfE: Proving correctness using Induction
+--
+--  Show that the compiler correctness equation
+--      exec (comp e) s  = eval e : s
+--  holds.
+--
+
