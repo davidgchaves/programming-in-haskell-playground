@@ -323,3 +323,8 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 -- comp e1           --> [PUSH 2, PUSH 3, ADD, PUSH 4, ADD]
 -- exec (comp e1) [] --> [9]
 
+
+--
+-- REASONING ABOUT THE CORRECTNESS OF OUR COMPILER FOR EXPRESSIONS
+--
+
