@@ -392,4 +392,28 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 --      comp (Val n)        = [PUSH n]        -- (4)
 --      eval (Val n)        = n               -- (6)
 --
+--
+--  INDUCTIVE CASE: if exec (comp e) s = eval e : s
+--                  (which means exec (comp x) s = eval x : s
+--                           and exec (comp y) s = eval y : s)
+--                  show that exec (comp (Add x y)) = eval (Add x y) : s
+--      exec (comp (Add x y)) s
+--          ---> (applying comp (5))          = exec (comp x ++ comp y ++ [ADD]) s
+--          ---> (++ associativity)           = exec (comp x ++ (comp y ++ [ADD]) s
+--          ---> (++ distributivity (8))      = exec (comp y ++ [ADD]) (exec (comp x) s)
+--          ---> (induction hypothesis for x) = exec (comp y ++ [ADD]) (eval x : s)
+--          ---> (++ distributivity (8))      = exec [ADD] (exec (comp y) (eval x : s))
+--          ---> (induction hypothesis for y) = exec [ADD] (eval y : eval x : s)
+--          ---> (applying exec (3))          = exec [] ((eval x + eval y) : s)
+--          ---> (applying exec (1))          = (eval x + eval y) : s
+--          ---> (unapplying eval (7))        = eval (Add x y) : s
+--      So, we have exec (comp (Add x y)) x = eval (Add x y) : s
+--
+--  NOTE: Used in steps above
+--      exec []        s           = s                          -- (1)
+--      exec (ADD : c) (m : n : s) = exec c (n + m : s)         -- (3)
+--      comp (Add x y)             = comp x ++ comp y ++ [ADD]  -- (5)
+--      eval (Add x y)             = eval x + eval y            -- (7)
+--      exec (c ++ d) s            = exec d (exec c s)          -- (8)
+--
 
