@@ -363,3 +363,12 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 --      (TREES) Node Tree Tree ---> (EXPRESSIONS) Add Expression Expression
 --
 
+--  RatCooCfE: Generalising the Problem to an Arbitrary Initial Stack
+--
+--  The compiler correctness equation can be verified as follows:
+--      exec (comp e) [] = [eval e]
+--
+--  or generalising from [] (empty initial stack) to s (arbitrary initial stack):
+--      exec (comp e) s  = eval e : s
+--
+
