@@ -441,4 +441,13 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 --      exec (c ++ d) s = exec d (exec c s)
 --  holds, by induction on the code c
 --
+--  BASE CASE: Show that exec ([] ++ d) s = exec d (exec [] s)
+--      exec ([] ++ d) s
+--          ---> (applying ++)         = exec d s
+--          ---> (unapplying exec (1)) = exec d (exec [] s)
+--      So, we have exec ([] ++ d) s = exec d (exec [] s)
+--
+--  NOTE: Used in steps above
+--      exec [] s = s  -- (1)
+--
 
