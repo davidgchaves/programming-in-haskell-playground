@@ -417,3 +417,13 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 --      exec (c ++ d) s            = exec d (exec c s)          -- (8)
 --
 
+--  RatCooCfE: The need for an Arbitrary Initial Stack
+--
+--  The induction hypothesis for y wouldn't be applicable if the initial stack were empty,
+--  (the initial stack = eval x : s  (non-empty))
+--          exec [ADD] (exec (comp y) (eval x : s))
+--          ---> (induction hypothesis for y) = exec [ADD] (eval y : eval x : s)
+--
+--  That's why we needed to generalise the equation from an empty stack to an arbitrary stack
+--
+
