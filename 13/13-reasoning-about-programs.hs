@@ -466,4 +466,17 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 --      NOTE: Used in steps above
 --      exec (PUSH n : c) s = exec c (n : s)  -- (2)
 --
+--      INDUCTIVE CASE 2: exec ((ADD : c) ++ d) s = exec d (exec (ADD : c) s)
+--      exec ((ADD : c) ++ d) s
+--          ---> (applying ++)                 = exec (ADD : (c ++ d) s
+--          ---> (assume s of the form m:n:s') = exec (ADD : (c ++ d) (m : n : s')
+--          ---> (applying exec (3))           = exec (c ++ d) (n + m : s')
+--          ---> (induction hypothesis)        = exec d (exec c (n + m : s'))
+--          ---> (unapplying inner exec (3))   = exec d (exec (ADD : c) (m : n : s')
+--      So, we have exec ((ADD : c) ++ d) s = exec d (exec (ADD : c) s)
+--                  assuming s of the form (m : n : s')
+--
+--      NOTE: Used in steps above
+--      exec (ADD : c) (m : n : s) = exec c (n + m : s)  -- (3)
+--
 
