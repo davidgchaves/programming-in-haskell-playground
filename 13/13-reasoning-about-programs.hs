@@ -427,3 +427,11 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 --  That's why we needed to generalise the equation from an empty stack to an arbitrary stack
 --
 
+--  RatCooCfE: The ++ distributivity property
+--
+--  The distributivity property used in the inductive case states that
+--        executing two pieces of code appended together gives the same result as
+--        executing the two pieces of code in sequence:
+--      exec (c ++ d) s = exec d (exec c s)
+--
+
