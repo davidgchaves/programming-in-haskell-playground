@@ -435,3 +435,10 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 --      exec (c ++ d) s = exec d (exec c s)
 --
 
+--  RatCooCfE: Proving the ++ distributivity property by induction
+--
+--  Show that the ++ distributivity property
+--      exec (c ++ d) s = exec d (exec c s)
+--  holds, by induction on the code c
+--
+
