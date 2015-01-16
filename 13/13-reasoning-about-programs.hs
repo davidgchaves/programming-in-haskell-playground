@@ -455,4 +455,15 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 --                  show that exec ((PUSH n : c) ++ d) s = exec d (exec (PUSH n : c) s)
 --                  and       exec ((ADD    : c) ++ d) s = exec d (exec (ADD    : c) s)
 --
+--      INDUCTIVE CASE 1: exec ((PUSH n : c) ++ d) s = exec d (exec (PUSH n : c) s)
+--      exec ((PUSH n : c) ++ d) s
+--          ---> (applying ++)               = exec (PUSH n : (c ++ d) s
+--          ---> (applying exec (2))         = exec (c ++ d) (n : s)
+--          ---> (induction hypothesis)      = exec d (exec c (n : s))
+--          ---> (unapplying inner exec (2)) = exec d (exec (PUSH n : c) s)
+--      So, we have exec ((PUSH n : c) ++ d) s = exec d (exec (PUSH n : c) s)
+--
+--      NOTE: Used in steps above
+--      exec (PUSH n : c) s = exec c (n : s)  -- (2)
+--
 
