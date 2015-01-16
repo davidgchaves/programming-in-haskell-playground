@@ -450,4 +450,9 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 --  NOTE: Used in steps above
 --      exec [] s = s  -- (1)
 --
+--
+--  INDUCTIVE CASE: if exec (c ++ d) s = exec d (exec c s)
+--                  show that exec ((PUSH n : c) ++ d) s = exec d (exec (PUSH n : c) s)
+--                  and       exec ((ADD    : c) ++ d) s = exec d (exec (ADD    : c) s)
+--
 
