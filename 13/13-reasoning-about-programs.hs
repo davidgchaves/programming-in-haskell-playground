@@ -512,4 +512,22 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 --      comp' e c    = comp e ++ c  -- (1)
 --      comp (Val n) = [PUSH n]     -- (4)
 --
+--  INDUCTIVE CASE: if comp' e c (INDUCTION HYPOTHESIS) holds
+--                  (which means comp' x c = comp x ++ c
+--                           and comp' y c = comp y ++ c)
+--                  show that comp' (Add x y) c = ?
+--      comp' (Add x y) c
+--          ---> (applying (1))                               = comp (Add x y) ++ c
+--          ---> (applying comp (5))                          = (comp x ++ comp y ++ [ADD]) ++ c
+--          ---> (++ associativity)                           = comp x ++ comp y ++ ([ADD] ++ c)
+--          ---> (applying ++)                                = comp x ++ comp y ++ (ADD : c)
+--          ---> (++ associativity)                           = comp x ++ (comp y ++ (ADD : c))
+--          ---> (induction hypothesis for y (right-to-left)) = comp x ++ (comp' y (ADD : c))
+--          ---> (induction hypothesis for x (right-to-left)) = comp' x (comp' y (ADD : c))
+--      So, we have comp' (Add x y) c = comp' x (comp' y (ADD : c) (DEF-2)
+--
+--  NOTE: Used in steps above
+--      comp' e c      = comp e ++ c                -- (1)
+--      comp (Add x y) = comp x ++ comp y ++ [ADD]  -- (5)
+--
 
