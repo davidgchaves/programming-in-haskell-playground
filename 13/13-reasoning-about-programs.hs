@@ -500,4 +500,16 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 
 --  Show that comp' combines flatten and ++, so that
 --      comp' e c = comp e ++ c  -- (1)
+--
+--  BASE CASE: Show that comp' (Val n) c = ?
+--      comp' (Val n) c
+--          ---> (applying (1))      = comp (Val n) ++ c
+--          ---> (applying comp (4)) = [PUSH n] ++ c
+--          ---> (applying ++)       = PUSH n : c
+--      So, we have comp' (Val n) c = PUSH n : c (DEF-1)
+--
+--  NOTE: Used in steps above
+--      comp' e c    = comp e ++ c  -- (1)
+--      comp (Val n) = [PUSH n]     -- (4)
+--
 
