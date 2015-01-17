@@ -531,3 +531,14 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 --      comp (Add x y) = comp x ++ comp y ++ [ADD]  -- (5)
 --
 
+-- comp': our attempt to produce a ++ free compiler,
+--        avoiding the consequent underflow issue
+-- Using DEF-1 and DEF-2 we have our comp' definition
+comp'             :: Expression -> Code -> Code
+comp' (Val n)   c = PUSH n : c
+comp' (Add x y) c = comp' x (comp' y (ADD : c))
+-- comp  e1              --> [PUSH 2, PUSH 3, ADD, PUSH 4, ADD]
+-- comp' e1 []           --> [PUSH 2, PUSH 3, ADD, PUSH 4, ADD]
+-- exec (comp e1)     [] --> [9]
+-- exec (comp' e1 []) [] --> [9]
+
