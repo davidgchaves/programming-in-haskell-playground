@@ -480,3 +480,15 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 --      exec (ADD : c) (m : n : s) = exec c (n + m : s)  -- (3)
 --
 
+--  RatCooCfE: A Stack Underflow Error
+--
+--  While proving the Inductive Case 2 we made an assumption
+--      s should be of the form (m : n : s')
+--
+--  This wouldn't hold in case of a stack underflow error
+--
+--  In practice, this will never arise, because the structure of the compiler
+--  ensures that the stack will always contain at least two integers
+--  when an add operation is performed
+--
+
