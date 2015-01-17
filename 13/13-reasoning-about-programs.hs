@@ -231,8 +231,8 @@ data Tree = Leaf Int
 -- flatTen: our attempt to produce an efficient flatten on Trees,
 --          making ++ vanish
 
---  Show that flatTen combines flatten and ++, such that
---  so that flatTen t ns = flatten t ++ ns (3)
+--  Show that flatTen combines flatten and ++, so that
+--      flatTen t ns = flatten t ++ ns (3)
 
 flatten            :: Tree -> [Int]
 flatten (Leaf n)   = [n]                     -- (1)
