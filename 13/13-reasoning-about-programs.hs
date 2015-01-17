@@ -492,3 +492,12 @@ e1 = Add (Add (Val 2) (Val 3)) (Val 4)
 --  when an add operation is performed
 --
 
+--  RatCooCfE: Deriving a '++'-free new Compiler using Induction
+--
+--  We seek to define a generalised function comp' with the following property:
+--      comp' e c = comp e ++ c
+--  that way we eleiminate the use of ++ and the consequent Stack Underflow Error
+
+--  Show that comp' combines flatten and ++, so that
+--      comp' e c = comp e ++ c  -- (1)
+
