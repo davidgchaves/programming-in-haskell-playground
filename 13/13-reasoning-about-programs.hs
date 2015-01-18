@@ -569,4 +569,16 @@ comp' (Add x y) c = comp' x (comp' y (ADD : c))
 --      exec (comp' e c) s = exec c (eval e : s)
 --  holds.
 --
+--  BASE CASE: Show that exec (comp' (Val n) c) s = exec c (eval (Val n) : s)
+--      exec (comp' (Val n) c) s
+--          ---> (applying comp' (4))  = exec (PUSH n : c) s
+--          ---> (applying exec (2))   = exec c (n : s)
+--          ---> (unapplying eval (6)) = exec c (eval (Val n) : s)
+--      So, we have exec (comp' (Val n) c) s = exec c (eval (Val n) : s)
+--
+--  NOTE: Used in steps above
+--      exec (PUSH n : c) s = exec c (n : s)  -- (2)
+--      comp' (Val n) c     = PUSH n : c      -- (4)
+--      eval (Val n)        = n               -- (6)
+--
 
