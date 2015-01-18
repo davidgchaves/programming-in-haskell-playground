@@ -599,3 +599,28 @@ comp' (Add x y) c = comp' x (comp' y (ADD : c))
 --      eval (Add x y)             = eval x + eval y              -- (7)
 --
 
+
+--  RatCooCfE: Do we need an Arbitrary Initial Stack now?
+--
+--  We have just proved that
+--      exec (comp' e c) s = exec c (eval e : s)
+--  holds, so our new compiler is correct.
+--
+--  What if our initial stack is empty (s = [])?
+--
+--      exec (comp' e c) [] = exec c (eval e : [])
+--  or
+--      exec (comp' e c) [] = exec c [eval e]
+--
+--  And what if our initial code stack is empty too (c = [])?
+--
+--      exec (comp' e []) [] = exec [] [eval e]
+--  or
+--      exec (comp' e []) [] = [eval e]
+--
+--  NOTE: Applying the exec definition   exec [] s = s
+--
+--  Which clearly resembles our original statement of correctness
+--      exec (comp e) [] = [eval e]
+--
+
