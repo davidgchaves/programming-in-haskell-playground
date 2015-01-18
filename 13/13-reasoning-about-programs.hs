@@ -581,4 +581,21 @@ comp' (Add x y) c = comp' x (comp' y (ADD : c))
 --      comp' (Val n) c     = PUSH n : c      -- (4)
 --      eval (Val n)        = n               -- (6)
 --
+--  INDUCTIVE CASE: if exec (comp' e c) s = exec c (eval e : s)
+--                  (which means exec (comp' x c) s = exec c (eval x : s)
+--                           and exec (comp' y c) s = exec c (eval y : s)
+--                  show that exec (comp' (Add x y) c) s  = exec c (eval (Add x y) : s)
+--      exec (comp' (Add x y) c) s
+--          ---> (applying comp' (5))         = exec (comp' x (comp' y (ADD : c))) s
+--          ---> (induction hypothesis for x) = exec (comp' y (ADD : c)) (eval x : s)
+--          ---> (induction hypothesis for y) = exec (ADD : c) (eval y : eval x : s)
+--          ---> (applying exec (3))          = exec c ((eval x + eval y) : s)
+--          ---> (unapplying eval (7))        = exec c (eval (Add x y) : s)
+--      So, we have exec (comp' (Add x y) c) s  = exec c (eval (Add x y) : s)
+--
+--  NOTE: Used in steps above
+--      exec (ADD : c) (m : n : s) = exec c (n + m : s)           -- (3)
+--      comp' (Add x y) c          = comp' x (comp' y (ADD : c))  -- (5)
+--      eval (Add x y)             = eval x + eval y              -- (7)
+--
 
