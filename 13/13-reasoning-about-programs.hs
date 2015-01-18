@@ -624,3 +624,11 @@ comp' (Add x y) c = comp' x (comp' y (ADD : c))
 --      exec (comp e) [] = [eval e]
 --
 
+
+--  RatCooCfE: Benefits of comp' (accumulator version of the compiler)
+--
+--  1: Avoid the Stack Underflow problem
+--  2: More efficient (no more ++)
+--  3: Straightforward proof
+--
+
