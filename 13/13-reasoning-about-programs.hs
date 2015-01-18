@@ -542,3 +542,23 @@ comp' (Add x y) c = comp' x (comp' y (ADD : c))
 -- exec (comp e1)     [] --> [9]
 -- exec (comp' e1 []) [] --> [9]
 
+
+--  RatCooCfE: THE NEW PROBLEM
+--
+--  Taking into account that
+--      comp e = comp' e []
+--
+--  the correctness of our NEW compiler for expressions
+--  can be expressed by the following equation:
+--
+--      exec (comp' e c) s = exec c (eval e : s)
+--
+--   Left-hand side equals:
+--      compiling an expression e and then executing the resulting code together
+--      with arbitrary additional code c
+--
+--   Right-hand side equals:
+--      executing the additional code c with the value of the expression e
+--      on top of the original stack s
+--
+
