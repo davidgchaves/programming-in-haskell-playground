@@ -562,3 +562,11 @@ comp' (Add x y) c = comp' x (comp' y (ADD : c))
 --      on top of the original stack s
 --
 
+
+--  RatCooCfE: Proving correctness using Induction
+--
+--  Show that the compiler correctness equation
+--      exec (comp' e c) s = exec c (eval e : s)
+--  holds.
+--
+
