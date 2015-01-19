@@ -186,3 +186,6 @@ solutions inps sol = [exp | inps' <- choices inps
 --      - rejected at an earlier stage
 --      - not used to generate further such Expressions
 
+-- The Result Type (Valid Expressions and their values)
+type Result = (Expression, Int)
+
