@@ -205,3 +205,9 @@ results ns  = [res | (ls,rs) <- split ns
                    , ry      <- results rs
                    , res     <- combine' lx ry]
 
+-- combine': produces a list of valid Results
+--           combining a pair of Results with the four numeric Operators
+combine'             :: Result -> Result -> [Result]
+combine' (l,x) (r,y) = [(App o l r, apply o x y) | o <- operators
+                                                 , valid o x y]
+
