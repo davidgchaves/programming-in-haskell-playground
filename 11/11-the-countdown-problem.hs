@@ -39,3 +39,8 @@ valid Sub x y = x > y
 valid Mul _ _ = True
 valid Div x y = x `mod` y == 0
 
+-- The Expression Algebraic Data Type
+data Expression = Val Int
+                | App Operator Expression Expression
+                deriving Show
+
