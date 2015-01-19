@@ -95,3 +95,14 @@ choices xs = concat (map perms (subs xs))
 --                       [2,3],[3,2],[1,3],[3,1],[1,2],[2,1],
 --                       [1,2,3],[2,1,3],[2,3,1],[1,3,2],[3,1,2],[3,2,1] ]
 
+-- solution: decides if an Expression is a solution to the game
+--  It is a solution:
+--      - if the list of values in the expression is chosen from the list of numbers
+--      and
+--      - the expression successfully evaluates to give the target
+solution              :: Expression -> [Int] -> Int -> Bool
+solution exp inps sol = elem (values exp) (choices inps) &&
+                        eval exp == [sol]
+-- solution e1 [1,3,7,10,25,50] 765 --> True
+-- solution e1 [1,3,7,10,25,50] 831 --> False
+
