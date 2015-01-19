@@ -113,3 +113,9 @@ matchTarget exp sol = eval exp == [sol]
 -- matchTarget e1 765 --> True
 -- matchTarget e1 831 --> False
 
+
+-- 11.3 Brute force solution
+--
+--  Solving the countdown problem using the idea of
+--  generating all possible Expressions over the given list of numbers
+
