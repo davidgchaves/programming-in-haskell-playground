@@ -119,3 +119,11 @@ matchTarget exp sol = eval exp == [sol]
 --  Solving the countdown problem using the idea of
 --  generating all possible Expressions over the given list of numbers
 
+-- split: produces a list of all possible ways of splitting a list
+--        into two non-empty lists
+split        :: [a] -> [([a],[a])]
+split []     = []
+split [_]    = []
+split (x:xs) = ([x],xs) : [(x:ls,rs) | (ls,rs) <- split xs]
+-- split [1,2,3,4] --> [([1],[2,3,4]), ([1,2],[3,4]), ([1,2,3],[4])]
+
