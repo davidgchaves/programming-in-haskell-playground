@@ -151,3 +151,20 @@ combine l r = [App o l r | o <- operators]
 operators :: [Operator]
 operators = [Add, Sub, Mul, Div]
 
+-- solutions: produces a list with all possible Expressions that solve
+--            an instance of the countdown problem
+--      1st: generate all Expressions that are choices from the given list of numbers
+--      2nd: brute force all Expressions over each choice
+--      3rd: select those Expressions that successfully evaluate to give the target
+solutions          :: [Int] -> Int -> [Expression]
+solutions inps sol = [exp | inps' <- choices inps
+                          , exp   <- exprs inps'
+                          , matchTarget exp sol]
+-- solutions [1,3,7,10,25,50] 765 -->
+--  [ App Mul (Val 3) (App Sub (App Mul (Val 7) (App Sub (Val 50) (Val 10))) (Val 25)),
+--    App Mul (App Sub (App Mul (Val 7) (App Sub (Val 50) (Val 10))) (Val 25)) (Val 3),
+--    App Mul (Val 3) (App Sub (App Mul (App Sub (Val 50) (Val 10)) (Val 7)) (Val 25)),
+--    App Mul (App Sub (App Mul (App Sub (Val 50) (Val 10)) (Val 7)) (Val 25)) (Val 3),
+--    App Mul (App Sub (Val 25) (Val 10)) (App Add (Val 1) (Val 50)),
+--    ... ]
+
