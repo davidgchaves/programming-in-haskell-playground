@@ -31,3 +31,11 @@ apply Sub x y = x - y
 apply Mul x y = x * y
 apply Div x y = x `div` y
 
+-- valid: decides if the application of an Operator conforms the rules of the game
+--        (in other words, checks that the result is another positive natural number)
+valid         :: Operator -> Int -> Int -> Bool
+valid Add _ _ = True
+valid Sub x y = x > y
+valid Mul _ _ = True
+valid Div x y = x `mod` y == 0
+
