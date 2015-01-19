@@ -16,3 +16,11 @@
 --      1: Each number in the sequence can only be used at most once in the expression
 --      2: All of the numbers involved must be positive natural numbers
 --
+
+
+-- 11.2 Formalising the problem
+
+-- The Operator Algebraic Data Type
+data Operator = Add | Sub | Mul | Div
+                deriving Show
+
