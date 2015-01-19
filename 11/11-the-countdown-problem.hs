@@ -24,3 +24,10 @@
 data Operator = Add | Sub | Mul | Div
                 deriving Show
 
+-- apply: takes two numbers and apply an Operator
+apply         :: Operator -> Int -> Int -> Int
+apply Add x y = x + y
+apply Sub x y = x - y
+apply Mul x y = x * y
+apply Div x y = x `div` y
+
