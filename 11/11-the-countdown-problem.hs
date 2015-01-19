@@ -44,3 +44,8 @@ data Expression = Val Int
                 | App Operator Expression Expression
                 deriving Show
 
+-- e1: One expression that wins the game from the example at 11.1
+--     (25 - 10) * (50 + 1)
+e1 :: Expression
+e1 = App Mul (App Sub (Val 25) (Val 10)) (App Add (Val 50) (Val 1))
+
