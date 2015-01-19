@@ -147,3 +147,7 @@ exprs ns  = [e | (ls,rs) <- split ns
 combine     :: Expression -> Expression -> [Expression]
 combine l r = [App o l r | o <- operators]
 
+-- operators: produces a list with the four numeric Operators
+operators :: [Operator]
+operators = [Add, Sub, Mul, Div]
+
