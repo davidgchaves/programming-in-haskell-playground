@@ -228,3 +228,10 @@ solutions' inps sol = [exp | inps'      <- choices inps
 --    App Mul (App Sub (Val 25) (Val 10)) (App Add (Val 1) (Val 50)),
 --    ... ]
 
+-- PROBLEMS OF THIS APPROACH
+--
+--  1: Many of the generated Expressions will be essentially the same
+--     using simple arithmetic properties, such that
+--      x * y = y * x
+--      x * 1 = x
+
