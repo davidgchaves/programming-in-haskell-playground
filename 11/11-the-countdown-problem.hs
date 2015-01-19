@@ -168,3 +168,9 @@ solutions inps sol = [exp | inps' <- choices inps
 --    App Mul (App Sub (Val 25) (Val 10)) (App Add (Val 1) (Val 50)),
 --    ... ]
 
+-- PROBLEMS OF THE BRUTE-FORCE SOLUTION
+--
+--  1: Many of the Expressions found by solution will fail to evaluate
+--     due to the fact that '-' and '/' are not always valid for positive naturals
+--  2: Really slow
+
