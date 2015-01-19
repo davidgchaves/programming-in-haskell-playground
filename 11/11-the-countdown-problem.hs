@@ -49,3 +49,13 @@ data Expression = Val Int
 e1 :: Expression
 e1 = App Mul (App Sub (Val 25) (Val 10)) (App Add (Val 50) (Val 1))
 
+-- eval: produces the overall value of an Expression
+--          - the singleton list (that contains the value) means succcess
+--          - the empty list means failure
+eval             :: Expression -> [Int]
+eval (Val n)     = [n           | n > 0]
+eval (App o l r) = [apply o x y | x <- eval l
+                                , y <- eval r
+                                , valid o x y]
+-- eval e1 --> [765]
+
