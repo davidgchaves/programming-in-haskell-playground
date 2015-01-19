@@ -65,3 +65,11 @@ values (Val n)     = [n]
 values (App _ l r) = values l ++ values r
 -- values e1 --> [25, 10, 50, 1]
 
+-- subs: produces all subsequences of a list,
+--       which are given by all possible combinations of excluding or including each element
+subs        :: [a] -> [[a]]
+subs []     = [[]]
+subs (x:xs) = yss ++ map (x:) yss
+              where yss = subs xs
+-- subs [1,2,3] --> [[],[3],[2],[2,3],[1],[1,3],[1,2],[1,2,3]]
+
