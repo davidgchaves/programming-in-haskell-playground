@@ -189,3 +189,19 @@ solutions inps sol = [exp | inps' <- choices inps
 -- The Result Type (Valid Expressions and their values)
 type Result = (Expression, Int)
 
+-- results: produces a list with all possible Results,
+--          fusing together the generation and evaluation of Expressions
+--  - For the empty list                ---> there are no possible Expressions
+--  - For a single number               ---> there is a single Result formed from that number
+--  - For a list of two or more numbers --->
+--      1st: produce all splittings of the list
+--      2nd: recursively calculate all possible Results for each of these lists
+--      3rd: combine each pair of Results using each of the four numeric Operators
+results     :: [Int] -> [Result]
+results []  = []
+results [n] = [(Val n, n) | n > 0]
+results ns  = [res | (ls,rs) <- split ns
+                   , lx      <- results ls
+                   , ry      <- results rs
+                   , res     <- combine' lx ry]
+
