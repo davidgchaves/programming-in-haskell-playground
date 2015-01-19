@@ -86,3 +86,12 @@ perms []     = [[]]
 perms (x:xs) = concat (map (interleave x) (perms xs))
 -- perms [1,2,3] --> [[1,2,3],[2,1,3],[2,3,1],[1,3,2],[3,1,2],[3,2,1]]
 
+-- choices: produces a list of all possible ways of
+--          choosing zero or more elements from an input list
+choices    :: [a] -> [[a]]
+choices xs = concat (map perms (subs xs))
+-- choices [1,2,3] --> [ [],
+--                       [3],[2],[1],
+--                       [2,3],[3,2],[1,3],[3,1],[1,2],[2,1],
+--                       [1,2,3],[2,1,3],[2,3,1],[1,3,2],[3,1,2],[3,2,1] ]
+
