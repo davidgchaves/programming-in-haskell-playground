@@ -79,3 +79,10 @@ interleave x []     = [[x]]
 interleave x (y:ys) = (x:y:ys) : map (y:) (interleave x ys)
 -- interleave 0 [1,2,3] --> [[0,1,2,3],[1,0,2,3],[1,2,0,3],[1,2,3,0]]
 
+-- perms: produces all permutations of a list,
+--        which are given by all possible reorderings of the elements
+perms        :: [a] -> [[a]]
+perms []     = [[]]
+perms (x:xs) = concat (map (interleave x) (perms xs))
+-- perms [1,2,3] --> [[1,2,3],[2,1,3],[2,3,1],[1,3,2],[3,1,2],[3,2,1]]
+
