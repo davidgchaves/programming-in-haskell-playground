@@ -174,3 +174,15 @@ solutions inps sol = [exp | inps' <- choices inps
 --     due to the fact that '-' and '/' are not always valid for positive naturals
 --  2: Really slow
 
+
+-- 11.4 Combining generation and evaluation
+--
+--  Improve our brute force program by combining
+--      - the generation of Expressions
+--      - with their evaluation
+--  such that both tasks are performed simultaneously.
+--
+--  In this way, Expressions that fail to evaluate are
+--      - rejected at an earlier stage
+--      - not used to generate further such Expressions
+
