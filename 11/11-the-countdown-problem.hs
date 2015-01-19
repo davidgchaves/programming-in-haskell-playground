@@ -211,3 +211,20 @@ combine'             :: Result -> Result -> [Result]
 combine' (l,x) (r,y) = [(App o l r, apply o x y) | o <- operators
                                                  , valid o x y]
 
+-- solutions': produces a list with all possible Expressions that solve
+--             an instance of the countdown problem
+--      1st: generate all Expressions that are choices from the given list of numbers
+--      2nd: calculate all valid Results over each choice
+--      3rd: select those Expressions that successfully evaluate to give the target
+solutions'          :: [Int] -> Int -> [Expression]
+solutions' inps sol = [exp | inps'      <- choices inps
+                           , (exp,sol') <- results inps'
+                           , sol' == sol]
+-- solutions' [1,3,7,10,25,50] 765 -->
+--  [ App Mul (Val 3) (App Sub (App Mul (Val 7) (App Sub (Val 50) (Val 10))) (Val 25)),
+--    App Mul (App Sub (App Mul (Val 7) (App Sub (Val 50) (Val 10))) (Val 25)) (Val 3),
+--    App Mul (Val 3) (App Sub (App Mul (App Sub (Val 50) (Val 10)) (Val 7)) (Val 25)),
+--    App Mul (App Sub (App Mul (App Sub (Val 50) (Val 10)) (Val 7)) (Val 25)) (Val 3),
+--    App Mul (App Sub (Val 25) (Val 10)) (App Add (Val 1) (Val 50)),
+--    ... ]
+
