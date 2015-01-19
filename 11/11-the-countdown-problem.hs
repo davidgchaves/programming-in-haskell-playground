@@ -96,13 +96,20 @@ choices xs = concat (map perms (subs xs))
 --                       [1,2,3],[2,1,3],[2,3,1],[1,3,2],[3,1,2],[3,2,1] ]
 
 -- solution: decides if an Expression is a solution to the game
---  It is a solution:
---      - if the list of values in the expression is chosen from the list of numbers
---      and
---      - the expression successfully evaluates to give the target
 solution              :: Expression -> [Int] -> Int -> Bool
-solution exp inps sol = elem (values exp) (choices inps) &&
-                        eval exp == [sol]
+solution exp inps sol = validInputs exp inps && matchTarget exp sol
 -- solution e1 [1,3,7,10,25,50] 765 --> True
 -- solution e1 [1,3,7,10,25,50] 831 --> False
+
+-- validInputs: checks if a list of values from an Expression is chosen from a given list of numbers
+validInputs          :: Expression -> [Int] -> Bool
+validInputs exp inps = elem (values exp) (choices inps)
+-- validInputs e1 [1,3,7,10,25,50] --> True
+-- validInputs e1 [1,3,7,25,50]    --> False
+
+-- matchTarget: checks if an Expression evaluates to the given target/solution
+matchTarget         :: Expression -> Int -> Bool
+matchTarget exp sol = eval exp == [sol]
+-- matchTarget e1 765 --> True
+-- matchTarget e1 831 --> False
 
