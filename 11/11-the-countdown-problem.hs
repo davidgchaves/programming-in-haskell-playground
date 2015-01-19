@@ -241,3 +241,12 @@ solutions' inps sol = [exp | inps'      <- choices inps
 --  Improve our program by exploiting algebraic properties of the numeric Operators
 --  to reduce even further the number of generated Expressions
 
+-- valid': decides if the application of an Operator conforms the rules of the game
+--         (in other words, checks that the result is another positive natural number)
+--         and also takes advantage of basic algebraic properties like commutativity and identity
+valid'         :: Operator -> Int -> Int -> Bool
+valid' Add x y = x <= y
+valid' Sub x y = x > y
+valid' Mul x y = x <= y && x /= 1 && y /= 1
+valid' Div x y = x `mod` y == 0 && y /= 1
+
