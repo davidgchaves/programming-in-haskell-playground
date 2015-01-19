@@ -235,3 +235,9 @@ solutions' inps sol = [exp | inps'      <- choices inps
 --      x * y = y * x
 --      x * 1 = x
 
+
+-- 11.5 Exploiting algebraic properties
+--
+--  Improve our program by exploiting algebraic properties of the numeric Operators
+--  to reduce even further the number of generated Expressions
+
