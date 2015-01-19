@@ -250,3 +250,30 @@ valid' Sub x y = x > y
 valid' Mul x y = x <= y && x /= 1 && y /= 1
 valid' Div x y = x `mod` y == 0 && y /= 1
 
+-- results': the same as results but using combine''
+results'     :: [Int] -> [Result]
+results' []  = []
+results' [n] = [(Val n, n) | n > 0]
+results' ns  = [res | (ls,rs) <- split ns
+                    , lx      <- results' ls
+                    , ry      <- results' rs
+                    , res     <- combine'' lx ry]
+
+-- combine'': the same as combine' but using valid'
+combine''             :: Result -> Result -> [Result]
+combine'' (l,x) (r,y) = [(App o l r, apply o x y) | o <- operators
+                                                  , valid' o x y]
+
+-- solutions'': the same as solutions' but using results'
+solutions''          :: [Int] -> Int -> [Expression]
+solutions'' inps sol = [exp | inps'      <- choices inps
+                            , (exp,sol') <- results' inps'
+                            , sol' == sol]
+-- solutions'' [1,3,7,10,25,50] 765 -->
+--  [ App Mul (Val 3) (App Sub (App Mul (Val 7) (App Sub (Val 50) (Val 10))) (Val 25)),
+--    App Mul (App Sub (Val 25) (Val 10)) (App Add (Val 1) (Val 50)),
+--    App Mul (App Sub (Val 25) (App Add (Val 3) (Val 7))) (App Add (Val 1) (Val 50)),
+--    App Mul (App Sub (App Sub (Val 25) (Val 3)) (Val 7)) (App Add (Val 1) (Val 50)),
+--    App Mul (App Sub (App Sub (Val 25) (Val 7)) (Val 3)) (App Add (Val 1) (Val 50)),
+--    ... ]
+
