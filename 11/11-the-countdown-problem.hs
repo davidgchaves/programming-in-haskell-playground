@@ -127,3 +127,19 @@ split [_]    = []
 split (x:xs) = ([x],xs) : [(x:ls,rs) | (ls,rs) <- split xs]
 -- split [1,2,3,4] --> [([1],[2,3,4]), ([1,2],[3,4]), ([1,2,3],[4])]
 
+-- exprs: produces a list of all possible Expressions
+--        whose values are precisely a given list of numbers
+--  - For the empty list                ---> there are no possible Expressions
+--  - For a single number               ---> there is a single Expression comprising that number
+--  - For a list of two or more numbers --->
+--      1st: produce all splittings of the list
+--      2nd: recursively calculate all possible Expressions for each of these lists
+--      3rd: combine each pair of Expressions using each of the four numeric Operators
+exprs     :: [Int] -> [Expression]
+exprs []  = []
+exprs [n] = [Val n]
+exprs ns  = [e | (ls,rs) <- split ns
+               , l       <- exprs ls
+               , r       <- exprs rs
+               , e       <- combine l r]
+
