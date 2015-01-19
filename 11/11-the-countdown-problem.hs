@@ -73,3 +73,9 @@ subs (x:xs) = yss ++ map (x:) yss
               where yss = subs xs
 -- subs [1,2,3] --> [[],[3],[2],[2,3],[1],[1,3],[1,2],[1,2,3]]
 
+-- interleave: produces all possible ways of inserting a new element into a list
+interleave          :: a -> [a] -> [[a]]
+interleave x []     = [[x]]
+interleave x (y:ys) = (x:y:ys) : map (y:) (interleave x ys)
+-- interleave 0 [1,2,3] --> [[0,1,2,3],[1,0,2,3],[1,2,0,3],[1,2,3,0]]
+
