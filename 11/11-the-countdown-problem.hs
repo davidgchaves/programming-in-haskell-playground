@@ -59,3 +59,9 @@ eval (App o l r) = [apply o x y | x <- eval l
                                 , valid o x y]
 -- eval e1 --> [765]
 
+-- values: returns the list of values in an Expression
+values             :: Expression -> [Int]
+values (Val n)     = [n]
+values (App _ l r) = values l ++ values r
+-- values e1 --> [25, 10, 50, 1]
+
